@@ -2,12 +2,13 @@
  * Created by anpi0316 on 15.03.2018.
  */
 $(document).ready(function () {
-
+    var x = document.getElementById("createfaculty");
     var ELEMENTS = {
         INPUT_FACULTY: '.jsAddFacultyInput',
         BUTTON_ADD_FACULTY:'.jsAddFacultyButton',
 
            CONTAINER_DATA_USING_AJAX: '.jsDataUsingAjax',
+        CONTAINER_DATA_USING_AJAX2: '.jsDataUsingAjax2',
         INPUT_NAME_AUTOR: '.jsInputNameAutor',
         INPUT_PASSWORD_AUTOR: '.jsInputPassword',
         BUTTON_AUTOR: '.jsButtonAutor',
@@ -20,6 +21,7 @@ $(document).ready(function () {
     };
 
     var $usersContainer = $(ELEMENTS.CONTAINER_DATA_USING_AJAX),
+        $usersContainer2 = $(ELEMENTS.CONTAINER_DATA_USING_AJAX2),
         $addedUserContainer = $(ELEMENTS.CONTAINER_ADDED_USER),
         $sendDataBtn = $(ELEMENTS.SEND_DATA_BTN),
         $showall =$(ELEMENTS.SHOWALL),
@@ -45,6 +47,38 @@ $(document).ready(function () {
         }
 
     });
+    $( ".jsDataUsingAjax" ).change(function() {
+        var obj = {
+
+
+            facultetId : $(".jsDataUsingAjax option:selected").attr("value")
+
+        };
+
+        $.ajax({
+            url: 'dropDown2',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (users) {
+                $usersContainer2.text('');
+
+                users ? function () {
+                    users.some(function (user) {
+
+                        $usersContainer2.append('<option value="'+user.id+'">'+user.name+'</option>')
+                    });
+                }() : false;
+            }
+
+        });
+
+
+
+    });
+
     $buttonAddFaculty.click(function (event) {
         event.stopPropagation();
     $showall.click(function (event) {
@@ -70,19 +104,21 @@ $(document).ready(function () {
         event.stopPropagation();
 
         var obj = {
+            name : $(ELEMENTS.INPUT_PASSWORD_AUTOR).val(),
 
-            name: $(ELEMENTS.INPUT_NAME).val()
+            facultetId : $(".jsDataUsingAjax option:selected").attr("value")
+
         };
 
         $.ajax({
-            url: 'users',
+            url: 'addSpeciality',
             type: 'POST',
             dataType: 'json',
             contentType: "application/json",
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
-                $addedUserContainer.append(addedUser ? addedUser.name : '');
+
               /*  window.location.href ="/admin-page"*/
             }
 
@@ -108,7 +144,8 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
-                $("#createfaculty").modal('toogle');
+              /*  $("#createfaculty").modal('toogle');*/
+              x.close();
                /* $addedUserContainer.append(addedUser ? addedUser.name : '');*/
                 /*  window.location.href ="/admin-page"*/
             }

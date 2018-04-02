@@ -25,6 +25,7 @@ package com.netcracker.etalon.controllers;
 
 
 
+import com.netcracker.etalon.dto.SpecialityDto;
 import com.netcracker.etalon.entities.*;
 import com.netcracker.etalon.models.UserViewModel;
 import com.netcracker.etalon.services.*;
@@ -85,7 +86,7 @@ public class TestController {
 
       return modelAndView;
   }
-    @RequestMapping(value = "/allrequest", method = RequestMethod.GET)
+    @RequestMapping(value = "/allrequest2", method = RequestMethod.GET)
     public ModelAndView getAllrequest() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("request");
@@ -99,7 +100,7 @@ public class TestController {
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     @ResponseBody
-    public void getUsersAsJson(@RequestBody StudentEntity studentEntity) {
+    public void getUsersAsJson(@RequestBody SpecialityEntity specialityEntity) {
         /*    SpecialityEntity specialityEntity = specialityService.find("kek");
             StudentEntity studentEntity1 = new StudentEntity();
        studentEntity1.setNamestud("test");
@@ -121,13 +122,7 @@ public class TestController {
         userEntity.setStudentEntity(studentEntity1);
         userService.add(userEntity);*/
 
-
-     UserEntity userEntity = userService.find("test");
-        RoleEntity roleEntity = new RoleEntity();
-        roleEntity.setRole("ADMIN");
-        roleEntity.setUserEntity(userEntity);
-        roleService.add(roleEntity);
-
+        specialityService.addspeciality(specialityEntity);
 
 
 
@@ -150,6 +145,50 @@ public class TestController {
 
         return modelAndView;
     }
+    @RequestMapping(value = "/dropdown", method = RequestMethod.GET)
+    @ResponseBody
+    public List<FacultetEntity> getAdminPage() {
+
+        return facultyService.findall();
+    }
+
+    @RequestMapping(value = "/addFacultet", method = RequestMethod.POST)
+    @ResponseBody
+    public void addFacultet(@RequestBody FacultetEntity facultetEntity) {
+      facultyService.addFaculty(facultetEntity);
+
+
+
+
+    }
+
+
+
+    @RequestMapping(value = "/addSpeciality", method = RequestMethod.POST)
+    @ResponseBody
+    public void addSpeciality(@RequestBody SpecialityDto specialityDto) {
+
+            FacultetEntity facultetEntity = facultyService.findByid(specialityDto.getFacultetId());
+            SpecialityEntity specialityEntity = new SpecialityEntity();
+            specialityEntity.setName(specialityDto.getName());
+            specialityEntity.setFacultetEntity(facultetEntity);
+            specialityService.addspeciality(specialityEntity);
+
+
+
+    }
+
+    @RequestMapping(value = "/dropDown2", method = RequestMethod.POST)
+    @ResponseBody
+    public List<SpecialityEntity> dropdown2(@RequestBody SpecialityDto specialityDto) {
+            FacultetEntity facultetEntity = facultyService.findByid(specialityDto.getFacultetId());
+      return specialityService.findByFacultetEntity(facultetEntity);
+
+
+
+    }
+
+
 
 }
 /*

@@ -26,6 +26,8 @@ package com.netcracker.etalon.repository;
 import com.netcracker.etalon.entities.FacultetEntity;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  * @author anpi0316
  *         Date: 27.03.2018
@@ -33,6 +35,9 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface FacultyRepository extends CrudRepository<FacultetEntity, Integer> {
     FacultetEntity findByName(String name);
+    FacultetEntity findById(Integer id);
+    List<FacultetEntity> findListById(Integer id);
+
 }
 /*
  WITHOUT LIMITING THE FOREGOING, COPYING, REPRODUCTION, REDISTRIBUTION,

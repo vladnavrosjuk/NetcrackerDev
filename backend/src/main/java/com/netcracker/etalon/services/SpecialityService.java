@@ -23,7 +23,10 @@
  */
 package com.netcracker.etalon.services;
 
+import com.netcracker.etalon.entities.FacultetEntity;
 import com.netcracker.etalon.entities.SpecialityEntity;
+
+import java.util.List;
 
 /**
  * @author anpi0316
@@ -35,6 +38,7 @@ public interface SpecialityService {
 
     void addspeciality(SpecialityEntity specialityEntity);
     SpecialityEntity find(String name);
+    List<SpecialityEntity> findByFacultetEntity(FacultetEntity facultetEntity);
 }
 /*
  WITHOUT LIMITING THE FOREGOING, COPYING, REPRODUCTION, REDISTRIBUTION,

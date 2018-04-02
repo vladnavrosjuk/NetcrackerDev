@@ -38,6 +38,9 @@ public interface FacultyService {
 
     void addFaculty(FacultetEntity facultyEntities);
     FacultetEntity findafaculty(String name);
+    List<FacultetEntity> findall();
+    FacultetEntity findByid(Integer id);
+    List<FacultetEntity> findListById(Integer id);
 }
 /*
  WITHOUT LIMITING THE FOREGOING, COPYING, REPRODUCTION, REDISTRIBUTION,

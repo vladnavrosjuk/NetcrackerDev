@@ -18,7 +18,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
-    <a class="navbar-brand" href="#">Katya jopa</a>
+    <a class="navbar-brand" href="#">Netcracker</a>
 
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">

@@ -8,7 +8,9 @@ import java.util.Objects;
 public class SpecialityEntity {
     private int id;
     private String name;
+
     private FacultetEntity facultetEntity;
+
 
 
     @Id
@@ -30,6 +32,17 @@ public class SpecialityEntity {
     public void setName(String name) {
         this.name = name;
     }
+ /*   @Basic
+    @Column(name = "facult_id")
+    public Integer getFacultId() {
+        return facultId;
+    }
+
+    public void setFacultId(Integer facultId) {
+        this.facultId = facultId;
+    }
+*/
+
 
     @Override
     public boolean equals(Object o) {

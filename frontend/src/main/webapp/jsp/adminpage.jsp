@@ -187,6 +187,12 @@
                     <div class="form-group">
                         <input type="text" class="form-control mb-2 mr-sm-2 jsInputPassword " id="inlineFormInputId" placeholder="Name of speciality">
 
+                            <select class="form-control marginBottom1rem jsDataUsingAjax" id="jsFacultyIdInCreateStudentWindow">
+                            </select>
+                        <select class="form-control marginBottom1rem jsDataUsingAjax2" id="jsFacultyIdInCreateStudentWindow2">
+                        </select>
+
+
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control mb-2 mr-sm-2 jsInputName " id="inlineFormInputName" placeholder="Available faculties">
@@ -217,7 +223,7 @@
 
                         <form>
                             <div class="form-group">
-                                <input type="text" class="form-control mb-2 mr-sm-2 "  placeholder="Name of faculty">
+                                <input type="text" class="form-control mb-2 mr-sm-2 jsAddFacultyInput "  placeholder="Name of faculty">
 
 
                             </div>
@@ -225,7 +231,7 @@
                     </div>
 
 
-                    <button type="submit" class="btn btn-success btn-block "><span class="glyphicon glyphicon-ok"></span> Create</button>
+                    <button type="submit" class="btn btn-success btn-block jsAddFacultyButton"><span class="glyphicon glyphicon-ok"></span> Create</button>
                 </form>
             </div>
         </div>

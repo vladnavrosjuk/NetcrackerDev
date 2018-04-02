@@ -1,6 +1,7 @@
 package com.netcracker.etalon.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -8,6 +9,7 @@ import java.util.Objects;
 public class FacultetEntity {
     private int id;
     private String name;
+    private List<SpecialityEntity> specialityEntities;
 
     @Id
     @Column(name = "id")
@@ -43,4 +45,13 @@ public class FacultetEntity {
 
         return Objects.hash(id, name);
     }
+/*    @OneToMany
+    @JoinColumn(name = "id", referencedColumnName = "facult_id", nullable = false)
+    public List<SpecialityEntity> getSpecialityEntities() {
+        return specialityEntities;
+    }
+
+    public void setSpecialityEntities(List<SpecialityEntity> specialityEntities) {
+        this.specialityEntities = specialityEntities;
+    }*/
 }

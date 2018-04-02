@@ -60,6 +60,21 @@ public class FacultyServiceImpl implements FacultyService {
 
     }
 
+    @Override
+    public List<FacultetEntity> findall() {
+        return (List<FacultetEntity>) facultyRepository.findAll();
+    }
+
+    @Override
+    public FacultetEntity findByid(Integer id) {
+        return facultyRepository.findById(id);
+    }
+
+    @Override
+    public List<FacultetEntity> findListById(Integer id) {
+        return facultyRepository.findListById(id);
+    }
+
 
 }
 /*

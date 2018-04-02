@@ -23,8 +23,11 @@
  */
 package com.netcracker.etalon.repository;
 
+import com.netcracker.etalon.entities.FacultetEntity;
 import com.netcracker.etalon.entities.SpecialityEntity;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 /**
  * @author anpi0316
@@ -33,6 +36,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface SpecialityRepository extends CrudRepository<SpecialityEntity, Integer> {
         SpecialityEntity findByName(String name);
+        List<SpecialityEntity> findByFacultetEntity(FacultetEntity facultetEntity);
 
 }
 /*

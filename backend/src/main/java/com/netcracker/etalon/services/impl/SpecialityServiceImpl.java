@@ -23,12 +23,15 @@
  */
 package com.netcracker.etalon.services.impl;
 
+import com.netcracker.etalon.entities.FacultetEntity;
 import com.netcracker.etalon.entities.SpecialityEntity;
 import com.netcracker.etalon.repository.SpecialityRepository;
 import com.netcracker.etalon.services.SpecialityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author anpi0316
@@ -51,6 +54,11 @@ public class SpecialityServiceImpl implements SpecialityService {
     @Override
     public SpecialityEntity find(String name) {
        return specialityRepository.findByName(name);
+    }
+
+    @Override
+    public List<SpecialityEntity> findByFacultetEntity(FacultetEntity facultetEntity) {
+        return specialityRepository.findByFacultetEntity(facultetEntity);
     }
 }
 /*
