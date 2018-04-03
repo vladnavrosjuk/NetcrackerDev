@@ -133,35 +133,42 @@
             <div class="modal-body">
                 <form role="form">
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentSurname " placeholder="Surname student">
+                        <label for="inputSurname">Surname</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentSurname "id="inputSurname" placeholder="Surname student">
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentName"  placeholder="Name student">
+                        <label for="inputName">Name</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentName"  id="inputName" placeholder="Name student">
                     </div>
                     <div class="form-group">
+                        <label for="jsFacultyIdInCreateStudentWindowtest">Facultet</label>
                         <select class="form-control marginBottom1rem jsDataUsingAjax" id="jsFacultyIdInCreateStudentWindowtest">
                         </select>
 
 
                     </div>
                     <div class="form-group">
+                        <label for="jsFacultyIdInCreateStudentWindow2test">Speciality</label>
                         <select class="form-control marginBottom1rem jsDataUsingAjax2" id="jsFacultyIdInCreateStudentWindow2test">
                         </select>
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentGroup" placeholder="Group">
+                        <label for="idInputGroup">Group</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentGroup" id="idInputGroup" placeholder="Group">
 
                     </div>
                     <div class="form-group">
-                        <select class="form-control marginBottom1rem jsStudentBudjet" id="LOla">
+                        <label for="idBudjet">Budjet</label>
+                        <select class="form-control marginBottom1rem jsStudentBudjet" id="idBudjet">
                             <option value=1>Budjet</option>
                             <option value=2>NoBudjet</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScore"  placeholder="Av. score">
+                        <label for="idAvScore">Av.Score.</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScore" id="idAvScore"  placeholder="Av. score">
                     </div>
 
                     <button type="submit" class="btn btn-success btn-block jsAddStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
@@ -192,17 +199,18 @@
             <div class="modal-body">
                 <form role="form">
                     <div class="form-group">
+                        <label for="inlineFormInputId">Name Speciality</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsInputPassword " id="inlineFormInputId" placeholder="Name of speciality">
-
+                    </div>
+                    <div class="form-group">
+                        <label for="jsFacultyIdInCreateStudentWindow">Facultet</label>
                         <select class="form-control marginBottom1rem jsDataSpeciality" id="jsFacultyIdInCreateStudentWindow">
                         </select>
 
 
 
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 jsInputName " id="inlineFormInputName" placeholder="Available faculties">
-                    </div>
+
 
                     <button type="submit" class="btn btn-success btn-block jsSendData "><span class="glyphicon glyphicon-ok"></span> Create</button>
                 </form>
@@ -228,7 +236,8 @@
                 <form role="form">
                     <div class="form-group">
                         <div class="form-group">
-                            <input type="text" class="form-control mb-2 mr-sm-2 jsAddFacultyInput "  placeholder="Name of faculty">
+                            <label for="inputFacult">Facultet</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2 jsAddFacultyInput "  id="inputFacult"placeholder="Name of faculty">
 
 
                         </div>
