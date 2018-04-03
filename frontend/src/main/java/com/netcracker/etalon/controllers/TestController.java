@@ -1,31 +1,9 @@
-/*
-        This software is the confidential information and copyrighted work of
-        NetCracker Technology Corp. ("NetCracker") and/or its suppliers and
-        is only distributed under the terms of a separate license agreement
-        with NetCracker.
-        Use of the software is governed by the terms of the license agreement.
-        Any use of this software not in accordance with the license agreement
-        is expressly prohibited by law, and may result in severe civil
-        and criminal penalties.
-
-        Copyright (c) 1995-2017 NetCracker Technology Corp.
-
-        All Rights Reserved.
-
-        */
-/*
- * Copyright 1995-2017 by NetCracker Technology Corp.,
- * University Office Park III
- * 95 Sawyer Road
- * Waltham, MA 02453
- * United States of America
- * All rights reserved.
- */
 package com.netcracker.etalon.controllers;
 
 
 
 import com.netcracker.etalon.dto.SpecialityDto;
+import com.netcracker.etalon.dto.StudentDTO;
 import com.netcracker.etalon.entities.*;
 import com.netcracker.etalon.models.UserViewModel;
 import com.netcracker.etalon.services.*;
@@ -71,21 +49,20 @@ public class TestController {
 
 
 
-  /*  @RequestMapping(value = "/allrequest", method = RequestMethod.GET)
-    public ModelAndView getAllRequest(ModelMap modelMap) {
-        modelMap.addAttribute("request", new Facultet());
-
+    /*  @RequestMapping(value = "/allrequest", method = RequestMethod.GET)
+      public ModelAndView getAllRequest(ModelMap modelMap) {
+          modelMap.addAttribute("request", new Facultet());
+          ModelAndView modelAndView = new ModelAndView();
+          modelAndView.setViewName(VIEW_ALL_REQUEST);
+          return modelAndView;
+      }*/
+    @RequestMapping(value = "/autorization", method = RequestMethod.GET)
+    public ModelAndView getAutorization() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(VIEW_ALL_REQUEST);
-        return modelAndView;
-    }*/
-  @RequestMapping(value = "/autorization", method = RequestMethod.GET)
-  public ModelAndView getAutorization() {
-      ModelAndView modelAndView = new ModelAndView();
-      modelAndView.setViewName("autorization");
+        modelAndView.setViewName("autorization");
 
-      return modelAndView;
-  }
+        return modelAndView;
+    }
     @RequestMapping(value = "/allrequest2", method = RequestMethod.GET)
     public ModelAndView getAllrequest() {
         ModelAndView modelAndView = new ModelAndView();
@@ -155,7 +132,8 @@ public class TestController {
     @RequestMapping(value = "/addFacultet", method = RequestMethod.POST)
     @ResponseBody
     public void addFacultet(@RequestBody FacultetEntity facultetEntity) {
-      facultyService.addFaculty(facultetEntity);
+
+        facultyService.addFaculty(facultetEntity);
 
 
 
@@ -168,11 +146,20 @@ public class TestController {
     @ResponseBody
     public void addSpeciality(@RequestBody SpecialityDto specialityDto) {
 
-            FacultetEntity facultetEntity = facultyService.findByid(specialityDto.getFacultetId());
-            SpecialityEntity specialityEntity = new SpecialityEntity();
-            specialityEntity.setName(specialityDto.getName());
-            specialityEntity.setFacultetEntity(facultetEntity);
-            specialityService.addspeciality(specialityEntity);
+        FacultetEntity facultetEntity = facultyService.findByid(specialityDto.getFacultetId());
+        SpecialityEntity specialityEntity = new SpecialityEntity();
+        specialityEntity.setName(specialityDto.getName());
+        specialityEntity.setFacultetEntity(facultetEntity);
+        specialityService.addspeciality(specialityEntity);
+
+
+
+    }
+    @RequestMapping(value = "/specialityfor1", method = RequestMethod.GET)
+    @ResponseBody
+    public List<SpecialityEntity> specialityfor1add() {
+        FacultetEntity facultetEntity = facultyService.findByid(1);
+        return specialityService.findByFacultetEntity(facultetEntity);
 
 
 
@@ -181,8 +168,25 @@ public class TestController {
     @RequestMapping(value = "/dropDown2", method = RequestMethod.POST)
     @ResponseBody
     public List<SpecialityEntity> dropdown2(@RequestBody SpecialityDto specialityDto) {
-            FacultetEntity facultetEntity = facultyService.findByid(specialityDto.getFacultetId());
-      return specialityService.findByFacultetEntity(facultetEntity);
+        FacultetEntity facultetEntity = facultyService.findByid(specialityDto.getFacultetId());
+        return specialityService.findByFacultetEntity(facultetEntity);
+
+
+
+    }
+    @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
+    @ResponseBody
+    public void addStudent(@RequestBody StudentDTO studentDTO) {
+        StudentEntity studentEntity = new StudentEntity();
+        studentEntity.setGroupstud(studentDTO.getGroupstud());
+        studentEntity.setNamestud(studentDTO.getNamestud());
+        studentEntity.setSpecialityEntity(specialityService.findByName(studentDTO.getSpecialityid()));
+        studentEntity.setSurname(studentDTO.getSurname());
+        studentEntity.setBudjet(studentDTO.getBudjet());
+        studentEntity.setAvscore(studentDTO.getAvscore());
+        studentService.addStudent(studentEntity);
+
+
 
 
 
@@ -198,7 +202,6 @@ public class TestController {
  REPRODUCTION, REDISTRIBUTION, REVERSE ENGINEERING, DISASSEMBLY,
  DECOMPILATION OR MODIFICATION IS EXPRESSLY PERMITTED BY THE LICENSE
  AGREEMENT WITH NETCRACKER.
-
  THIS SOFTWARE IS WARRANTED, IF AT ALL, ONLY AS EXPRESSLY PROVIDED IN
  THE TERMS OF THE LICENSE AGREEMENT, EXCEPT AS WARRANTED IN THE
  LICENSE AGREEMENT, NETCRACKER HEREBY DISCLAIMS ALL WARRANTIES AND
@@ -206,8 +209,6 @@ public class TestController {
  OR STATUTORY, INCLUDING WITHOUT LIMITATION ALL WARRANTIES AND
  CONDITIONS OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
  TITLE AND NON-INFRINGEMENT.
-
  Copyright (c) 1995-2017 NetCracker Technology Corp.
-
  All Rights Reserved.
 */

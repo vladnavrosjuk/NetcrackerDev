@@ -37,7 +37,7 @@ public interface SpecialityService {
 
 
     void addspeciality(SpecialityEntity specialityEntity);
-    SpecialityEntity find(String name);
+    SpecialityEntity findByName(String name);
     List<SpecialityEntity> findByFacultetEntity(FacultetEntity facultetEntity);
 }
 /*

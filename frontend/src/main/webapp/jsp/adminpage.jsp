@@ -43,28 +43,28 @@
 
 
         <div class="col-md-2"><button type="submit" class="btn btn-primary jShowAllReques">
-        Show all requests
-    </button></div>
+            Show all requests
+        </button></div>
 
-    <div class="col-md-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addrequest">
-        Add request
-    </button></div>
-    <div class="col-md-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createstudent">
-        Create student
-    </button></div>
-    <div class="col-md-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#assignstudents">
-        Assign students
-    </button></div>
-    <div class="col-md-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createspeialty">
-        Create specialty
-    </button></div>
-    <div class="col-md-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createfaculty">
-       Create faculty
-    </button></div>
+        <div class="col-md-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addrequest">
+            Add request
+        </button></div>
+        <div class="col-md-2"><button type="button" class="btn btn-primary jsModalCreateStudent " data-toggle="modal" data-target="#createstudent">
+            Create student
+        </button></div>
+        <div class="col-md-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#assignstudents">
+            Assign students
+        </button></div>
+        <div class="col-md-2"><button type="button" class="btn btn-primary  jsModalCreateFaculty" data-toggle="modal" data-target="#createspeialty">
+            Create specialty
+        </button></div>
+        <div class="col-md-2"><button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createfaculty">
+            Create faculty
+        </button></div>
 
-<!-- Button trigger modal -->
+        <!-- Button trigger modal -->
 
-</div>
+    </div>
 </div>
 
 <!-- Modal -->
@@ -133,31 +133,38 @@
             <div class="modal-body">
                 <form role="form">
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 " placeholder="Surname student">
+                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentSurname " placeholder="Surname student">
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 "  placeholder="Name student">
+                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentName"  placeholder="Name student">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 "  placeholder="Faculty">
+                        <select class="form-control marginBottom1rem jsDataUsingAjax" id="jsFacultyIdInCreateStudentWindowtest">
+                        </select>
+
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 "  placeholder="Speciality">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 " placeholder="Group">
+                        <select class="form-control marginBottom1rem jsDataUsingAjax2" id="jsFacultyIdInCreateStudentWindow2test">
+                        </select>
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 "  placeholder="Is budjet">
+                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentGroup" placeholder="Group">
+
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control mb-2 mr-sm-2 "  placeholder="Av. score">
+                        <select class="form-control marginBottom1rem jsStudentBudjet" id="LOla">
+                            <option value=1>Budjet</option>
+                            <option value=2>NoBudjet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScore"  placeholder="Av. score">
                     </div>
 
-                    <button type="submit" class="btn btn-success btn-block "><span class="glyphicon glyphicon-ok"></span> Create</button>
+                    <button type="submit" class="btn btn-success btn-block jsAddStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
                 </form>
 
             </div>
@@ -187,10 +194,9 @@
                     <div class="form-group">
                         <input type="text" class="form-control mb-2 mr-sm-2 jsInputPassword " id="inlineFormInputId" placeholder="Name of speciality">
 
-                            <select class="form-control marginBottom1rem jsDataUsingAjax" id="jsFacultyIdInCreateStudentWindow">
-                            </select>
-                        <select class="form-control marginBottom1rem jsDataUsingAjax2" id="jsFacultyIdInCreateStudentWindow2">
+                        <select class="form-control marginBottom1rem jsDataSpeciality" id="jsFacultyIdInCreateStudentWindow">
                         </select>
+
 
 
                     </div>
@@ -199,19 +205,21 @@
                     </div>
 
                     <button type="submit" class="btn btn-success btn-block jsSendData "><span class="glyphicon glyphicon-ok"></span> Create</button>
-                    </form>
+                </form>
 
             </div>
         </div>
     </div>
 </div>
 
-<%--MODAL-------------------------------CREATEFACULTY--%>
+
+
+
 <div class="modal fade" id="createfaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" align="center" id="exampleModalLabel">Add speciality</h2>
+                <h2 class="modal-title" align="center" id="ADDSPEC">Add FACULTET</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -219,24 +227,26 @@
             <div class="modal-body">
                 <form role="form">
                     <div class="form-group">
+                        <div class="form-group">
+                            <input type="text" class="form-control mb-2 mr-sm-2 jsAddFacultyInput "  placeholder="Name of faculty">
 
 
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="form-control mb-2 mr-sm-2 jsAddFacultyInput "  placeholder="Name of faculty">
+                        </div>
 
 
-                            </div>
-                        </form>
+
                     </div>
 
-
-                    <button type="submit" class="btn btn-success btn-block jsAddFacultyButton"><span class="glyphicon glyphicon-ok"></span> Create</button>
+                    <button type="submit" class="btn btn-success btn-block jsAddFacultyButton "><span class="glyphicon glyphicon-ok"></span> Create</button>
                 </form>
+
             </div>
         </div>
     </div>
 </div>
+
+
+<%--MODAL-------------------------------CREATEFACULTY--%>
 
 <br>
 <!-- Кнопка, открывающее модальное окно -->
@@ -262,17 +272,17 @@
     </thead>
     <tbody>
 
-        <tr>
+    <tr>
         <td>
 
         </td>
-            <td>
-                <div class="jsAddedUser">
+        <td>
+            <div class="jsAddedUser">
 
-                </div>
-            </td>
+            </div>
+        </td>
 
-        </tr>
+    </tr>
 
     </tbody>
 </table>

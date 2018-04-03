@@ -52,7 +52,7 @@ public class SpecialityServiceImpl implements SpecialityService {
     }
 
     @Override
-    public SpecialityEntity find(String name) {
+    public SpecialityEntity findByName(String name) {
        return specialityRepository.findByName(name);
     }
 

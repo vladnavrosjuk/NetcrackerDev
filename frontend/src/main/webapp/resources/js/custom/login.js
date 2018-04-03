@@ -4,10 +4,11 @@
 $(document).ready(function () {
     var x = document.getElementById("createfaculty");
     var ELEMENTS = {
+        CONTAINER_FACULTY: '.jsDataSpeciality',
         INPUT_FACULTY: '.jsAddFacultyInput',
         BUTTON_ADD_FACULTY:'.jsAddFacultyButton',
 
-           CONTAINER_DATA_USING_AJAX: '.jsDataUsingAjax',
+        CONTAINER_DATA_USING_AJAX: '.jsDataUsingAjax',
         CONTAINER_DATA_USING_AJAX2: '.jsDataUsingAjax2',
         INPUT_NAME_AUTOR: '.jsInputNameAutor',
         INPUT_PASSWORD_AUTOR: '.jsInputPassword',
@@ -21,6 +22,7 @@ $(document).ready(function () {
     };
 
     var $usersContainer = $(ELEMENTS.CONTAINER_DATA_USING_AJAX),
+        $facultyContainer = $(ELEMENTS.CONTAINER_FACULTY),
         $usersContainer2 = $(ELEMENTS.CONTAINER_DATA_USING_AJAX2),
         $addedUserContainer = $(ELEMENTS.CONTAINER_ADDED_USER),
         $sendDataBtn = $(ELEMENTS.SEND_DATA_BTN),
@@ -29,24 +31,83 @@ $(document).ready(function () {
         $buttonAutoe  =$ (ELEMENTS.BUTTON_AUTOR);
 
 
+    $( ".jsModalCreateFaculty" ).click(function (event) {
+        /*       event.stopPropagation();*/
 
-    $.ajax({
-        url: 'dropdown',
-        type: 'GET',
-        dataType: 'json',
-        contentType: "application/json",
-        mimeType: 'application/json',
-        data: '',
-        success: function (users) {
-            users ? function () {
-                users.some(function (user) {
 
-                    $usersContainer.append('<option value="'+user.id+'">'+user.name+'</option>')
-                });
-            }() : false;
-        }
+        $.ajax({
+            url: 'dropdown',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (users) {
+                $facultyContainer.text('');
+                users ? function () {
 
-    });
+
+                    users.some(function (user) {
+
+                        $facultyContainer.append('<option value="'+user.id+'">'+user.name+'</option>')
+                    });
+                }() : false;
+            }
+
+        });
+    })
+
+    $( ".jsModalCreateStudent" ).click(function (event) {
+        /*       event.stopPropagation();*/
+
+
+        $.ajax({
+            url: 'dropdown',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (users) {
+                $usersContainer.text('');
+                users ? function () {
+
+
+                    users.some(function (user) {
+
+                        $usersContainer.append('<option value="'+user.id+'">'+user.name+'</option>')
+                    });
+                }() : false;
+            }
+
+        });
+    })
+    $( ".jsModalCreateStudent" ).click(function (event) {
+ /*       event.stopPropagation();*/
+
+
+        $.ajax({
+            url: 'specialityfor1',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (users) {
+                $usersContainer2.text('');
+                users ? function () {
+
+
+                    users.some(function (user) {
+
+                        $usersContainer2.append('<option value="'+user.id+'">'+user.name+'</option>')
+                    });
+                }() : false;
+            }
+
+        });
+    })
+
     $( ".jsDataUsingAjax" ).change(function() {
         var obj = {
 
@@ -81,21 +142,21 @@ $(document).ready(function () {
 
     $buttonAddFaculty.click(function (event) {
         event.stopPropagation();
-    $showall.click(function (event) {
-        event.stopPropagation();
-        $.ajax({
-            url: 'allrequest2',
-            type: 'GET',
-            dataType: 'json',
-            contentType: "application/json",
-            mimeType: 'application/json',
-            data: '',
-            success: function () {
-                window.location.href ="/allrequest"
-            }
+        $showall.click(function (event) {
+            event.stopPropagation();
+            $.ajax({
+                url: 'allrequest2',
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json",
+                mimeType: 'application/json',
+                data: '',
+                success: function () {
 
+                }
+
+            });
         });
-    });
 
     })
 
@@ -106,7 +167,7 @@ $(document).ready(function () {
         var obj = {
             name : $(ELEMENTS.INPUT_PASSWORD_AUTOR).val(),
 
-            facultetId : $(".jsDataUsingAjax option:selected").attr("value")
+            facultetId : $(".jsDataSpeciality option:selected").attr("value")
 
         };
 
@@ -119,7 +180,39 @@ $(document).ready(function () {
             data: JSON.stringify(obj),
             success: function (addedUser) {
 
-              /*  window.location.href ="/admin-page"*/
+
+            }
+
+        });
+    });
+
+    $(".jsAddStudent").click(function (event) {
+        event.stopPropagation();
+
+        var obj = {
+
+
+            namefaculity : $(".jsDataUsingAjax option:selected").attr("value"),
+            specialityid : $(".jsDataUsingAjax2 option:selected").text(),
+            surname :$(".jsStudentSurname").val(),
+
+            namestud:$(".jsStudentName").val(),
+            groupstud:$(".jsStudentGroup").val(),
+            budjet: $(".jsStudentBudjet option:selected").text(),
+            avscore:$(".jsStudentAvScore").val(),
+
+        };
+
+        $.ajax({
+            url: 'addStudent',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (addedUser) {
+
+
             }
 
         });
@@ -144,9 +237,9 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
-              /*  $("#createfaculty").modal('toogle');*/
-              x.close();
-               /* $addedUserContainer.append(addedUser ? addedUser.name : '');*/
+                /*  $("#createfaculty").modal('toogle');*/
+                x.close();
+                /* $addedUserContainer.append(addedUser ? addedUser.name : '');*/
                 /*  window.location.href ="/admin-page"*/
             }
 
