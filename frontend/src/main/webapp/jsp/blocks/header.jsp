@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--bootstrap table--%>
 <script src="resources/js/libs/jquery-3.2.1.min.js"></script>
+<script src="resources/js/libs/packaged.min.js"></script>
 
 <script src="resources/js/libs/popper.min.js"></script>
 <script src="resources/js/libs/bootstrap.min.js"></script>
@@ -22,7 +23,8 @@
 
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link">Registration</a>
+
+            <a href="#" data-toggle=".container" id="sidebar-toggle" class="nav-link">Menu</a>
         </li>
         <li class="navbar-item">
             <a class="nav-link">Login </a>

@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "facultet", schema = "navr", catalog = "")
-public class FacultetEntity {
+@Table(name = "request", schema = "navr", catalog = "")
+public class RequestEntity {
     private int id;
-    private String name;
-    private List<SpecialityEntity> specialities;
+    private Integer name;
+    private List<StudentEntity> stud;
 
     @Id
     @Column(name = "id")
@@ -23,11 +23,11 @@ public class FacultetEntity {
 
     @Basic
     @Column(name = "name")
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Integer name) {
         this.name = name;
     }
 
@@ -35,7 +35,7 @@ public class FacultetEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FacultetEntity that = (FacultetEntity) o;
+        RequestEntity that = (RequestEntity) o;
         return id == that.id &&
                 Objects.equals(name, that.name);
     }
@@ -46,17 +46,13 @@ public class FacultetEntity {
         return Objects.hash(id, name);
     }
 
-/*
-
-    @OneToMany(mappedBy = "faculty")
-    public List<SpecialityEntity> getSpecialities() {
-        return specialities;
+    @ManyToMany
+    @JoinTable(name = "requstandstudent", catalog = "", schema = "navr", joinColumns = @JoinColumn(name = "idrequest"), inverseJoinColumns = @JoinColumn(name = "idstudent"))
+    public List<StudentEntity> getStud() {
+        return stud;
     }
 
-    public void setSpecialities(List<SpecialityEntity> specialities) {
-        this.specialities = specialities;
+    public void setStud(List<StudentEntity> stud) {
+        this.stud = stud;
     }
-*/
-
 }
-

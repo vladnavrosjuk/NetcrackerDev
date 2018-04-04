@@ -28,6 +28,8 @@ import java.util.List;
 
 public class TestController {
 
+    @Autowired
+    private RequestService requestService;
 
     @Autowired
     private FacultyService facultyService;
@@ -113,6 +115,14 @@ public class TestController {
         modelAndView.setViewName("informstudent");
         return modelAndView;
     }
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ModelAndView gettrst(ModelMap modelMap) {
+
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("test");
+        return modelAndView;
+    }
     @RequestMapping(value = "/admin-page", method = RequestMethod.GET)
     public ModelAndView getAdminPage(ModelMap modelMap) {
 
@@ -180,11 +190,19 @@ public class TestController {
         StudentEntity studentEntity = new StudentEntity();
         studentEntity.setGroupstud(studentDTO.getGroupstud());
         studentEntity.setNamestud(studentDTO.getNamestud());
-        studentEntity.setSpecialityEntity(specialityService.findByName(studentDTO.getSpecialityid()));
+        studentEntity.setSpecialityEntity(specialityService.findById(studentDTO.getSpecialityid()));
         studentEntity.setSurname(studentDTO.getSurname());
         studentEntity.setBudjet(studentDTO.getBudjet());
         studentEntity.setAvscore(studentDTO.getAvscore());
+
+
+
+
+
         studentService.addStudent(studentEntity);
+
+
+
 
 
 

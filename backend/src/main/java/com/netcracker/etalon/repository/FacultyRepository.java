@@ -38,6 +38,7 @@ public interface FacultyRepository extends CrudRepository<FacultetEntity, Intege
     FacultetEntity findById(Integer id);
     List<FacultetEntity> findListById(Integer id);
 
+
 }
 /*
  WITHOUT LIMITING THE FOREGOING, COPYING, REPRODUCTION, REDISTRIBUTION,

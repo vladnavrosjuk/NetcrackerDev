@@ -87,6 +87,7 @@ $(document).ready(function () {
 
 
         $.ajax({
+
             url: 'specialityfor1',
             type: 'GET',
             dataType: 'json',
@@ -95,6 +96,8 @@ $(document).ready(function () {
             data: '',
             success: function (users) {
                 $usersContainer2.text('');
+
+
                 users ? function () {
 
 
@@ -187,13 +190,16 @@ $(document).ready(function () {
     });
 
     $(".jsAddStudent").click(function (event) {
-        event.stopPropagation();
+
+
+       event.stopPropagation();
+
 
         var obj = {
 
 
             namefaculity : $(".jsDataUsingAjax option:selected").attr("value"),
-            specialityid : $(".jsDataUsingAjax2 option:selected").text(),
+            specialityid : $(".jsDataUsingAjax2 option:selected").attr("value"),
             surname :$(".jsStudentSurname").val(),
 
             namestud:$(".jsStudentName").val(),
@@ -202,15 +208,23 @@ $(document).ready(function () {
             avscore:$(".jsStudentAvScore").val(),
 
         };
+        noty({ text: 'Студент '+obj.namestud+' '+obj.surname+' создан!'});
+        $(".close").click();
+
+
 
         $.ajax({
+
             url: 'addStudent',
             type: 'POST',
             dataType: 'json',
             contentType: "application/json",
             mimeType: 'application/json',
             data: JSON.stringify(obj),
-            success: function (addedUser) {
+            success: function () {
+
+
+
 
 
             }

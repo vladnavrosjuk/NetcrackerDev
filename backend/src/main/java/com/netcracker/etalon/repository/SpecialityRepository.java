@@ -36,6 +36,7 @@ import java.util.List;
  */
 public interface SpecialityRepository extends CrudRepository<SpecialityEntity, Integer> {
         SpecialityEntity findByName(String name);
+        SpecialityEntity findById(Integer id);
         List<SpecialityEntity> findByFacultetEntity(FacultetEntity facultetEntity);
 
 }

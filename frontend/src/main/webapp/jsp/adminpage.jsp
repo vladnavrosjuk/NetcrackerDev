@@ -26,6 +26,74 @@
 
 
 <jsp:include page="/jsp/blocks/header.jsp"/>
+<link href="resources/css/menu.css" rel="stylesheet" type="text/css" media="all"/>
+<script src="resources/js/custom/menu.js"></script>
+
+<body>
+<div class="container">
+    <div id="sidebar">
+        <ul>
+
+            <li  data-toggle="modal" data-target="#addrequest"><a>Add Request</a></li>
+            <li class="jsModalCreateStudent" data-toggle="modal" data-target="#createstudent"><a>Create Student</a></li>
+            <li  data-toggle="modal" data-target="#assignstudents"><a>Assign Students</a></li>
+            <li class="jsModalCreateFaculty" data-toggle="modal" data-target="#createspeialty"><a>Create Speciality</a></li>
+            <li data-toggle="modal" data-target="#createfaculty"><a>Create Faculty</a></li>
+            <li ><a href="/allrequest2">All Request</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+
+        <div class="content">
+
+
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Check</th>
+                <th>L.Name</th>
+                <th>F.Name</th>
+                <th>Faculty</th>
+                <th>Specialty</th>
+                <th>Group</th>
+                <th>Is budget</th>
+                <th>Average score</th>
+                <th>Status</th>
+                <th>Name of company</th>
+                <th>Practice period</th>
+                <th>Show </th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <div class="jsAddedUser">
+
+                    </div>
+                </td>
+
+            </tr>
+
+            </tbody>
+        </table>
+        <div class="form-group">
+
+
+
+        </div>
+
+
+
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid">
 
@@ -38,7 +106,7 @@
 
     <br>
 
-    <div class="row">
+    <%--<div class="row">
 
 
 
@@ -64,7 +132,7 @@
 
         <!-- Button trigger modal -->
 
-    </div>
+    </div>--%>
 </div>
 
 <!-- Modal -->
@@ -131,48 +199,47 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
+                <%--<form role="form">--%>
+
                         <label for="inputSurname">Surname</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentSurname "id="inputSurname" placeholder="Surname student">
 
-                    </div>
-                    <div class="form-group">
+
+
                         <label for="inputName">Name</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentName"  id="inputName" placeholder="Name student">
-                    </div>
-                    <div class="form-group">
+
+
                         <label for="jsFacultyIdInCreateStudentWindowtest">Facultet</label>
                         <select class="form-control marginBottom1rem jsDataUsingAjax" id="jsFacultyIdInCreateStudentWindowtest">
                         </select>
 
 
-                    </div>
-                    <div class="form-group">
+
                         <label for="jsFacultyIdInCreateStudentWindow2test">Speciality</label>
                         <select class="form-control marginBottom1rem jsDataUsingAjax2" id="jsFacultyIdInCreateStudentWindow2test">
                         </select>
 
-                    </div>
-                    <div class="form-group">
+
+
                         <label for="idInputGroup">Group</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentGroup" id="idInputGroup" placeholder="Group">
 
-                    </div>
-                    <div class="form-group">
+
+
                         <label for="idBudjet">Budjet</label>
                         <select class="form-control marginBottom1rem jsStudentBudjet" id="idBudjet">
                             <option value=1>Budjet</option>
                             <option value=2>NoBudjet</option>
                         </select>
-                    </div>
-                    <div class="form-group">
+
+
                         <label for="idAvScore">Av.Score.</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScore" id="idAvScore"  placeholder="Av. score">
-                    </div>
+
 
                     <button type="submit" class="btn btn-success btn-block jsAddStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
-                </form>
+
 
             </div>
         </div>
@@ -259,6 +326,7 @@
 
 <br>
 <!-- Кнопка, открывающее модальное окно -->
+<%--
 </div>
 <table class="table">
     <thead>
@@ -299,6 +367,7 @@
 
 
 
+--%>
 </div>
 </body>
 </html>

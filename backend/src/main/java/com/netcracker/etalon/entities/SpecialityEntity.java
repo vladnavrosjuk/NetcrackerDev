@@ -9,7 +9,7 @@ public class SpecialityEntity {
     private int id;
     private String name;
 
-    private FacultetEntity facultetEntity;
+    private FacultetEntity faculty;
 
 
 
@@ -62,11 +62,11 @@ public class SpecialityEntity {
     @ManyToOne
     @JoinColumn(name = "facult_id", referencedColumnName = "id", nullable = false)
     public FacultetEntity getFacultetEntity() {
-        return facultetEntity;
+        return faculty;
     }
 
-    public void setFacultetEntity(FacultetEntity facultetEntity) {
-        this.facultetEntity = facultetEntity;
+    public void setFacultetEntity(FacultetEntity faculty) {
+        this.faculty = faculty;
     }
 
 }

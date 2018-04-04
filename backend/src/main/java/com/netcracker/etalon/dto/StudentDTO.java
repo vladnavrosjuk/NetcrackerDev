@@ -4,7 +4,7 @@ import com.netcracker.etalon.entities.SpecialityEntity;
 
 public class StudentDTO {
     private Integer namefaculity;
-    private String specialityid;
+    private Integer specialityid;
     private String surname;
     private String namestud;
 
@@ -21,11 +21,11 @@ public class StudentDTO {
         this.namefaculity = namefaculity;
     }
 
-    public String getSpecialityid() {
+    public Integer getSpecialityid() {
         return specialityid;
     }
 
-    public void setSpecialityid(String specialityid) {
+    public void setSpecialityid(Integer specialityid) {
         this.specialityid = specialityid;
     }
 
