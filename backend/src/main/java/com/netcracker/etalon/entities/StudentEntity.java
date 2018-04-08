@@ -1,6 +1,10 @@
 package com.netcracker.etalon.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +18,7 @@ public class StudentEntity {
     private String budjet;
     private Double avscore;
     private Integer statusstud;
+    private List<RequestEntity> request =  new ArrayList<>();
 
     @Id
     @Column(name = "id")
@@ -104,10 +109,20 @@ public class StudentEntity {
         return specialityEntity;
     }
 
+
     public void setSpecialityEntity(SpecialityEntity specialityEntity) {
         this.specialityEntity = specialityEntity;
     }
 
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "student")
+    public List<RequestEntity> getRequest() {
+        return request;
+    }
+
+    public void setRequest(List<RequestEntity> request) {
+        this.request = request;
+    }
     @Override
     public int hashCode() {
 

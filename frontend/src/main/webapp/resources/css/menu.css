@@ -3,9 +3,10 @@ body, html {
     margin: 0;
     overflow:hidden;
     font-family: helvetica;
-    font-weight: 100;
+    font-weight:bold
+
 }
-.container {
+.container2 {
     position: relative;
     height: 100%;
     width: 100%;
@@ -17,14 +18,16 @@ body, html {
     transition:  left 0.4s ease-in-out;
 }
 
-.container.open-sidebar {
-    left: 150px;
+.container2.open-sidebar {
+    left: 200px;
 }
-#sidebar {
+ #sidebar {
     position: absolute;
-    left: -270px;
-    background: #007bff;
-    width: 150px;
+    left: -200px;
+    //background: url('images/paper-texture_(12).jpg');
+     background: #d7d5d5;
+
+    width: 200px;
     height: 100%;
     box-sizing: border-box;
 }
@@ -38,12 +41,16 @@ body, html {
 }
 #sidebar ul li a {
     padding: 15px 20px;
-    font-size: 16px;
-    font-weight: 100;
-    color: white;
+    font-size: 13px;
+
+
+    color: #000000;
+    text-shadow: 1px 1px 2px #d6d8b3, 0 0 1em #e7ffe7;
     text-decoration: none;
+    font-family: Roboto;
+    //font-weight:bold;
     display: block;
-    border-bottom: 1px solid #1b0070;
+    //border-bottom: 1px solid #030001;
     -webkit-transition:  background 0.3s ease-in-out;
     -moz-transition:  background 0.3s ease-in-out;
     -ms-transition:  background 0.3s ease-in-out;
@@ -51,7 +58,7 @@ body, html {
     transition:  background 0.3s ease-in-out;
 }
 #sidebar ul li:hover a {
-    background: #1b0070;
+    background: #e7ffe7;
 }
 .main-content {
     width: 100%;

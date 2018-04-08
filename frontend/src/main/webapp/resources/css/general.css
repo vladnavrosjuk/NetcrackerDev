@@ -1,4 +1,42 @@
+body {
+   // background: url('images/paper-texture_(4).jpg') ;
 
+    background: #fffdfd;
+}
+.navbar-dark .navbar-brand {
+    color: #e7ffe7;
+    text-shadow: 1px 1px 2px #030001, 0 0 1em #e7ffe7;
+}
+
+.modal-body{
+
+    background: #d6d8b3;
+}
+
+.table thead th {
+    background: #d7d5d5;
+    vertical-align: bottom;
+    border-bottom: 0px solid #e3e0d7;
+}
+.table-hover, .table-hover>td, .table-hover>th {
+    background: #eeecec;
+}
+.btn-outline-success {
+    color: #fffdfd;
+    background-color: transparent;
+    background-image: none;
+    border-color: #fffdfd;
+}
+.bg-dark {
+    background: url("images/ocean.jpg") !important;
+}
+.table{
+    font-size: 13px;
+    color: #030001;
+
+    font-family:	Roboto;
+    //text-shadow: 1px 1px 2px #000000, 0 0 1em #030001;
+}
 .login-border {
     background: rgba(0, 100, 226, 0.03);
 }

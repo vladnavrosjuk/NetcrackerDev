@@ -7,4 +7,5 @@ public interface StudentRepository extends CrudRepository<StudentEntity, Integer
 {
         StudentEntity findByNamestud(String name);
 
+        StudentEntity findById(Integer id);
 }

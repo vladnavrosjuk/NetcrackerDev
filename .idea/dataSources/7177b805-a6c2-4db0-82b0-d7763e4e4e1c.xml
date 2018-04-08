@@ -966,205 +966,239 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="234" name="name">
+    <column id="244" parent="234" name="namecompany">
       <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="245" parent="234" name="datestart">
+      <Position>3</Position>
+      <DataType>date|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="246" parent="234" name="datefinish">
+      <Position>4</Position>
+      <DataType>date|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="247" parent="234" name="idfaculty">
+      <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="245" parent="234" name="PRIMARY">
+    <column id="248" parent="234" name="minavscore">
+      <Position>6</Position>
+      <DataType>double|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="249" parent="234" name="quantity">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="250" parent="234" name="request_facultet_id_fk">
+      <ColNames>idfaculty</ColNames>
+    </index>
+    <key id="251" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="246" parent="235" name="id">
+    <foreign-key id="252" parent="234" name="request_facultet_id_fk">
+      <ColNames>idfaculty</ColNames>
+      <RefSchemaName>navr</RefSchemaName>
+      <RefTableName>facultet</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="253" parent="235" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="235" name="idstudent">
+    <column id="254" parent="235" name="idstudent">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="235" name="idrequest">
+    <column id="255" parent="235" name="idrequest">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="249" parent="235" name="requstandstudent_student_id_fk">
+    <index id="256" parent="235" name="requstandstudent_student_id_fk">
       <ColNames>idstudent</ColNames>
     </index>
-    <index id="250" parent="235" name="requstandstudent_request_id_fk">
+    <index id="257" parent="235" name="requstandstudent_request_id_fk">
       <ColNames>idrequest</ColNames>
     </index>
-    <key id="251" parent="235" name="PRIMARY">
+    <key id="258" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="252" parent="235" name="requstandstudent_student_id_fk">
+    <foreign-key id="259" parent="235" name="requstandstudent_student_id_fk">
       <ColNames>idstudent</ColNames>
       <RefSchemaName>navr</RefSchemaName>
       <RefTableName>student</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="253" parent="235" name="requstandstudent_request_id_fk">
+    <foreign-key id="260" parent="235" name="requstandstudent_request_id_fk">
       <ColNames>idrequest</ColNames>
       <RefSchemaName>navr</RefSchemaName>
       <RefTableName>request</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="254" parent="236" name="id">
+    <column id="261" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="236" name="user_id">
+    <column id="262" parent="236" name="user_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="236" name="role">
+    <column id="263" parent="236" name="role">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="257" parent="236" name="role_user_id_fk">
+    <index id="264" parent="236" name="role_user_id_fk">
       <ColNames>user_id</ColNames>
     </index>
-    <key id="258" parent="236" name="PRIMARY">
+    <key id="265" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="259" parent="236" name="role_user_id_fk">
+    <foreign-key id="266" parent="236" name="role_user_id_fk">
       <ColNames>user_id</ColNames>
       <RefSchemaName>navr</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="260" parent="237" name="id">
+    <column id="267" parent="237" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="237" name="name">
+    <column id="268" parent="237" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="237" name="facult_id">
+    <column id="269" parent="237" name="facult_id">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="263" parent="237" name="speciality_facultet_id_fk">
+    <index id="270" parent="237" name="speciality_facultet_id_fk">
       <ColNames>facult_id</ColNames>
     </index>
-    <key id="264" parent="237" name="PRIMARY">
+    <key id="271" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="265" parent="237" name="speciality_facultet_id_fk">
+    <foreign-key id="272" parent="237" name="speciality_facultet_id_fk">
       <ColNames>facult_id</ColNames>
       <RefSchemaName>navr</RefSchemaName>
       <RefTableName>facultet</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="266" parent="238" name="id">
+    <column id="273" parent="238" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="238" name="surname">
+    <column id="274" parent="238" name="surname">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="238" name="namestud">
+    <column id="275" parent="238" name="namestud">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="238" name="spec_id">
+    <column id="276" parent="238" name="spec_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="238" name="groupstud">
+    <column id="277" parent="238" name="groupstud">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="238" name="budjet">
+    <column id="278" parent="238" name="budjet">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="238" name="avscore">
+    <column id="279" parent="238" name="avscore">
       <Position>7</Position>
       <DataType>double|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="238" name="statusstud">
+    <column id="280" parent="238" name="statusstud">
       <Position>8</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="274" parent="238" name="student_speciality_id_fk">
+    <index id="281" parent="238" name="student_speciality_id_fk">
       <ColNames>spec_id</ColNames>
     </index>
-    <key id="275" parent="238" name="PRIMARY">
+    <key id="282" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="276" parent="238" name="student_speciality_id_fk">
+    <foreign-key id="283" parent="238" name="student_speciality_id_fk">
       <ColNames>spec_id</ColNames>
       <RefSchemaName>navr</RefSchemaName>
       <RefTableName>speciality</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="277" parent="239" name="id">
+    <column id="284" parent="239" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="239" name="login">
+    <column id="285" parent="239" name="login">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="239" name="passuser">
+    <column id="286" parent="239" name="passuser">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="239" name="student_id">
+    <column id="287" parent="239" name="student_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="281" parent="239" name="user_student_id_fk">
+    <index id="288" parent="239" name="user_student_id_fk">
       <ColNames>student_id</ColNames>
     </index>
-    <key id="282" parent="239" name="PRIMARY">
+    <key id="289" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="283" parent="239" name="user_student_id_fk">
+    <foreign-key id="290" parent="239" name="user_student_id_fk">
       <ColNames>student_id</ColNames>
       <RefSchemaName>navr</RefSchemaName>
       <RefTableName>student</RefTableName>

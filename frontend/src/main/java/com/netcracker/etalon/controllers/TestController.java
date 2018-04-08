@@ -2,6 +2,8 @@ package com.netcracker.etalon.controllers;
 
 
 
+import com.netcracker.etalon.dto.AssignDto;
+import com.netcracker.etalon.dto.RequestDto;
 import com.netcracker.etalon.dto.SpecialityDto;
 import com.netcracker.etalon.dto.StudentDTO;
 import com.netcracker.etalon.entities.*;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -115,6 +118,7 @@ public class TestController {
         modelAndView.setViewName("informstudent");
         return modelAndView;
     }
+
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public ModelAndView gettrst(ModelMap modelMap) {
 
@@ -138,6 +142,35 @@ public class TestController {
 
         return facultyService.findall();
     }
+
+
+
+
+
+
+
+
+
+    @RequestMapping(value = "/dropdownRequest", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RequestEntity> getAllRequest() {
+
+        return requestService.find();
+    }
+
+
+
+
+
+
+
+    @RequestMapping(value = "/dropdownStudent", method = RequestMethod.GET)
+    @ResponseBody
+    public List<StudentEntity> getStudent() {
+
+        return studentService.findall();
+    }
+
 
     @RequestMapping(value = "/addFacultet", method = RequestMethod.POST)
     @ResponseBody
@@ -184,6 +217,34 @@ public class TestController {
 
 
     }
+
+
+
+
+
+    @RequestMapping(value = "/addRequest", method = RequestMethod.POST)
+    @ResponseBody
+    public void addRequest(@RequestBody RequestDto requestDto) {
+       // List<String> studentEntities = requestDto.getStudents();
+       // System.out.println(requestDto.getQuantity());
+        RequestEntity requestEntity = new RequestEntity();
+        requestEntity.setNamecompany(requestDto.getNamecompany());
+        FacultetEntity facultetEntity =  facultyService.findByid(requestDto.getFacultetid());
+        requestEntity.setFacultetEntity(facultetEntity);
+        requestEntity.setDatestart(requestDto.getDatestart());
+        requestEntity.setDatefinish(requestDto.getDatefinish());
+        requestEntity.setMinavscore(requestDto.getMinavscore());
+        requestEntity.setQuantity(requestDto.getQuantity());
+        requestService.addRequest(requestEntity);
+
+
+
+
+    }
+
+
+
+
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
     @ResponseBody
     public void addStudent(@RequestBody StudentDTO studentDTO) {
@@ -194,12 +255,15 @@ public class TestController {
         studentEntity.setSurname(studentDTO.getSurname());
         studentEntity.setBudjet(studentDTO.getBudjet());
         studentEntity.setAvscore(studentDTO.getAvscore());
-
-
-
-
-
         studentService.addStudent(studentEntity);
+    }
+
+
+
+
+    @RequestMapping(value = "/addAssign", method = RequestMethod.POST)
+    @ResponseBody
+    public void addAssign(@RequestBody AssignDto assignDto) {
 
 
 

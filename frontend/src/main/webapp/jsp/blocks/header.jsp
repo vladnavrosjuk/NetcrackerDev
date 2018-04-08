@@ -12,23 +12,32 @@
 
 <script src="resources/js/libs/popper.min.js"></script>
 <script src="resources/js/libs/bootstrap.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="resources/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="resources/css/general.css" rel="stylesheet" type="text/css" media="all"/>
+<script type="text/javascript" src="../../resources/js/libs/bootstrap-multiselect.js"></script>
+<link rel="resources/css/bootstrap-multiselect.js" type="text/css"/>
 <script src="resources/js/custom/login.js"></script>
 
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
-    <a class="navbar-brand" href="#">Netcracker</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><i class="	fa fa-hand-o-right"></i>N E T C R A C K E R</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
 
-            <a href="#" data-toggle=".container" id="sidebar-toggle" class="nav-link">Menu</a>
-        </li>
-        <li class="navbar-item">
-            <a class="nav-link">Login </a>
-        </li>
-    </ul>
+
+
+        </ul>
+
+
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  href="#" data-toggle=".container2" id="sidebar-toggle23">Search</button>
+
+    </div>
 </nav>
+<body>
+
 </body>
