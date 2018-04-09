@@ -7,7 +7,7 @@ import com.netcracker.etalon.dto.RequestDto;
 import com.netcracker.etalon.dto.SpecialityDto;
 import com.netcracker.etalon.dto.StudentDTO;
 import com.netcracker.etalon.entities.*;
-import com.netcracker.etalon.models.UserViewModel;
+
 import com.netcracker.etalon.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,10 +33,8 @@ public class TestController {
 
     @Autowired
     private RequestService requestService;
-
     @Autowired
     private FacultyService facultyService;
-
     @Autowired
     private SpecialityService specialityService;
     @Autowired
@@ -49,18 +47,8 @@ public class TestController {
     private static final String VIEW_NAME_LOGIN = "adminpage";
     private static final String VIEW_ALL_REQUEST = "request";
 
-    private List<UserViewModel> userViewModels = new ArrayList<>();
 
 
-
-
-    /*  @RequestMapping(value = "/allrequest", method = RequestMethod.GET)
-      public ModelAndView getAllRequest(ModelMap modelMap) {
-          modelMap.addAttribute("request", new Facultet());
-          ModelAndView modelAndView = new ModelAndView();
-          modelAndView.setViewName(VIEW_ALL_REQUEST);
-          return modelAndView;
-      }*/
     @RequestMapping(value = "/autorization", method = RequestMethod.GET)
     public ModelAndView getAutorization() {
         ModelAndView modelAndView = new ModelAndView();
@@ -68,48 +56,19 @@ public class TestController {
 
         return modelAndView;
     }
+
+
     @RequestMapping(value = "/allrequest2", method = RequestMethod.GET)
     public ModelAndView getAllrequest() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("request");
-
-
 
         return modelAndView;
     }
 
 
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
-    @ResponseBody
-    public void getUsersAsJson(@RequestBody SpecialityEntity specialityEntity) {
-        /*    SpecialityEntity specialityEntity = specialityService.find("kek");
-            StudentEntity studentEntity1 = new StudentEntity();
-       studentEntity1.setNamestud("test");
-        studentEntity1.setSurname("test");
-        studentEntity1.setAvscore(9.0);
-        studentEntity1.setBudjet("test");
-        studentEntity1.setGroupstud(521701);
-        studentEntity1.setSpecialityEntity(specialityEntity);
-        studentEntity1.setStatusstud(1);
-        studentService.addStudent(studentEntity1);*/
 
-
-
-     /*
-        StudentEntity studentEntity1  = studentService.find("test");
-        UserEntity userEntity = new UserEntity();
-        userEntity.setLogin("test");
-        userEntity.setPassuser("test");
-        userEntity.setStudentEntity(studentEntity1);
-        userService.add(userEntity);*/
-
-        specialityService.addspeciality(specialityEntity);
-
-
-
-
-    }
     @RequestMapping(value = "/infostudent", method = RequestMethod.GET)
     public ModelAndView getInfoStudent(ModelMap modelMap) {
 
@@ -119,14 +78,7 @@ public class TestController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public ModelAndView gettrst(ModelMap modelMap) {
 
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("test");
-        return modelAndView;
-    }
     @RequestMapping(value = "/admin-page", method = RequestMethod.GET)
     public ModelAndView getAdminPage(ModelMap modelMap) {
 
@@ -225,8 +177,6 @@ public class TestController {
     @RequestMapping(value = "/addRequest", method = RequestMethod.POST)
     @ResponseBody
     public void addRequest(@RequestBody RequestDto requestDto) {
-       // List<String> studentEntities = requestDto.getStudents();
-       // System.out.println(requestDto.getQuantity());
         RequestEntity requestEntity = new RequestEntity();
         requestEntity.setNamecompany(requestDto.getNamecompany());
         FacultetEntity facultetEntity =  facultyService.findByid(requestDto.getFacultetid());
@@ -236,10 +186,6 @@ public class TestController {
         requestEntity.setMinavscore(requestDto.getMinavscore());
         requestEntity.setQuantity(requestDto.getQuantity());
         requestService.addRequest(requestEntity);
-
-
-
-
     }
 
 

@@ -13,16 +13,6 @@
     <title>Login page</title>
 
 </head>
-<%--
-<script src="resources/js/libs/bootstrap.min.js"></script>
-<script src="resources/js/libs/popper.min.js"></script>
-<script src="resources/js/libs/jquery-3.2.1.min.js"></script>
-<link href="resources/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="resources/css/general.css" rel="stylesheet" type="text/css" media="all"/>
---%>
-
-
-
 
 
 <jsp:include page="/jsp/blocks/header.jsp"/>
@@ -39,106 +29,16 @@
             <li  class="jsModalAddRequest" data-toggle="modal" data-target="#addrequest"><a class="text-left"><i class="fa fa-plus" ></i> Request</a></li>
             <li class="jsModalCreateStudent" data-toggle="modal" data-target="#createstudent"><a class="text-left"> <i class="fa fa-plus"></i> Student</a></li>
             <li class="jsModalAssignStudents" data-toggle="modal" data-target="#assignstudents"><a class="text-left">    Assign Students</a></li>
-
             <li ><a class="text-left" href="/allrequest2"> All Request</a></li>
         </ul>
     </div>
-    <div class="main-content">
-
-        <div class="content">
-
-
-        </div>
-        <table  class="table table-hover">
-            <thead  >
-            <tr>
-                <th>Check</th>
-                <th>L.Name</th>
-                <th>F.Name</th>
-                <th>Faculty</th>
-                <th>Specialty</th>
-                <th>Group</th>
-                <th>Is budget</th>
-                <th>Average score</th>
-                <th>Status</th>
-                <th>Name of company</th>
-                <th>Practice period</th>
-                <th>Show </th>
-
-
-            </tr>
-            </thead>
-            <tbody>
-
-            <tr>
-                <td>
-12
-                </td>
-                <td>
-                    <div class="jsAddedUser">
-
-                    </div>
-                </td>
-
-            </tr>
-
-            </tbody>
-        </table>
-        <div class="form-group">
-
-
-
-        </div>
-
-
-
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid">
-
-
-
-
-
-
-
-
-    <br>
-
-    <%--<div class="row">
-
-
-
-        <div class="col-md-2"><button type="submit" class="btn btn-primary jShowAllReques">
-            Show all requests
-        </button></div>
-
-        <div class="col-md-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addrequest">
-            Add request
-        </button></div>
-        <div class="col-md-2"><button type="button" class="btn btn-primary jsModalCreateStudent " data-toggle="modal" data-target="#createstudent">
-            Create student
-        </button></div>
-        <div class="col-md-2"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#assignstudents">
-            Assign students
-        </button></div>
-        <div class="col-md-2"><button type="button" class="btn btn-primary  jsModalCreateFaculty" data-toggle="modal" data-target="#createspeialty">
-            Create specialty
-        </button></div>
-        <div class="col-md-2"><button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createfaculty">
-            Create faculty
-        </button></div>
-
-        <!-- Button trigger modal -->
-
-    </div>--%>
 </div>
 
 <!-- Modal -->
 
-<%--MODAL-------------------------------ADDREQUEST--%>
+<%-----------------------------------------------------------------------------------------------------------------------------
+MODAL-------------------------------ADDREQUEST--
+---------------------------------------------------------------------------------------------------------------------------%>
 
 <div class="modal fade" id="addrequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -150,9 +50,8 @@
                 </button>
             </div>
             <div class="modal-body">
-
-
-                        <input type="text" class="form-control mb-2 mr-sm-2 jsCompanyName"  placeholder="Company name">
+                        <label for="companuname"><span class="glyphicon "></span> Company name</label>
+                        <input type="text" id ="companuname"class="form-control mb-2 mr-sm-2 jsCompanyName"  placeholder="Company name">
 
                         <label for="startDate"><span class="glyphicon "></span> Start date</label>
                         <input type="date" id="startDate"class="form-control jsStartDate ">
@@ -160,48 +59,24 @@
                         <label for="finishDate"><span class="glyphicon "></span> Finish date</label>
                         <input type="date" id="finishDate"class="form-control jsFinishDate ">
 
-                <label for="minscore"><span class="glyphicon "></span> Min.Av.Score</label>
-                <input type="text" id="minscore"class="form-control jsMinAvScore">
+                        <label for="minscore"><span class="glyphicon "></span> Min.Av.Score</label>
+                        <input type="text" id="minscore"class="form-control jsMinAvScore">
 
+                        <label for="facultetinrequest"><span class="glyphicon "></span>Facultet</label>
+                        <select class="form-control marginBottom1rem jsFacultetinAddRequest" id="facultetinrequest">
+                        </select>
 
+                        <label for="quantity"><span class="glyphicon "></span>Quantity</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2 jsRequestQuantity " id="quantity" placeholder="Quantity">
 
-                <label for="facultetinrequest"><span class="glyphicon "></span>Facultet</label>
-                <select class="form-control marginBottom1rem jsFacultetinAddRequest" id="facultetinrequest">
-                </select>
-
-
-
-
-
-
-
-                <label for="quantity"><span class="glyphicon "></span>Quantity</label>
-                <input type="text" class="form-control mb-2 mr-sm-2 jsRequestQuantity " id="quantity" placeholder="Quantity">
-
-
-
-                    <button type="submit" class="btn btn-success btn-block jsAddRequest"><span class="glyphicon glyphicon-ok"></span> Create</button>
-
-
+                        <button type="submit" class="btn btn-success btn-block jsAddRequest"><span class="glyphicon glyphicon-ok"></span> Create</button>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-<%--MODAL-------------------------------CREATESTUDENT--%>
-
-
+<%-----------------------------------------------------------------------------------------------------------------------------
+MODAL-------------------------------CREATESTUDENT
+-----------------------------------------------------------------------------------------------------------------------------%>
 <div class="modal fade" id="createstudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -212,33 +87,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <%--<form role="form">--%>
 
                         <label for="inputSurname">Surname</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentSurname "id="inputSurname" placeholder="Surname student">
 
-
-
                         <label for="inputName">Name</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentName"  id="inputName" placeholder="Name student">
-
 
                         <label for="jsFacultyIdInCreateStudentWindowtest">Facultet</label>
                         <select class="form-control marginBottom1rem jsDataUsingAjax" id="jsFacultyIdInCreateStudentWindowtest">
                         </select>
 
-
-
                         <label for="jsFacultyIdInCreateStudentWindow2test">Speciality</label>
                         <select class="form-control marginBottom1rem jsDataUsingAjax2" id="jsFacultyIdInCreateStudentWindow2test">
                         </select>
 
-
-
                         <label for="idInputGroup">Group</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentGroup" id="idInputGroup" placeholder="Group">
-
-
 
                         <label for="idBudjet">Budjet</label>
                         <select class="form-control marginBottom1rem jsStudentBudjet" id="idBudjet">
@@ -246,21 +111,18 @@
                             <option value=2>NoBudjet</option>
                         </select>
 
-
                         <label for="idAvScore">Av.Score.</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScore" id="idAvScore"  placeholder="Av. score">
 
 
-                    <button type="submit" class="btn btn-success btn-block jsAddStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
-
-
+                        <button type="submit" class="btn btn-success btn-block jsAddStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
             </div>
         </div>
     </div>
 </div>
-
-
-<%--MODAL-------------------------------AssignStudents--%>
+<%-----------------------------------------------------------------------------------------------------------------------------
+MODAL-AssignStudents-
+----------------------------------------------------------------------------------------------------------------------------%>
 <div class="modal fade" id="assignstudents" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -271,41 +133,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <select class="form-control marginBottom1rem jsRequestForAssign" >
 
+
+                <select class="form-control marginBottom1rem jsRequestForAssign" >
                 </select>
+
                 <select id="example-getting-started" multiple="multiple" class="jsMultiSelect">
                 </select>
-                <button type="submit" class="btn btn-success btn-block jsAddAssign "><span class="glyphicon glyphicon-ok"></span> Create</button>
 
+                <button type="submit" class="btn btn-success btn-block jsAddAssign "><span class="glyphicon glyphicon-ok"></span> Create</button>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%--MODAL-------------------------------CREATESPECIALITY--%>
+<%---------------------------------------------------------------------------------------------------------------------------
+--MODALCREATESPECIALITY--
+---------------------------------------------------------------------------------------------------------------------------%>
 
     <div class="modal fade" id="createspeialty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -318,28 +162,23 @@
                 </div>
                 <div class="modal-body">
 
-                            <label for="inlineFormInputId">Name Speciality</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2 jsInputPassword " id="inlineFormInputId" placeholder="Name of speciality">
+                    <label for="inlineFormInputId">Name Speciality</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2 jsInputPassword " id="inlineFormInputId" placeholder="Name of speciality">
 
-                            <label for="jsFacultyIdInCreateStudentWindow">Facultet</label>
-                            <select class="form-control marginBottom1rem jsDataSpeciality" id="jsFacultyIdInCreateStudentWindow">
-                            </select>
+                    <label for="jsFacultyIdInCreateStudentWindow">Facultet</label>
+                    <select class="form-control marginBottom1rem jsDataSpeciality" id="jsFacultyIdInCreateStudentWindow">
+                    </select>
 
-
-
-
-
-
-                        <button type="submit" class="btn btn-success btn-block jsSendData "><span class="glyphicon glyphicon-ok"></span> Create</button>
-
-
+                    <button type="submit" class="btn btn-success btn-block jsSendData "><span class="glyphicon glyphicon-ok"></span> Create</button>
                 </div>
             </div>
         </div>
     </div>
 
 
-
+<%---------------------------------------------------------------------------------------------------------------------------
+Create Faculty
+---------------------------------------------------------------------------------------------------------------------------%>
 
 <div class="modal fade" id="createfaculty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -352,65 +191,15 @@
             </div>
             <div class="modal-body">
 
-                            <label for="inputFacult">Facultet</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2 jsAddFacultyInput "  id="inputFacult"placeholder="Name of faculty">
+                <label for="inputFacult">Facultet</label>
+                <input type="text" class="form-control mb-2 mr-sm-2 jsAddFacultyInput "  id="inputFacult"placeholder="Name of faculty">
 
-
-
-                    <button type="submit" class="btn btn-success btn-block jsAddFacultyButton "><span class="glyphicon glyphicon-ok"></span> Create</button>
-
+                <button type="submit" class="btn btn-success btn-block jsAddFacultyButton "><span class="glyphicon glyphicon-ok"></span> Create</button>
             </div>
         </div>
     </div>
 </div>
 
-
-<%--MODAL-------------------------------CREATEFACULTY--%>
-
-<br>
-<!-- Кнопка, открывающее модальное окно -->
-<%--
-</div>
-<table class="table">
-    <thead>
-    <tr>
-        <th>Check</th>
-        <th>L.Name</th>
-        <th>F.Name</th>
-        <th>Faculty</th>
-        <th>Specialty</th>
-        <th>Group</th>
-        <th>Is budget</th>
-        <th>Average score</th>
-        <th>Status</th>
-        <th>Name of company</th>
-        <th>Practice period</th>
-        <th>Show </th>
-
-
-    </tr>
-    </thead>
-    <tbody>
-
-    <tr>
-        <td>
-
-        </td>
-        <td>
-            <div class="jsAddedUser">
-
-            </div>
-        </td>
-
-    </tr>
-
-    </tbody>
-</table>
-<div class="form-group">
-
-
-
---%>
 </div>
 </body>
 </html>

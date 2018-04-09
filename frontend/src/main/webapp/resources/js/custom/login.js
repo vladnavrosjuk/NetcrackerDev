@@ -151,9 +151,9 @@ $(document).ready(function () {
         });
     })
     /*
-    -----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
         Подгрузка специальнсотей в dropdown в зависмотси от выбранного факульета
-    -----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
     */
     $( ".jsDataUsingAjax" ).change(function() {
         var obj = {
@@ -241,11 +241,13 @@ $(document).ready(function () {
         $.ajax({
             url: 'addSpeciality',
             type: 'POST',
-            dataType: 'json',
+            dataType: 'text',
             contentType: "application/json",
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
+                noty({ text: 'Специальность '+obj.name+' создана!'});
+                $("#createspeialty").modal('toggle');
 
 
             }
@@ -299,11 +301,14 @@ $(document).ready(function () {
         $.ajax({
             url: 'addRequest',
             type: 'POST',
-            dataType: 'json',
+            dataType: 'text',
             contentType: "application/json",
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
+                noty({ text: 'Запрос компании '+obj.namecompany+' создан!'});
+                $("#addrequest").modal('toggle');
+
             }
 
         });
@@ -326,8 +331,7 @@ $(document).ready(function () {
             avscore:$(".jsStudentAvScore").val(),
 
         };
-        noty({ text: 'Студент '+obj.namestud+' '+obj.surname+' создан!'});
-        $("#createstudent").modal('toggle');
+
 
 
 
@@ -335,16 +339,13 @@ $(document).ready(function () {
 
             url: 'addStudent',
             type: 'POST',
-            dataType: 'json',
+            dataType: 'text',
             contentType: "application/json",
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function () {
-
-
-
-
-
+                noty({ text: 'Студент '+obj.namestud+' '+obj.surname+' создан!'});
+                $("#createstudent").modal('toggle');
             }
 
         });
@@ -369,15 +370,13 @@ $(document).ready(function () {
         $.ajax({
             url: 'addFacultet',
             type: 'POST',
-            dataType: 'json',
+            dataType: 'text',
             contentType: "application/json",
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
-                /*  $("#createfaculty").modal('toogle');*/
-                x.close();
-                /* $addedUserContainer.append(addedUser ? addedUser.name : '');*/
-                /*  window.location.href ="/admin-page"*/
+                noty({ text: 'Факультет '+obj.name+' создан!'});
+                $("#createfaculty").modal('toggle');
             }
 
         });
