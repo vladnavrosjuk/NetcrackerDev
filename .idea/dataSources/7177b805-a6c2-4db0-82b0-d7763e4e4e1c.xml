@@ -981,7 +981,7 @@
       <DataType>date|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="234" name="idfaculty">
+    <column id="247" parent="234" name="idspeciality">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
@@ -996,18 +996,18 @@
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="250" parent="234" name="request_facultet_id_fk">
-      <ColNames>idfaculty</ColNames>
+    <index id="250" parent="234" name="request_speciality_id_fk">
+      <ColNames>idspeciality</ColNames>
     </index>
     <key id="251" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="252" parent="234" name="request_facultet_id_fk">
-      <ColNames>idfaculty</ColNames>
+    <foreign-key id="252" parent="234" name="request_speciality_id_fk">
+      <ColNames>idspeciality</ColNames>
       <RefSchemaName>navr</RefSchemaName>
-      <RefTableName>facultet</RefTableName>
+      <RefTableName>speciality</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="253" parent="235" name="id">

@@ -31,16 +31,70 @@ $(document).ready(function () {
         $buttonAutoe  =$ (ELEMENTS.BUTTON_AUTOR);
 
 
+
+    $.ajax({
+        url: 'requestForTable',
+        type: 'GET',
+        dataType: 'json',
+        contentType: "application/json",
+        mimeType: 'application/json',
+        data: '',
+        success: function (students) {
+            $( ".jsStudentsTable" ).bootstrapTable('load', students);
+
+        }
+
+    });
+
+    $( ".jsRequestForAssign" ).change(function() {
+
+        var obj = {
+            id : $(".jsRequestForAssign option:selected").attr("value")
+        };
+        $.ajax({
+            url: 'ogr',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (students) {
+
+                students ? function () {
+
+
+
+                    $('.jsMultiSelect').change(function () {
+                        var count = $(".jsMultiSelect :selected").length;
+
+                        if (count>students.quantity)
+                        {
+                            alert("Вы превысили кол-во выборов ")
+                            $(".jsMultiSelect").removeAttr('checked');
+                        }
+
+                            })
+
+
+
+
+
+                    // $('.jsMultiSelect').attr('multiple','multiple');
+
+                }() : false;
+            }
+        });
+    });
+
 /*Подгрузка студентов в multiselect*/
 
-    $( ".jsModalAssignStudents" ).click(function (event) {
+   /* $( ".jsModalAssignStudents" ).click(function (event) {
              $.ajax({
             url: 'dropdownStudent',
             type: 'GET',
             dataType: 'json',
             contentType: "application/json",
             mimeType: 'application/json',
-            data: '',
             success: function (students) {
                 $('.jsMultiSelect').text('');
                 students ? function () {
@@ -54,7 +108,7 @@ $(document).ready(function () {
                 }() : false;
             }
         });
-    })
+    })*/
 /*
 -----------------------------------------------------------------------------------------------------------------------
     Подгрузка запросов в dropdown
@@ -74,7 +128,7 @@ $(document).ready(function () {
                 $('.jsRequestForAssign').text('');
                 users ? function () {
                     users.some(function (user) {
-                        $('.jsRequestForAssign').append('<option value="'+user.id+'">'+user.namecompany+'</option>')
+                        $('.jsRequestForAssign').append('<option value="'+user.id+'">'+user.namecompany+" Min.Score:"+user.minavscore+" Quantity:"+user.quantity+'</option>')
                     });
 
                 }() : false;
@@ -150,6 +204,51 @@ $(document).ready(function () {
             }
         });
     })
+
+
+
+
+
+    $( ".jsRequestForAssign" ).change(function() {
+
+        var obj = {
+            id : $(".jsRequestForAssign option:selected").attr("value")
+        };
+        $.ajax({
+            url: 'multiselectForRequest',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (students) {
+                $('.jsMultiSelect').text('');
+                students ? function () {
+                    students.some(function (student) {
+
+
+                        $('.jsMultiSelect').append('<option value="'+student.id+'">'+student.surname+' '+student.namestud+' '+student.avscore+'</option>');
+
+
+                    });
+                    $('.jsMultiSelect').multiselect('rebuild');
+
+
+
+                   // $('.jsMultiSelect').attr('multiple','multiple');
+
+                }() : false;
+            }
+        });
+    });
+    $('.jsMultiSelect').multiselect({
+        buttonWidth: '400px',
+        maxHeight: 400,
+        includeSelectAllOption: true,
+        enableFiltering: true,
+    })
+
+
     /*
 -----------------------------------------------------------------------------------------------------------------------
         Подгрузка специальнсотей в dropdown в зависмотси от выбранного факульета
@@ -247,7 +346,8 @@ $(document).ready(function () {
             data: JSON.stringify(obj),
             success: function (addedUser) {
                 noty({ text: 'Специальность '+obj.name+' создана!'});
-                $("#createspeialty").modal('toggle');
+                $("#createspeialty").modal('hide');
+
 
 
             }
@@ -264,7 +364,7 @@ $(document).ready(function () {
 
     $( ".jsModalAddRequest" ).click(function (event) {
             $.ajax({
-            url: 'dropdown',
+            url: 'dropdownSpeciality',
             type: 'GET',
             dataType: 'json',
             contentType: "application/json",

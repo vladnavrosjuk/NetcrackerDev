@@ -35,4 +35,9 @@ public class StudentServiceImpl implements StudentService{
     public List<StudentEntity> findall() {
         return (List<StudentEntity>) studentRepository.findAll();
     }
+
+    @Override
+    public List<StudentEntity> findbyquantityandfacultet(Double score, Integer idspeciality) {
+        return studentRepository.selectfronscore(score,idspeciality);
+    }
 }

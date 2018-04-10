@@ -32,7 +32,24 @@
             <li ><a class="text-left" href="/allrequest2"> All Request</a></li>
         </ul>
     </div>
+    <div class="main-content">
+        <table   data-pagination="true" data-search="true" data-toggle="table" class="jsStudentsTable">
+
+            <thead>
+            <tr>
+
+                <th data-checkbox="true" class="bs-checkbox"><input name="btSelectAll" type="checkbox"></th>
+                <th data-field="name">First Name</th>
+                <th data-field="datestart">Last Name</th>
+                <th data-field="datefinish">Email</th>
+                <th data-field="minavscore">Username</th>
+                <th data-field="quantity">Group</th>
+            </tr>
+            </thead>
+        </table >
+    </div>
 </div>
+
 
 <!-- Modal -->
 

@@ -18,7 +18,7 @@ public class RequestEntity {
     private Double minavscore;
     private Integer quantity;
     private List<StudentEntity> student = new ArrayList<>();
-    private FacultetEntity facultetEntity;
+    private SpecialityEntity specialityEntity;
 
 
     @Id
@@ -101,14 +101,15 @@ public class RequestEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "idfaculty", referencedColumnName = "id", nullable = false)
-    public FacultetEntity getFacultetEntity() {
-        return facultetEntity;
+    @JoinColumn(name = "idspeciality", referencedColumnName = "id", nullable = false)
+    public SpecialityEntity getSpecialityEntity() {
+        return specialityEntity;
     }
 
-    public void setFacultetEntity(FacultetEntity facultetEntity) {
-        this.facultetEntity = facultetEntity;
+    public void setSpecialityEntity(SpecialityEntity specialityEntity) {
+        this.specialityEntity = specialityEntity;
     }
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "requstandstudent", catalog = "", schema = "navr", joinColumns = @JoinColumn(name = "idrequest", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "idstudent", referencedColumnName = "id"))

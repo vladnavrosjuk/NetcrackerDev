@@ -35,7 +35,7 @@ import java.util.List;
  */
 public interface SpecialityService {
 
-
+    List<SpecialityEntity> findall();
     void addspeciality(SpecialityEntity specialityEntity);
     SpecialityEntity findByName(String name);
     SpecialityEntity findById(Integer id);

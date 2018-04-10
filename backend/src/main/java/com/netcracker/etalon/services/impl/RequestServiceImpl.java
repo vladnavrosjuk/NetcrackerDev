@@ -24,4 +24,9 @@ public class RequestServiceImpl  implements RequestService{
         return (List<RequestEntity>) requestRepository.findAll();
 
     }
+
+    @Override
+    public RequestEntity findById(Integer id) {
+        return requestRepository.findById(id);
+    }
 }

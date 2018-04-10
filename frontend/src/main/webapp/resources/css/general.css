@@ -7,7 +7,9 @@ body {
     color: #e7ffe7;
     text-shadow: 1px 1px 2px #030001, 0 0 1em #e7ffe7;
 }
-
+/*.main-content{
+    width: 200px;
+}*/
 .modal-body{
 
     background: #d6d8b3;

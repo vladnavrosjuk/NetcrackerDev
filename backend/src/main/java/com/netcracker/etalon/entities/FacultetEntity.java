@@ -11,7 +11,7 @@ public class FacultetEntity {
     private String name;
     private List<SpecialityEntity> specialities;
 
-    @Id
+    @Id  
     @Column(name = "id")
     public int getId() {
         return id;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RequestDto {
+    private Integer id;
     private List<String> students =new ArrayList<>();
     private String namecompany;
     private Date datestart;
@@ -14,6 +15,14 @@ public class RequestDto {
     private Double minavscore;
     private Integer quantity;
     private Integer facultetid;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNamecompany() {
         return namecompany;

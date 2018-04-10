@@ -47,6 +47,11 @@ public class SpecialityServiceImpl implements SpecialityService {
 
 
     @Override
+    public List<SpecialityEntity> findall() {
+        return (List<SpecialityEntity>) specialityRepository.findAll();
+    }
+
+    @Override
     public void addspeciality(SpecialityEntity specialityEntity) {
         specialityRepository.save(specialityEntity);
     }
