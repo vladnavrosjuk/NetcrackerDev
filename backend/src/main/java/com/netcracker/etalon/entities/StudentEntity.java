@@ -115,7 +115,7 @@ public class StudentEntity {
     }
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "student")
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE, mappedBy = "student")
     public List<RequestEntity> getRequest() {
         return request;
     }

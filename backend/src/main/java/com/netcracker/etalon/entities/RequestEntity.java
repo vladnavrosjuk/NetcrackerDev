@@ -111,7 +111,7 @@ public class RequestEntity {
     }
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinTable(name = "requstandstudent", catalog = "", schema = "navr", joinColumns = @JoinColumn(name = "idrequest", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "idstudent", referencedColumnName = "id"))
     public List<StudentEntity> getStudent() {
         return student;

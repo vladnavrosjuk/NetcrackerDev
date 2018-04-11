@@ -9,4 +9,7 @@ public interface RequestService {
     void addRequest(RequestEntity requestEntity);
     List<RequestEntity> find();
     RequestEntity findById(Integer id);
+    void deleteById(Integer id);
+
+
 }

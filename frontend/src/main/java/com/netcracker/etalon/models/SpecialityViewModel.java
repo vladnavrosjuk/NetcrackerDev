@@ -1,9 +1,21 @@
 package com.netcracker.etalon.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpecialityViewModel {
+    private List<String> listid = new ArrayList<>();
     private String id;
     private String name;
     private FacultyViewModel facultyViewModel;
+
+    public List<String> getListid() {
+        return listid;
+    }
+
+    public void setListid(List<String> listid) {
+        this.listid = listid;
+    }
 
     public String getId() {
         return id;

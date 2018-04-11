@@ -1167,6 +1167,7 @@
       <RefSchemaName>navr</RefSchemaName>
       <RefTableName>speciality</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="284" parent="239" name="id">
       <Position>1</Position>

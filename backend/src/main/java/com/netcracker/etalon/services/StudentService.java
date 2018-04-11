@@ -10,5 +10,7 @@ public interface StudentService {
     StudentEntity findById(Integer id);
     List<StudentEntity> findall();
     List<StudentEntity> findbyquantityandfacultet(Double score, Integer idspeciality);
+    void deleteById (Integer id);
+    Integer maxId();
 
 }

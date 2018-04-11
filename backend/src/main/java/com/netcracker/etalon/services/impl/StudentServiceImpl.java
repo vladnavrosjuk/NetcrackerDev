@@ -40,4 +40,14 @@ public class StudentServiceImpl implements StudentService{
     public List<StudentEntity> findbyquantityandfacultet(Double score, Integer idspeciality) {
         return studentRepository.selectfronscore(score,idspeciality);
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        studentRepository.deleteById(id);
+    }
+
+    @Override
+    public Integer maxId() {
+        return studentRepository.maxId();
+    }
 }

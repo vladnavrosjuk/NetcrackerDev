@@ -29,38 +29,30 @@
 <br>
 <!-- Кнопка, открывающее модальное окно -->
 </div>
-<table class="table">
+<table
+        data-search="true" data-toggle="table"
+
+        data-pagination="true"
+        data-page-list="[5, 10, 25, 50, 100, ALL]"
+        data-page-size="5"
+        class="jsStudentsTable">
+
     <thead>
     <tr>
-        <th>Check</th>
-        <th>Company name</th>
-        <th>Dates</th>
-        <th>Status</th>
-        <th>Faculty</th>
-        <th>Speciality</th>
-        <th>Is Min.Av.Score</th>
-        <th>Total quantity</th>
-        <th>Available quantity</th>
-        <th>Name of company</th>
-        <th>Practice period</th>
-        <th>Show <t ></t></th>
 
+        <th  data-checkbox="idStudent"></th>
+        <th data-field="surname">First Name</th>
+        <th data-field="namestud">Last Name</th>
+        <th data-field="speciality">Spec.</th>
+        <th data-field="facultet">Facult.</th>
+        <th data-field="groupstud">Group</th>
+        <th data-field="budjet">Budjet</th>
+        <th data-field="avscore">Av.Score</th>
+        <th data-field="statusstud">StatusStud</th>
 
     </tr>
     </thead>
-    <tbody>
-    <%--<c:forEach items="${facultetList}" var="currentFacultet">--%>
-        <tr>
-            <td>
-               <%--     ${currentFacultet.name}--%>
-            </td>
-            <td>
-               <%--     ${currentFacultet.available}--%>
-            </td>
-        </tr>
-<%--    </c:forEach>--%>
-    </tbody>
-</table>
+</table >
 </div>
 <br>
 <div class="container-fluid">

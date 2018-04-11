@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 
     $.ajax({
-        url: 'requestForTable',
+        url: 'studentsForTable',
         type: 'GET',
         dataType: 'json',
         contentType: "application/json",
@@ -41,6 +41,7 @@ $(document).ready(function () {
         data: '',
         success: function (students) {
             $( ".jsStudentsTable" ).bootstrapTable('load', students);
+
 
         }
 
@@ -305,6 +306,9 @@ $(document).ready(function () {
     -----------------------------------------------------------------------------------------------------------------------
     */
 
+
+    var list = $( ".jsStudentsTable" ).bootstrapTable('getSelections');
+
     $(".jsAddAssign").click(function (event) {
         event.stopPropagation();
 
@@ -321,10 +325,153 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
+
             }
 
         });
     });
+    $( ".jsEditStudent" ).click(function (event) {
+        $.ajax({
+            url: 'dropdown',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (users) {
+                $usersContainer.text('');
+                users ? function () {
+                    users.some(function (user) {
+                        $usersContainer.append('<option value="'+user.id+'">'+user.name+'</option>')
+                    });
+                }() : false;
+            }
+        });
+    })
+    $( ".jsEditStudent" ).click(function (event) {
+        $.ajax({
+            url: 'dropdownSpeciality',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (users) {
+                $( ".jsDataUsingAjax2" ).text('');
+                users ? function () {
+                    users.some(function (user) {
+                        $( ".jsDataUsingAjax2" ).append('<option value="'+user.id+'">'+user.name+'</option>')
+
+                    });
+                }() : false;
+            }
+
+        });
+    })
+
+
+    $(".jsEditStudent").click(function (event) {
+        $(".jsStudentSurname").val(""),
+            $(".jsDataUsingAjax").val("");
+        $(".jsDataUsingAjax2").val(""),
+            $(".jsStudentName").val(""),
+            $(".jsStudentGroup").val(""),
+            $(".jsStudentGroup").val(""),
+
+
+            $(".jsStudentAvScore").val("");
+
+        var ids =  $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idStudent;});
+
+        var obj = {
+            listid :  ids,
+
+        };
+
+
+
+
+        $.ajax({
+            url: 'editRowStudent',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (addedUser) {
+                $(".jsStudentSurname").val(addedUser.surname),
+                $(".jsDataUsingAjax").val(addedUser.facultetid);
+                $(".jsDataUsingAjax2").val(addedUser.specialityId),
+                    $(".jsStudentName").val(addedUser.namestud),
+                    $(".jsStudentGroup").val(addedUser.groupstud),
+                    $(".jsStudentGroup").val(addedUser.budjetId),
+
+
+                    $(".jsStudentAvScore").val(addedUser.avscore);
+
+
+
+
+
+
+
+            }
+
+        });
+    });
+
+
+
+
+
+
+    $(".jsTest").click(function (event) {
+
+        var ids =  $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idStudent;});
+
+        var obj = {
+            listid :  ids,
+
+        };
+
+        $( ".jsEditStudent" ).prop('disabled', true);
+        $( ".jsTest" ).prop('disabled', true);
+        $( ".jsAssignStudent" ).prop('disabled', true);
+
+        $( ".jsStudentsTable" ).bootstrapTable('remove', {
+            field: 'idStudent',
+            values: ids
+        });
+
+        $.ajax({
+            url: 'testel',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (addedUser) {
+                alert("lol");
+                $( ".jsStudentsTable" ).bootstrapTable('remove', {
+                    field: 'idStudent',
+                    values: ids
+                });
+
+            }
+
+        });
+    });
+   /* $(".jsTest").click(function () {
+        var ids = $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idRequest;
+        });
+        $( ".jsStudentsTable" ).bootstrapTable('remove', {
+            field: 'idRequest',
+            values: ids
+        });
+    });*/
 /*
 -----------------------------------------------------------------------------------------------------------------------
 Добавление специальности
@@ -375,6 +522,7 @@ $(document).ready(function () {
                 users ? function () {
                     users.some(function (user) {
                         $( ".jsFacultetinAddRequest" ).append('<option value="'+user.id+'">'+user.name+'</option>')
+
                     });
                 }() : false;
             }
@@ -413,7 +561,136 @@ $(document).ready(function () {
 
         });
     });
+    $( ".jsStudentsTable" ).on('check.bs.table', function (e, clickedUser) {
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', true);
 
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', false);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', false);
+
+
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsAssignStudent" ).prop('disabled', true);
+
+        }
+
+    });
+    $( ".jsStudentsTable" ).on('uncheck.bs.table', function (e, clickedUser) {
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', true);
+
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', false);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', false);
+
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsAssignStudent" ).prop('disabled', true);
+
+        }
+
+    });
+
+
+
+    $( ".jsStudentsTable" ).on('uncheck-all.bs.table', function (e, clickedUser) {
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', true);
+
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', false);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', false);
+
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsAssignStudent" ).prop('disabled', true);
+
+        }
+
+    });
+
+
+
+
+    $( ".jsStudentsTable" ).on('check-all.bs.table', function (e, clickedUser) {
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', true);
+
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', false);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', false);
+
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsAssignStudent" ).prop('disabled', true);
+
+        }
+
+    });
+
+
+    $( ".jsStudentsTable" ).on('uncheck.bs.table', function (e, clickedUser) {
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', true);
+
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
+        {
+            $( ".jsEditStudent" ).prop('disabled', false);
+            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsAssignStudent" ).prop('disabled', false);
+
+        }
+        if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
+        {
+            $( ".jsEditStudent" ).prop('disabled', true);
+            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsAssignStudent" ).prop('disabled', true);
+
+        }
+
+    });
     /*
 -----------------------------------------------------------------------------------------------------------------------
        Добавление студента
@@ -427,25 +704,37 @@ $(document).ready(function () {
             surname :$(".jsStudentSurname").val(),
             namestud:$(".jsStudentName").val(),
             groupstud:$(".jsStudentGroup").val(),
-            budjet: $(".jsStudentBudjet option:selected").text(),
+            budjet: $(".jsStudentBudjetEdit option:selected").text(),
             avscore:$(".jsStudentAvScore").val(),
 
         };
 
 
 
+        $( ".jsStudentsTable" ).change(function () {
+            var count = $(".jsMultiSelect :selected").length;
+
+
+                alert("Вы превысили кол-во выборов ")
+
+
+        })
 
         $.ajax({
 
             url: 'addStudent',
             type: 'POST',
-            dataType: 'text',
+            dataType: 'json',
             contentType: "application/json",
             mimeType: 'application/json',
             data: JSON.stringify(obj),
-            success: function () {
+            success: function (addedUser) {
+                $( ".jsStudentsTable" ).bootstrapTable('append', addedUser);
+
+                $( ".jsStudentsTable" ).bootstrapTable('scrollTo', 'bottom');
                 noty({ text: 'Студент '+obj.namestud+' '+obj.surname+' создан!'});
                 $("#createstudent").modal('toggle');
+
             }
 
         });

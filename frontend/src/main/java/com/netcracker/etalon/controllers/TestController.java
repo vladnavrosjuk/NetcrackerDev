@@ -1,15 +1,13 @@
 package com.netcracker.etalon.controllers;
 
 
-import com.netcracker.etalon.dto.AssignDto;
-import com.netcracker.etalon.dto.RequestDto;
-import com.netcracker.etalon.dto.SpecialityDto;
-import com.netcracker.etalon.dto.StudentDTO;
+import com.netcracker.etalon.dto.*;
 import com.netcracker.etalon.entities.FacultetEntity;
 import com.netcracker.etalon.entities.RequestEntity;
 import com.netcracker.etalon.entities.SpecialityEntity;
 import com.netcracker.etalon.entities.StudentEntity;
 import com.netcracker.etalon.models.RequestViewModel;
+import com.netcracker.etalon.models.StudentViewModel;
 import com.netcracker.etalon.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -22,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,6 +45,10 @@ public class TestController {
     private RoleService roleService;
     private  final TypeDescriptor requestEntityDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(RequestEntity.class));
     private  final TypeDescriptor requestViewModelDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(RequestViewModel.class));
+
+
+    private  final TypeDescriptor studentEntityDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentEntity.class));
+    private  final TypeDescriptor studentViewModelDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentViewModel.class));
 
     private static final String VIEW_NAME_LOGIN = "adminpage";
     private static final String VIEW_ALL_REQUEST = "request";
@@ -180,7 +183,7 @@ public class TestController {
 
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
     @ResponseBody
-    public void addStudent(@RequestBody StudentDTO studentDTO) {
+    public List<StudentViewModel> addStudent(@RequestBody StudentDTO studentDTO) {
         StudentEntity studentEntity = new StudentEntity();
         studentEntity.setGroupstud(studentDTO.getGroupstud());
         studentEntity.setNamestud(studentDTO.getNamestud());
@@ -189,12 +192,14 @@ public class TestController {
         studentEntity.setBudjet(studentDTO.getBudjet());
         studentEntity.setAvscore(studentDTO.getAvscore());
         studentService.addStudent(studentEntity);
-        List<StudentEntity> studentEntities = studentService.findbyquantityandfacultet(4.0, 1);
-        System.out.println();
-        RequestEntity requestEntity = requestService.findById(16);
-        StudentEntity studentEntity1 = studentService.findById(7);
-        requestEntity.getStudent().add(studentEntity1);
-        requestService.addRequest(requestEntity);
+        StudentEntity studentEntitymax = studentService.findById(studentService.maxId());
+
+        List<StudentEntity> studentEntityList =  new ArrayList<>();
+        studentEntityList.add(studentEntitymax);
+        return  (List<StudentViewModel>) conversionService.convert(studentEntityList, studentEntityDescriptor, studentViewModelDescriptor);
+
+
+
     }
 
 
@@ -218,6 +223,39 @@ public class TestController {
 
         return requestEntity;
     }
+    @RequestMapping(value = "/testel", method = RequestMethod.POST)
+    @ResponseBody
+    public void asd(@RequestBody StudentViewModel studentViewModel) {
+        List<String> list = studentViewModel.getListid();
+        for (String id : list){
+            studentService.deleteById(Integer.valueOf(id));
+        }
+
+        System.out.println();
+
+       // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+
+
+
+    @RequestMapping(value = "/editRowStudent", method = RequestMethod.POST)
+    @ResponseBody
+    public StudentViewModel editRowStudent(@RequestBody StudentViewModel studentViewModel) {
+
+        List<String> list = studentViewModel.getListid();
+
+        StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
+        return  conversionService.convert(studentEntity, StudentViewModel.class);
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+
+    
+
+
+
 
 
     @RequestMapping(value = "/addAssign", method = RequestMethod.POST)
@@ -248,12 +286,14 @@ public class TestController {
 
 
 
-    @RequestMapping(value = "/requestForTable", method = RequestMethod.GET)
+    @RequestMapping(value = "/studentsForTable", method = RequestMethod.GET)
     @ResponseBody
-    public List<RequestViewModel> getAllStudents() {
-        List<RequestEntity> allrequest = requestService.find();
-        return (List<RequestViewModel>) conversionService.convert(allrequest, requestEntityDescriptor, requestViewModelDescriptor);
+    public List<StudentViewModel> getAllStudents() {
+        List<StudentEntity> allstudents = studentService.findall();
+        return (List<StudentViewModel>) conversionService.convert(allstudents, studentEntityDescriptor, studentViewModelDescriptor);
     }
+
+
 
 
 }

@@ -24,13 +24,13 @@ public class RequestEntityToRequestViewModelConverter implements Converter<Reque
         RequestViewModel requestViewModel = new RequestViewModel();
         requestViewModel.setMinavscore(String.valueOf(requestEntity.getMinavscore()));
         requestViewModel.setQuantity(String.valueOf(requestEntity.getQuantity()));
-        requestViewModel.setId(String.valueOf(requestEntity.getId()));
+        requestViewModel.setIdRequest(String.valueOf(requestEntity.getId()));
         requestViewModel.setName(requestEntity.getNamecompany());
         requestViewModel.setDatefinish(String.valueOf(requestEntity.getDatefinish()));
         requestViewModel.setDatestart(String.valueOf(requestEntity.getDatestart()));
 /*        SpecialityEntity specialityEntity = requestService.findById(requestEntity.getId()).getSpecialityEntity();
         String name = specialityEntity.getName();*/
-        requestViewModel.setSpecialityViewModel(conversionService.convert(requestViewModel.getSpecialityViewModel(), SpecialityViewModel.class));
+
         return requestViewModel;
     }
 }

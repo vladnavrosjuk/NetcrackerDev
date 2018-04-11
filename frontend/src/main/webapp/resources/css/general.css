@@ -3,6 +3,19 @@ body {
 
     background: #fffdfd;
 }
+.btn-success{
+    background-color: #a5a3a3;
+    border-color: #918f8f;
+}
+.btn-success:hover{
+    background-color: #727070;
+    border-color: #5e5c5c;
+
+}
+.btn-success:disabled {
+    background-color: #b9b7b7;
+    border-color: #aeacac;
+}
 .navbar-dark .navbar-brand {
     color: #e7ffe7;
     text-shadow: 1px 1px 2px #030001, 0 0 1em #e7ffe7;

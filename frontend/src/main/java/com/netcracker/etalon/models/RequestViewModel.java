@@ -1,20 +1,32 @@
 package com.netcracker.etalon.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RequestViewModel {
-    private String id;
+    private List<String> test =  new ArrayList<>();
+    private String idRequest;
     private String name;
     private String datestart;
     private String datefinish;
-    private SpecialityViewModel specialityViewModel;
+
     private String minavscore;
     private String quantity;
 
-    public String getId() {
-        return id;
+    public List<String> getTest() {
+        return test;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTest(List<String> test) {
+        this.test = test;
+    }
+
+    public String getIdRequest() {
+        return idRequest;
+    }
+
+    public void setIdRequest(String idRequest) {
+        this.idRequest = idRequest;
     }
 
     public String getName() {
@@ -41,13 +53,7 @@ public class RequestViewModel {
         this.datefinish = datefinish;
     }
 
-    public SpecialityViewModel getSpecialityViewModel() {
-        return specialityViewModel;
-    }
 
-    public void setSpecialityViewModel(SpecialityViewModel specialityViewModel) {
-        this.specialityViewModel = specialityViewModel;
-    }
 
     public String getMinavscore() {
         return minavscore;

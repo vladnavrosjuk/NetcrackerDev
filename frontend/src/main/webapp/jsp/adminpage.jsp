@@ -33,21 +33,46 @@
         </ul>
     </div>
     <div class="main-content">
-        <table   data-pagination="true" data-search="true" data-toggle="table" class="jsStudentsTable">
+        <div class="row">
+            <div class="col-6 col-md-4">
+        <button type="submit" disabled class="btn btn-success btn-block jsTest"><span class="glyphicon glyphicon-ok"></span> Create</button>
+            </div>
+            <div class="col-6 col-md-4">
+        <button type="submit" data-toggle="modal" data-target="#editStudent" disabled class="btn btn-success btn-block  jsEditStudent"><span class="glyphicon glyphicon-ok"></span> Edit</button>
+            </div>
+            <div class="col-6 col-md-4">
+        <button type="submit" disabled class="btn btn-success btn-block jsAssignStudent"><span class="glyphicon glyphicon-ok"></span> Assign</button>
+            </div>
+        </div>
+            <table
+                    data-search="true" data-toggle="table"
+
+                    data-pagination="true"
+                    data-page-list="[5, 10, 25, 50, 100, ALL]"
+                    data-page-size="5"
+                    class="jsStudentsTable">
 
             <thead>
             <tr>
 
-                <th data-checkbox="true" class="bs-checkbox"><input name="btSelectAll" type="checkbox"></th>
-                <th data-field="name">First Name</th>
-                <th data-field="datestart">Last Name</th>
-                <th data-field="datefinish">Email</th>
-                <th data-field="minavscore">Username</th>
-                <th data-field="quantity">Group</th>
+                <th  data-checkbox="idStudent"></th>
+                <th data-field="surname">First Name</th>
+                <th data-field="namestud">Last Name</th>
+                <th data-field="speciality">Spec.</th>
+                <th data-field="facultet">Facult.</th>
+                <th data-field="groupstud">Group</th>
+                <th data-field="budjet">Budjet</th>
+                <th data-field="avscore">Av.Score</th>
+                <th data-field="statusstud">StatusStud</th>
+
             </tr>
             </thead>
+
         </table >
+
+
     </div>
+
 </div>
 
 
@@ -164,6 +189,52 @@ MODAL-AssignStudents-
     </div>
 </div>
 
+
+
+
+<div class="modal fade" id="editStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" align="center" id="sad">Add Student</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <label for="inputSurnameEdit">Surname</label>
+                <input type="text" class="form-control mb-2 mr-sm-2 jsStudentSurname "id="inputSurnameEdit" placeholder="Surname student">
+
+                <label for="inputNameEdit">Name</label>
+                <input type="text" class="form-control mb-2 mr-sm-2 jsStudentName"  id="inputNameEdit" placeholder="Name student">
+
+                <label for="jsFacultyIdInCreateStudentWindowtestEdit">Facultet</label>
+                <select class="form-control marginBottom1rem jsDataUsingAjax" id="jsFacultyIdInCreateStudentWindowtestEdit">
+                </select>
+
+                <label for="jsFacultyIdInCreateStudentWindow2testEdit">Speciality</label>
+                <select class="form-control marginBottom1rem jsDataUsingAjax2" id="jsFacultyIdInCreateStudentWindow2testEdit">
+                </select>
+
+                <label for="idInputGroupEdit">Group</label>
+                <input type="text" class="form-control mb-2 mr-sm-2 jsStudentGroup" id="idInputGroupEdit" placeholder="Group">
+
+                <label for="idBudjetEdit">Budjet</label>
+                <select class="form-control marginBottom1rem jsStudentBudjetEdit" id="idBudjetEdit">
+                    <option value=1>Budjet</option>
+                    <option value=2>NoBudjet</option>
+                </select>
+
+                <label for="idAvScoreEdit">Av.Score.</label>
+                <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScore" id="idAvScoreEdit"  placeholder="Av. score">
+
+
+                <button type="submit" class="btn btn-success btn-block jsAddStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
+            </div>
+        </div>
+    </div>
+</div>
 <%---------------------------------------------------------------------------------------------------------------------------
 --MODALCREATESPECIALITY--
 ---------------------------------------------------------------------------------------------------------------------------%>

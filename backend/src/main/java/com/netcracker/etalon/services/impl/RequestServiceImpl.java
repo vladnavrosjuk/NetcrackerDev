@@ -29,4 +29,11 @@ public class RequestServiceImpl  implements RequestService{
     public RequestEntity findById(Integer id) {
         return requestRepository.findById(id);
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        requestRepository.deleteById(id);
+    }
+
+
 }

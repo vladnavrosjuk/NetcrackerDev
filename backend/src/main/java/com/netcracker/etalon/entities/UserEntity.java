@@ -56,7 +56,7 @@ public class UserEntity {
 
         return Objects.hash(id, login, passuser);
     }
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn (name = "student_id", referencedColumnName = "id", nullable = false)
     public StudentEntity getStudentEntity() {
         return studentEntity;

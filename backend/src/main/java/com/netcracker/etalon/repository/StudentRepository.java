@@ -10,6 +10,10 @@ import java.util.List;
 public interface StudentRepository extends CrudRepository<StudentEntity, Integer>
 {
         StudentEntity findByNamestud(String name);
+        void deleteById (Integer id);
+
+    @Query (value = "SELECT MAX(id) FROM student", nativeQuery = true)
+        Integer maxId();
 
         StudentEntity findById(Integer id);
       @Query (value = "SELECT * FROM student WHERE avscore > :score AND  spec_id = :specid ", nativeQuery = true)
