@@ -251,8 +251,65 @@ public class TestController {
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
     }
 
+    @RequestMapping(value = "/editStudentBase", method = RequestMethod.POST)
+    @ResponseBody
+    public StudentViewModel editStudentBase(@RequestBody StudentViewModel studentViewModel) {
 
-    
+        List<String> list = studentViewModel.getListid();
+        StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
+        studentEntity.setSurname(studentViewModel.getSurname());
+        studentEntity.setAvscore(Double.valueOf(studentViewModel.getAvscore()));
+        studentEntity.setBudjet(studentViewModel.getBudjet());
+        studentEntity.setNamestud(studentViewModel.getNamestud());
+        SpecialityEntity specialityEntity = specialityService.findById(Integer.valueOf(studentViewModel.getSpecialityId()));
+        studentEntity.setSpecialityEntity(specialityEntity);
+        studentEntity.setGroupstud(Integer.valueOf(studentViewModel.getGroupstud()));
+
+        studentService.addStudent(studentEntity);
+        return  conversionService.convert(studentEntity, StudentViewModel.class);
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+
+
+    @RequestMapping(value = "/releseStydentPractice", method = RequestMethod.POST)
+    @ResponseBody
+    public   List<RequestEntity> releaseStudent(@RequestBody StudentViewModel studentViewModel) {
+
+        List<String> list = studentViewModel.getListid();
+        StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
+        List<RequestEntity> requestEntityList = studentEntity.getRequest();
+
+        return requestEntityList;
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+    @RequestMapping(value = "/releaseStudents", method = RequestMethod.POST)
+    @ResponseBody
+    public   void releaseStudentS(@RequestBody StudentViewModel studentViewModel) {
+
+            List<String> list = studentViewModel.getListid();
+            StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
+
+            List<String> request = studentViewModel.getRequestsId();
+            for (String string : request)
+            {
+                RequestEntity requestEntity = requestService.findById(Integer.valueOf(string));
+                requestEntity.getStudent().remove(studentEntity);
+                requestService.addRequest(requestEntity);
+            }
+
+
+
+
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+
+
+
 
 
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 public class StudentViewModel {
     private List<String> listid = new ArrayList<>();
+    private List<String> requestsId = new ArrayList<>();
     private String idStudent;
     private String surname;
     private String namestud;
@@ -19,8 +20,13 @@ public class StudentViewModel {
     private String statusstud;
     private String facultetid;
 
+    public List<String> getRequestsId() {
+        return requestsId;
+    }
 
-
+    public void setRequestsId(List<String> requestsId) {
+        this.requestsId = requestsId;
+    }
 
     public String getSpecialityId() {
         return specialityId;

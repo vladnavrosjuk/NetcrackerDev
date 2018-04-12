@@ -3,6 +3,7 @@
  */
 $(document).ready(function () {
     var x = document.getElementById("createfaculty");
+    var indexeow =1 ;
     var ELEMENTS = {
         CONTAINER_FACULTY: '.jsDataSpeciality',
         INPUT_FACULTY: '.jsAddFacultyInput',
@@ -46,6 +47,10 @@ $(document).ready(function () {
         }
 
     });
+    $( ".jsStudentsTable" ).on('check.bs.table', function (e, row, $el) {
+       indexeow =  $el.closest('tr').data('index');
+    });
+
 
     $( ".jsRequestForAssign" ).change(function() {
 
@@ -276,6 +281,27 @@ $(document).ready(function () {
             }
         });
     });
+    $( ".jsFacultetEdit" ).change(function() {
+        var obj = {
+            facultetId : $(".jsFacultetEdit option:selected").attr("value")
+        };
+        $.ajax({
+            url: 'dropDown2',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (users) {
+                $( ".jsSpecialityEdit" ).text('');
+                users ? function () {
+                    users.some(function (user) {
+                        $( ".jsSpecialityEdit" ).append('<option value="'+user.id+'">'+user.name+'</option>')
+                    });
+                }() : false;
+            }
+        });
+    });
     /*
     -----------------------------------------------------------------------------------------------------------------------
   ?
@@ -309,6 +335,31 @@ $(document).ready(function () {
 
     var list = $( ".jsStudentsTable" ).bootstrapTable('getSelections');
 
+    $(".jsRealeaseStudent").click(function (event) {
+        event.stopPropagation();
+
+        var ids =  $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idStudent;});
+
+        var obj = {
+            listid :ids,
+            requestsId :  $('.jsReleaseMultiSelecr').val(),
+
+        };
+
+        $.ajax({
+            url: 'releaseStudents',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (addedUser) {
+
+            }
+
+        });
+    });
     $(".jsAddAssign").click(function (event) {
         event.stopPropagation();
 
@@ -339,10 +390,10 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: '',
             success: function (users) {
-                $usersContainer.text('');
+                $(".jsFacultetEdit").text('');
                 users ? function () {
                     users.some(function (user) {
-                        $usersContainer.append('<option value="'+user.id+'">'+user.name+'</option>')
+                        $(".jsFacultetEdit").append('<option value="'+user.id+'">'+user.name+'</option>')
                     });
                 }() : false;
             }
@@ -357,10 +408,10 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: '',
             success: function (users) {
-                $( ".jsDataUsingAjax2" ).text('');
+                $( ".jsSpecialityEdit" ).text('');
                 users ? function () {
                     users.some(function (user) {
-                        $( ".jsDataUsingAjax2" ).append('<option value="'+user.id+'">'+user.name+'</option>')
+                        $( ".jsSpecialityEdit" ).append('<option value="'+user.id+'">'+user.name+'</option>')
 
                     });
                 }() : false;
@@ -370,19 +421,22 @@ $(document).ready(function () {
     })
 
 
+
+
+
     $(".jsEditStudent").click(function (event) {
-        $(".jsStudentSurname").val(""),
-            $(".jsDataUsingAjax").val("");
-        $(".jsDataUsingAjax2").val(""),
-            $(".jsStudentName").val(""),
-            $(".jsStudentGroup").val(""),
-            $(".jsStudentGroup").val(""),
+        $(".jsStudentSurnameEdit").val(""),
+            $(".jsFacultetEdit").val("");
+        $(".jsSpecialityEdit").val(""),
+            $(".jsStudentNameEdit").val(""),
+            $(".jsStudentGroupEdit").val(""),
 
 
-            $(".jsStudentAvScore").val("");
+            $(".jsStudentAvScoreEdit").val("");
 
         var ids =  $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
             return row.idStudent;});
+
 
         var obj = {
             listid :  ids,
@@ -400,15 +454,15 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
-                $(".jsStudentSurname").val(addedUser.surname),
-                $(".jsDataUsingAjax").val(addedUser.facultetid);
-                $(".jsDataUsingAjax2").val(addedUser.specialityId),
-                    $(".jsStudentName").val(addedUser.namestud),
-                    $(".jsStudentGroup").val(addedUser.groupstud),
-                    $(".jsStudentGroup").val(addedUser.budjetId),
+                $(".jsStudentSurnameEdit").val(addedUser.surname),
+                $(".jsFacultetEdit").val(addedUser.facultetid);
+                $(".jsSpecialityEdit").val(addedUser.specialityId),
+                    $(".jsStudentNameEdit").val(addedUser.namestud),
+                    $(".jsStudentGroupEdit").val(addedUser.groupstud),
+                    $(".jsStudentBudjetEdit").val(addedUser.budjetId),
 
 
-                    $(".jsStudentAvScore").val(addedUser.avscore);
+                    $(".jsStudentAvScoreEdit").val(addedUser.avscore);
 
 
 
@@ -711,15 +765,6 @@ $(document).ready(function () {
 
 
 
-        $( ".jsStudentsTable" ).change(function () {
-            var count = $(".jsMultiSelect :selected").length;
-
-
-                alert("Вы превысили кол-во выборов ")
-
-
-        })
-
         $.ajax({
 
             url: 'addStudent',
@@ -770,6 +815,109 @@ $(document).ready(function () {
 
         });
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(".jsUpdateEditStudent").click(function (event) {
+        event.stopPropagation();
+        var ids =  $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idStudent;});
+        var obj = {
+            listid: ids,
+            facultetid : $(".jsFacultetEdit option:selected").attr("value"),
+            specialityId : $(".jsSpecialityEdit option:selected").attr("value"),
+            surname :$(".jsStudentSurnameEdit").val(),
+            namestud:$(".jsStudentNameEdit").val(),
+            groupstud:$(".jsStudentGroupEdit").val(),
+            budjet: $(".jsStudentBudjetEdit option:selected").text(),
+            avscore:$(".jsStudentAvScoreEdit").val(),
+
+        };
+
+
+
+
+
+        $.ajax({
+
+            url: 'editStudentBase',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (addedUser) {
+                $( ".jsStudentsTable" ).bootstrapTable('updateRow', {
+                    index: indexeow,
+                    row: addedUser
+                });
+
+
+            }
+
+        });
+    });
+
+
+
+
+
+
+
+    $( ".jsAssignStudent" ).click(function() {
+
+
+        var ids =  $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idStudent;});
+
+
+        var obj = {
+            listid: ids,
+        };
+        $.ajax({
+            url: 'releseStydentPractice',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (students) {
+                $('.jsReleaseMultiSelecr').text('');
+                students ? function () {
+                    students.some(function (student) {
+
+
+                        $('.jsReleaseMultiSelecr').append('<option value="'+student.id+'">'+student.namecompany+'</option>');
+
+
+                    });
+                    $('.jsReleaseMultiSelecr').multiselect('rebuild');
+
+
+
+                    // $('.jsMultiSelect').attr('multiple','multiple');
+
+                }() : false;
+            }
+        });
+    });
+    $('.jsReleaseMultiSelecr').multiselect({
+        buttonWidth: '400px',
+        maxHeight: 400,
+        includeSelectAllOption: true,
+        enableFiltering: true,
+    })
 
 
 
