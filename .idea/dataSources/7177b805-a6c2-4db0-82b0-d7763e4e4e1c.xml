@@ -1151,7 +1151,7 @@
     </column>
     <column id="280" parent="238" name="statusstud">
       <Position>8</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="281" parent="238" name="student_speciality_id_fk">

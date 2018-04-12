@@ -191,6 +191,8 @@ public class TestController {
         studentEntity.setSurname(studentDTO.getSurname());
         studentEntity.setBudjet(studentDTO.getBudjet());
         studentEntity.setAvscore(studentDTO.getAvscore());
+        studentEntity.setStatusstud("NeRaspredeln");
+
         studentService.addStudent(studentEntity);
         StudentEntity studentEntitymax = studentService.findById(studentService.maxId());
 
@@ -228,6 +230,14 @@ public class TestController {
     public void asd(@RequestBody StudentViewModel studentViewModel) {
         List<String> list = studentViewModel.getListid();
         for (String id : list){
+            StudentEntity studentEntity = studentService.findById(Integer.valueOf(id));
+            List<RequestEntity> requestEntities = studentEntity.getRequest();
+            for(RequestEntity requestEntity: requestEntities){
+                Integer quanity = requestEntity.getQuantity();
+                quanity++;
+                requestEntity.setQuantity(quanity);
+                requestService.addRequest(requestEntity);
+            }
             studentService.deleteById(Integer.valueOf(id));
         }
 
@@ -287,7 +297,7 @@ public class TestController {
     }
     @RequestMapping(value = "/releaseStudents", method = RequestMethod.POST)
     @ResponseBody
-    public   void releaseStudentS(@RequestBody StudentViewModel studentViewModel) {
+    public   StudentViewModel releaseStudentS(@RequestBody StudentViewModel studentViewModel) {
 
             List<String> list = studentViewModel.getListid();
             StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
@@ -297,12 +307,20 @@ public class TestController {
             {
                 RequestEntity requestEntity = requestService.findById(Integer.valueOf(string));
                 requestEntity.getStudent().remove(studentEntity);
+                Integer quantity = requestEntity.getQuantity();
+                quantity++;
+                requestEntity.setQuantity(quantity);
                 requestService.addRequest(requestEntity);
+
             }
+        StudentEntity studentEntity2 = studentService.findById(Integer.valueOf(list.get(0)));
+            if (studentEntity2.getRequest().size()==0)
+                studentEntity2.setStatusstud("NeRaspredeln");
+            studentService.addStudent(studentEntity2);
 
 
 
-
+    return conversionService.convert(studentEntity2, StudentViewModel.class);
 
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
     }
@@ -317,7 +335,7 @@ public class TestController {
 
     @RequestMapping(value = "/addAssign", method = RequestMethod.POST)
     @ResponseBody
-    public void addAssign(@RequestBody AssignDto assignDto) {
+    public List<StudentViewModel> addAssign(@RequestBody AssignDto assignDto) {
         RequestEntity requestEntity = requestService.findById(assignDto.getRequestId());
         Integer quantity = requestEntity.getQuantity();
         int countofstudents = 0;
@@ -326,7 +344,8 @@ public class TestController {
         {
             countofstudents++;
             StudentEntity studentEntity = studentService.findById(id);
-            studentEntity.setStatusstud(1);
+            studentEntity.setStatusstud("Raspredelen");
+            studentService.addStudent(studentEntity);
             requestEntity.getStudent().add(studentEntity);
         }
         quantity = quantity - countofstudents;
@@ -335,7 +354,8 @@ public class TestController {
                 requestService.addRequest(requestEntity);
             }
 
-
+        List<StudentEntity> allstudents = studentService.findall();
+    return (List<StudentViewModel>) conversionService.convert(allstudents, studentEntityDescriptor, studentViewModelDescriptor);
 
 
     }

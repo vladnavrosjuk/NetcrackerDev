@@ -35,7 +35,7 @@ public class StudentEntityToStudentViewModel implements Converter<StudentEntity,
         studentViewModel.setSpeciality(specialityEntity.getName());
         studentViewModel.setSpecialityId(String.valueOf(specialityEntity.getId()));
 
-
+        studentViewModel.setStatusstud(studentEntity.getStatusstud());
         FacultetEntity facultyEntity = specialityEntity.getFacultetEntity();
         studentViewModel.setFacultet(facultyEntity.getName());
         studentViewModel.setFacultetid(String.valueOf(facultyEntity.getId()));

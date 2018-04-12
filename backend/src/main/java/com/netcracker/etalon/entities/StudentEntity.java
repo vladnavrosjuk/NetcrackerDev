@@ -17,7 +17,7 @@ public class StudentEntity {
     private Integer groupstud;
     private String budjet;
     private Double avscore;
-    private Integer statusstud;
+    private String statusstud;
     private List<RequestEntity> request =  new ArrayList<>();
 
     @Id
@@ -82,11 +82,11 @@ public class StudentEntity {
 
     @Basic
     @Column(name = "statusstud")
-    public Integer getStatusstud() {
+    public String getStatusstud() {
         return statusstud;
     }
 
-    public void setStatusstud(Integer statusstud) {
+    public void setStatusstud(String statusstud) {
         this.statusstud = statusstud;
     }
 

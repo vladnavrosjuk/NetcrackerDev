@@ -74,10 +74,13 @@ $(document).ready(function () {
                         var count = $(".jsMultiSelect :selected").length;
 
                         if (count>students.quantity)
-                        {
-                            alert("Вы превысили кол-во выборов ")
-                            $(".jsMultiSelect").removeAttr('checked');
+                        {      noty({ text: 'Вы превысили кол-во выборов'});
+
+                            $( ".jsAddAssign" ).prop('disabled', true);
+
                         }
+                        else { $( ".jsAddAssign" ).prop('disabled', false);}
+
 
                             })
 
@@ -355,6 +358,11 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
+                $( ".jsStudentsTable" ).bootstrapTable('updateRow', {
+                    index: indexeow,
+                    row: addedUser
+                });
+
 
             }
 
@@ -376,6 +384,9 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
+          //      $( ".jsStudentsTable" ).bootstrapTable('destroy');
+                $( ".jsStudentsTable" ).bootstrapTable('load',addedUser);
+
 
             }
 
