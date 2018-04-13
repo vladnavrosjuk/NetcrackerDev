@@ -21,6 +21,7 @@
 <script type="text/javascript" src="../../resources/js/libs/bootstrap-multiselect.js"></script>
 <link href="../../resources/css/libs/bootstrap-multiselect.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="resources/js/custom/login.js"></script>
+<script src="../../resources/js/custom/allrequest.js"></script>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><i class="	fa fa-hand-o-right"></i>N E T C R A C K E R</a>

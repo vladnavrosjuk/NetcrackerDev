@@ -18,6 +18,7 @@
 <link href="resources/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="resources/css/general.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="resources/js/custom/login.js"></script>
+<script src="resources/js/custom/allrequest.js"></script>
 
 
 
@@ -29,43 +30,45 @@
 <br>
 <!-- Кнопка, открывающее модальное окно -->
 </div>
+<div class="row">
+    <div class="col-6 col-md-4">
+        <button type="submit"  class="btn btn-success btn-block jsDeleteRequest"><span class="glyphicon glyphicon-ok"></span> Add Request</button>
+    </div>
+    <div class="col-6 col-md-4">
+        <button type="submit" data-toggle="modal" data-target="#editStudent" disabled class="btn btn-success btn-block  jsEditStudent"><span class="glyphicon glyphicon-ok"></span> Edit</button>
+    </div>
+    <div class="col-6 col-md-4">
+        <button type="submit" data-toggle="modal" data-target="#releasestudents" disabled class="btn btn-success btn-block jsAssignStudent"><span class="glyphicon glyphicon-ok"></span> Assign</button>
+    </div>
+</div>
 <table
         data-search="true" data-toggle="table"
 
         data-pagination="true"
         data-page-list="[5, 10, 25, 50, 100, ALL]"
         data-page-size="5"
-        class="jsStudentsTable">
+        class="jsRequestsTable">
 
     <thead>
     <tr>
 
-        <th  data-checkbox="idStudent"></th>
-        <th data-field="surname">First Name</th>
-        <th data-field="namestud">Last Name</th>
-        <th data-field="speciality">Spec.</th>
-        <th data-field="facultet">Facult.</th>
-        <th data-field="groupstud">Group</th>
-        <th data-field="budjet">Budjet</th>
-        <th data-field="avscore">Av.Score</th>
-        <th data-field="statusstud">StatusStud</th>
+        <th  data-checkbox="idRequest"></th>
+        <th data-field="name"> Name Company</th>
+        <th data-field="datestart">Date Start</th>
+        <th data-field="datefinish">Date Finish</th>
+        <th data-field="minavscore">Min.Av.Score</th>
+        <th data-field="quantity">Quantity</th>
+
 
     </tr>
     </thead>
+
 </table >
 </div>
 <br>
 <div class="container-fluid">
     <diw class="row">
-        <div class="col-md-5  "><button type="button" class="btn btn-primary" >
-            Edit
-        </button></div>
-        <div class="col-md-6 "><button type="button" class="btn btn-primary">
-            Assign students
-        </button></div>
-        <div class="col-md-1 "><button type="button" class="btn btn-primary">
-          Delete
-        </button></div>
+
     </diw>
 </div>
 </body>

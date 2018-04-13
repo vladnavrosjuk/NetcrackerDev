@@ -214,7 +214,15 @@ public class TestController {
         Double score = requestEntity.getMinavscore();
         SpecialityEntity specialityEntity = requestEntity.getSpecialityEntity();
         Integer id = specialityEntity.getId();
-        return studentService.findbyquantityandfacultet(score, id);
+        List<StudentEntity> students = requestEntity.getStudent();
+        List<StudentEntity> studentsfotrequest = studentService.findbyquantityandfacultet(score, id);
+        for (StudentEntity studentEntity:students){
+            studentsfotrequest.remove(studentEntity);
+
+        }
+
+
+        return studentsfotrequest;
     }
 
 
@@ -231,11 +239,12 @@ public class TestController {
         List<String> list = studentViewModel.getListid();
         for (String id : list){
             StudentEntity studentEntity = studentService.findById(Integer.valueOf(id));
-            List<RequestEntity> requestEntities = studentEntity.getRequest();
-            for(RequestEntity requestEntity: requestEntities){
-                Integer quanity = requestEntity.getQuantity();
-                quanity++;
-                requestEntity.setQuantity(quanity);
+            for (RequestEntity requestEntity:studentEntity.getRequest())
+            {
+                requestEntity.getStudent().remove(studentEntity);
+                Integer quantuty = requestEntity.getQuantity();
+                quantuty++;
+                requestEntity.setQuantity(quantuty);
                 requestService.addRequest(requestEntity);
             }
             studentService.deleteById(Integer.valueOf(id));
@@ -368,6 +377,12 @@ public class TestController {
     public List<StudentViewModel> getAllStudents() {
         List<StudentEntity> allstudents = studentService.findall();
         return (List<StudentViewModel>) conversionService.convert(allstudents, studentEntityDescriptor, studentViewModelDescriptor);
+    }
+    @RequestMapping(value = "/requestsForTable", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RequestViewModel> getAllRequests() {
+        List<RequestEntity> allrequests = requestService.find();
+        return (List<RequestViewModel>) conversionService.convert(allrequests, requestEntityDescriptor, requestViewModelDescriptor);
     }
 
 

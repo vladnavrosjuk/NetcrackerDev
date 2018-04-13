@@ -31,6 +31,42 @@ $(document).ready(function () {
         $buttonAddFaculty = $(ELEMENTS.BUTTON_ADD_FACULTY),
         $buttonAutoe  =$ (ELEMENTS.BUTTON_AUTOR);
 
+    $(".jsMenyRequest").click(function (event) {
+        $.ajax({
+            url: 'requestsForTable',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (students) {
+                $( ".jsRequestsTable" ).bootstrapTable('load', students);
+
+
+            }
+
+        });
+
+    })
+
+    $.ajax({
+        url: 'requestsForTable',
+        type: 'GET',
+        dataType: 'json',
+        contentType: "application/json",
+        mimeType: 'application/json',
+        data: '',
+        success: function (students) {
+            $( ".jsRequestsTable" ).bootstrapTable('load', students);
+
+
+        }
+
+    });
+
+
+
+
 
 
     $.ajax({
@@ -931,6 +967,42 @@ $(document).ready(function () {
     })
 
 
+
+    $(".jsDeleteRequest").click(function (event) {
+
+        var ids =  $.map($( ".jsRequestsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idRequest;});
+
+        var obj = {
+            idRequestList :  ids,
+
+        };
+
+        /* $( ".jsEditStudent" ).prop('disabled', true);
+         $( ".jsTest" ).prop('disabled', true);
+         $( ".jsAssignStudent" ).prop('disabled', true);
+ */
+
+        $( ".jsRequestsTable" ).bootstrapTable('remove', {
+            field: 'idRequest',
+            values: ids
+        });
+
+        $.ajax({
+            url: 'deleteRequest',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (addedUser) {
+
+
+
+            }
+
+        });
+    });
 
 
 

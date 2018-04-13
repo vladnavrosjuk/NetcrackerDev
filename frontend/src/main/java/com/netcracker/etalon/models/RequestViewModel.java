@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RequestViewModel {
-    private List<String> test =  new ArrayList<>();
+    private List<String> idRequestList =  new ArrayList<>();
     private String idRequest;
     private String name;
     private String datestart;
@@ -13,12 +13,12 @@ public class RequestViewModel {
     private String minavscore;
     private String quantity;
 
-    public List<String> getTest() {
-        return test;
+    public List<String> getIdRequestList() {
+        return idRequestList;
     }
 
-    public void setTest(List<String> test) {
-        this.test = test;
+    public void setIdRequestList(List<String> idRequestList) {
+        this.idRequestList = idRequestList;
     }
 
     public String getIdRequest() {
