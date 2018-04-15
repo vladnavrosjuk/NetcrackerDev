@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -45,6 +46,10 @@ public class RequestController {
 
     private static final String VIEW_NAME_LOGIN = "adminpage";
     private static final String VIEW_ALL_REQUEST = "request";
+    private static final String STATUS_OF_PRACTICE_DISTR = "Awaits practice";
+    private static  final String STATUS_OF_PRACTICE_NO_DISTR = "N0 DISTRIBUTED";
+    private static  final String STATUS_OF_PRACTICE_IN_PRACTICE = "On practice";
+
 
     @RequestMapping(value = "/deleteRequest", method = RequestMethod.POST)
     @ResponseBody
@@ -54,7 +59,7 @@ public class RequestController {
         for(String id : listid){
             RequestEntity requestEntity = requestService.findById(Integer.valueOf(id));
             for(StudentEntity studentEntity: requestEntity.getStudent()){
-                studentEntity.setStatusstud("NeRaspredeen");
+                studentEntity.setStatusstud(STATUS_OF_PRACTICE_NO_DISTR);
                 studentService.addStudent(studentEntity);
             }
             requestEntity.getStudent().clear();
@@ -64,5 +69,99 @@ public class RequestController {
         }
 
 
+    }
+
+
+    @RequestMapping(value = "/checkDatePractice", method = RequestMethod.POST)
+    @ResponseBody
+    public void checkDatePractice() {
+
+            List<RequestEntity> requestEntityList = requestService.requestAfterCurentDate();
+            for(RequestEntity requestEntity:requestEntityList){
+                List<StudentEntity> studentEntityList = requestEntity.getStudent();
+                    for (StudentEntity studentEntity:studentEntityList){
+                        studentEntity.setStatusstud(STATUS_OF_PRACTICE_IN_PRACTICE);
+                        studentService.addStudent(studentEntity);
+                    }
+
+
+            }
+
+
+    }
+
+
+
+    @RequestMapping(value = "/editRowRequest", method = RequestMethod.POST)
+    @ResponseBody
+    public RequestViewModel editRowRequest(@RequestBody RequestViewModel requestViewModel) {
+
+        List<String> list = requestViewModel.getIdRequestList();
+
+        RequestEntity requestEntity = requestService.findById(Integer.valueOf(list.get(0)));
+        return  conversionService.convert(requestEntity, RequestViewModel.class);
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+
+    @RequestMapping(value = "/editRowRequestBase", method = RequestMethod.POST)
+    @ResponseBody
+    public RequestViewModel editRowRequestBase(@RequestBody RequestViewModel requestViewModel) {
+
+        List<String> list = requestViewModel.getIdRequestList();
+        RequestEntity requestEntity = requestService.findById(Integer.valueOf(list.get(0)));
+        requestEntity.setQuantity(Integer.valueOf(requestViewModel.getQuantity()) );
+        requestEntity.setMinavscore(Double.valueOf(requestViewModel.getMinavscore()));
+        requestEntity.setDatefinish(Date.valueOf(requestViewModel.getDatefinish()));
+        requestEntity.setDatestart(Date.valueOf(requestViewModel.getDatestart()));
+        requestEntity.setNamecompany(requestViewModel.getName());
+        SpecialityEntity specialityEntity = specialityService.findById(Integer.valueOf(requestViewModel.getIdSpeciality()));
+        requestEntity.setSpecialityEntity(specialityEntity);
+        requestService.addRequest(requestEntity);
+        return  conversionService.convert(requestEntity, RequestViewModel.class);
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+
+    @RequestMapping(value = "/multiselestReleaseRequest", method = RequestMethod.POST)
+    @ResponseBody
+    public  List<StudentEntity> multiselestReleaseRequest(@RequestBody RequestViewModel requestViewModel) {
+
+        List<String> list = requestViewModel.getIdRequestList();
+        RequestEntity requestEntity = requestService.findById(Integer.valueOf(list.get(0)));
+        List<StudentEntity> studentEntityList = requestEntity.getStudent();
+
+        return  studentEntityList;
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+    @RequestMapping(value = "/releaseStudentFromRequest", method = RequestMethod.POST)
+    @ResponseBody
+    public RequestViewModel releaseStudentFromRequest(@RequestBody StudentViewModel studentViewModel) {
+        List<String> studentidlist = studentViewModel.getListid();
+        List<String> list = studentViewModel.getRequestsId();
+        RequestEntity requestEntity = requestService.findById(Integer.valueOf(list.get(0)));
+        for (String id: studentidlist){
+            StudentEntity studentEntity = studentService.findById(Integer.valueOf(id));
+            requestEntity.getStudent().remove(studentEntity);
+            Integer quantity = requestEntity.getQuantity();
+            quantity++;
+            requestEntity.setQuantity(quantity);
+            requestService.addRequest(requestEntity);
+            StudentEntity studentEntity2 = studentService.findById(Integer.valueOf(id));
+            if (studentEntity2.getRequest().size()==0){
+                studentEntity2.setStatusstud(STATUS_OF_PRACTICE_NO_DISTR);
+                studentService.addStudent(studentEntity2);
+            }
+        }
+        return conversionService.convert(requestEntity, RequestViewModel.class);
+
+
+
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
     }
 }

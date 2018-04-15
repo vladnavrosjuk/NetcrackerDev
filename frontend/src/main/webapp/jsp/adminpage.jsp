@@ -35,13 +35,13 @@
     <div class="main-content">
         <div class="row">
             <div class="col-6 col-md-4">
-        <button type="submit" disabled class="btn btn-success btn-block jsTest"><span class="glyphicon glyphicon-ok"></span> Create</button>
+        <button type="submit" disabled class="btn btn-success btn-block jsTest"><span class="glyphicon glyphicon-ok"></span> Delete</button>
             </div>
             <div class="col-6 col-md-4">
         <button type="submit" data-toggle="modal" data-target="#editStudent" disabled class="btn btn-success btn-block  jsEditStudent"><span class="glyphicon glyphicon-ok"></span> Edit</button>
             </div>
             <div class="col-6 col-md-4">
-        <button type="submit" data-toggle="modal" data-target="#releasestudents" disabled class="btn btn-success btn-block jsAssignStudent"><span class="glyphicon glyphicon-ok"></span> Assign</button>
+        <button type="submit" data-toggle="modal" data-target="#releasestudents" disabled class="btn btn-success btn-block jsAssignStudent"><span class="glyphicon glyphicon-ok"></span> Release</button>
             </div>
         </div>
             <table

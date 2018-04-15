@@ -4,6 +4,7 @@
 $(document).ready(function () {
     var x = document.getElementById("createfaculty");
     var indexeow =1 ;
+    var indexRequest = 0;
     var ELEMENTS = {
         CONTAINER_FACULTY: '.jsDataSpeciality',
         INPUT_FACULTY: '.jsAddFacultyInput',
@@ -63,6 +64,20 @@ $(document).ready(function () {
         }
 
     });
+    $.ajax({
+        url: 'checkDatePractice',
+        type: 'POST',
+        dataType: 'json',
+        contentType: "application/json",
+        mimeType: 'application/json',
+        data: '',
+        success: function (students) {
+
+
+
+        }
+
+    });
 
 
 
@@ -85,6 +100,9 @@ $(document).ready(function () {
     });
     $( ".jsStudentsTable" ).on('check.bs.table', function (e, row, $el) {
        indexeow =  $el.closest('tr').data('index');
+    });
+    $( ".jsRequestsTable" ).on('check.bs.table', function (e, row, $el) {
+        indexRequest =  $el.closest('tr').data('index');
     });
 
 
@@ -863,6 +881,103 @@ $(document).ready(function () {
         });
     });
 
+    $( ".jsRequestsTable" ).on('check-all.bs.table', function (e, clickedUser) {
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length > 1)
+        {
+            $( ".jsEditRequest" ).prop('disabled', true);
+            $( ".jsDeleteRequest" ).prop('disabled', false);
+            $( ".jsAssignRequest" ).prop('disabled', true);
+
+        }
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 1)
+        {
+            $( ".jsEditRequest" ).prop('disabled', false);
+            $( ".jsDeleteRequest" ).prop('disabled', false);
+            $( ".jsAssignRequest" ).prop('disabled', false);
+
+        }
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 0)
+        {
+            $( ".jsEditRequest" ).prop('disabled', true);
+            $( ".jsDeleteRequest" ).prop('disabled', true);
+            $( ".jsAssignRequest" ).prop('disabled', true);
+        }
+
+    });
+
+    $( ".jsRequestsTable" ).on('uncheck-all.bs.table', function (e, clickedUser) {
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length > 1)
+        {
+            $( ".jsEditRequest" ).prop('disabled', true);
+            $( ".jsDeleteRequest" ).prop('disabled', false);
+            $( ".jsAssignRequest" ).prop('disabled', true);
+
+        }
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 1)
+        {
+            $( ".jsEditRequest" ).prop('disabled', false);
+            $( ".jsDeleteRequest" ).prop('disabled', false);
+            $( ".jsAssignRequest" ).prop('disabled', false);
+
+        }
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 0)
+        {
+            $( ".jsEditRequest" ).prop('disabled', true);
+            $( ".jsDeleteRequest" ).prop('disabled', true);
+            $( ".jsAssignRequest" ).prop('disabled', true);
+        }
+
+    });
+
+    $( ".jsRequestsTable" ).on('check.bs.table', function (e, clickedUser) {
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length > 1)
+        {
+            $( ".jsEditRequest" ).prop('disabled', true);
+            $( ".jsDeleteRequest" ).prop('disabled', false);
+            $( ".jsAssignRequest" ).prop('disabled', true);
+
+        }
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 1)
+        {
+            $( ".jsEditRequest" ).prop('disabled', false);
+            $( ".jsDeleteRequest" ).prop('disabled', false);
+            $( ".jsAssignRequest" ).prop('disabled', false);
+
+        }
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 0)
+        {
+            $( ".jsEditRequest" ).prop('disabled', true);
+            $( ".jsDeleteRequest" ).prop('disabled', true);
+            $( ".jsAssignRequest" ).prop('disabled', true);
+        }
+
+    });
+
+
+    $( ".jsRequestsTable" ).on('uncheck.bs.table', function (e, clickedUser) {
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length > 1)
+        {
+            $( ".jsEditRequest" ).prop('disabled', true);
+            $( ".jsDeleteRequest" ).prop('disabled', false);
+            $( ".jsAssignRequest" ).prop('disabled', true);
+
+        }
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 1)
+        {
+            $( ".jsEditRequest" ).prop('disabled', false);
+            $( ".jsDeleteRequest" ).prop('disabled', false);
+            $( ".jsAssignRequest" ).prop('disabled', false);
+
+        }
+        if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 0)
+        {
+            $( ".jsEditRequest" ).prop('disabled', true);
+            $( ".jsDeleteRequest" ).prop('disabled', true);
+            $( ".jsAssignRequest" ).prop('disabled', true);
+        }
+
+    });
+
 
 
 
@@ -1003,6 +1118,260 @@ $(document).ready(function () {
 
         });
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(".jsEditRequest").click(function (event) {
+
+            $(".jsCompanyNameEdit").val(""),
+            $(".jsStartDateEdit").val(""),
+            $(".jsFinishDateEdit").val(""),
+            $(".jsSpecialityEditRequest").val("").change(),
+            $(".jsRequestQuantityEdit").val(""),
+            $(".jsMinAvScoreEdit").val("");
+
+        var ids =  $.map($( ".jsRequestsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idRequest;});
+
+
+        var obj = {
+            idRequestList :  ids,
+
+        };
+
+
+
+
+        $.ajax({
+            url: 'editRowRequest',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (addedUser) {
+                    $(".jsCompanyNameEdit").val(addedUser.name),
+                    $(".jsStartDateEdit").val(addedUser.datestart),
+                    $(".jsFinishDateEdit").val(addedUser.datefinish),
+                    $(".jsSpecialityEditRequest").val(addedUser.idSpeciality).change();
+                    $(".jsRequestQuantityEdit").val(addedUser.quantity),
+                    $(".jsMinAvScoreEdit").val(addedUser.minavscore);
+
+
+
+
+
+
+
+
+            }
+
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    $(".jsAddRequestEdit").click(function (event) {
+        event.stopPropagation();
+        var ids =  $.map($( ".jsRequestsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idRequest;});
+        var obj = {
+            idRequestList: ids,
+
+            idSpeciality : $(".jsSpecialityEditRequest option:selected").attr("value"),
+            minavscore : $(".jsMinAvScoreEdit").val(),
+            quantity :$(".jsRequestQuantityEdit").val(),
+            datefinish:$(".jsFinishDateEdit").val(),
+            datestart:$(".jsStartDateEdit").val(),
+
+            name:$(".jsCompanyNameEdit").val(),
+
+        };
+
+
+
+
+
+        $.ajax({
+
+            url: 'editRowRequestBase',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (addedUser) {
+                $( ".jsRequestsTable" ).bootstrapTable('updateRow', {
+                    index: indexRequest,
+                    row: addedUser
+                });
+
+
+            }
+
+        });
+    });
+
+
+
+
+    $( ".jsEditRequest" ).click(function (event) {
+        $.ajax({
+            url: 'dropdownSpeciality',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (users) {
+                $( ".jsSpecialityEditRequest" ).text('');
+                users ? function () {
+                    users.some(function (user) {
+                        $( ".jsSpecialityEditRequest" ).append('<option value="'+user.id+'">'+user.name+'</option>')
+
+                    });
+                }() : false;
+            }
+
+        });
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $( ".jsAssignRequest" ).click(function() {
+
+
+        var ids =  $.map($( ".jsRequestsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idRequest;});
+
+
+        var obj = {
+            idRequestList: ids,
+        };
+        $.ajax({
+            url: 'multiselestReleaseRequest',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (students) {
+                $('.jsMultiSelectReleseRequest').text('');
+                students ? function () {
+                    students.some(function (student) {
+
+
+                        $('.jsMultiSelectReleseRequest').append('<option value="'+student.id+'">'+student.surname+'</option>');
+
+
+                    });
+                    $('.jsMultiSelectReleseRequest').multiselect('rebuild');
+
+
+
+                    // $('.jsMultiSelect').attr('multiple','multiple');
+
+                }() : false;
+            }
+        });
+    });
+    $('.jsMultiSelectReleseRequest').multiselect({
+        buttonWidth: '400px',
+        maxHeight: 400,
+        includeSelectAllOption: true,
+        enableFiltering: true,
+    })
+
+
+
+
+
+    $( ".jsReleaseRequest" ).click(function() {
+
+
+        var ids =  $.map($( ".jsRequestsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idRequest;});
+
+
+        var obj = {
+            requestsId: ids,
+            listid:$(".jsMultiSelectReleseRequest").val(),
+        };
+        $.ajax({
+            url: 'releaseStudentFromRequest',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (students) {
+                $( ".jsRequestsTable" ).bootstrapTable('updateRow', {
+                    index: indexRequest,
+                    row: students
+                });
+
+            }
+        });
+    });
+
 
 
 

@@ -12,6 +12,33 @@ public class RequestViewModel {
 
     private String minavscore;
     private String quantity;
+    private String idSpeciality;
+    private String specialityName;
+    private String studentsofpractice;
+
+    public String getStudentsofpractice() {
+        return studentsofpractice;
+    }
+
+    public void setStudentsofpractice(String studentsofpractice) {
+        this.studentsofpractice = studentsofpractice;
+    }
+
+    public String getSpecialityName() {
+        return specialityName;
+    }
+
+    public void setSpecialityName(String specialityName) {
+        this.specialityName = specialityName;
+    }
+
+    public String getIdSpeciality() {
+        return idSpeciality;
+    }
+
+    public void setIdSpeciality(String idSpeciality) {
+        this.idSpeciality = idSpeciality;
+    }
 
     public List<String> getIdRequestList() {
         return idRequestList;

@@ -26,8 +26,12 @@ public class RequestEntityToRequestViewModelConverter implements Converter<Reque
         requestViewModel.setQuantity(String.valueOf(requestEntity.getQuantity()));
         requestViewModel.setIdRequest(String.valueOf(requestEntity.getId()));
         requestViewModel.setName(requestEntity.getNamecompany());
+        SpecialityEntity specialityEntity = requestEntity.getSpecialityEntity();
+        requestViewModel.setIdSpeciality(String.valueOf(specialityEntity.getId()));
+        requestViewModel.setSpecialityName(specialityEntity.getName());
         requestViewModel.setDatefinish(String.valueOf(requestEntity.getDatefinish()));
         requestViewModel.setDatestart(String.valueOf(requestEntity.getDatestart()));
+        requestViewModel.setStudentsofpractice(String.valueOf(requestEntity.getStudent().size()));
 /*        SpecialityEntity specialityEntity = requestService.findById(requestEntity.getId()).getSpecialityEntity();
         String name = specialityEntity.getName();*/
 

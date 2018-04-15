@@ -49,7 +49,9 @@ public class TestController {
 
     private  final TypeDescriptor studentEntityDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentEntity.class));
     private  final TypeDescriptor studentViewModelDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentViewModel.class));
-
+    private static final String STATUS_OF_PRACTICE_DISTR = "Awaits practice";
+    private static  final String STATUS_OF_PRACTICE_NO_DISTR = "N0 DISTRIBUTED";
+    private static  final String STATUS_OF_PRACTICE_IN_PRACTICE = "On practice";
     private static final String VIEW_NAME_LOGIN = "adminpage";
     private static final String VIEW_ALL_REQUEST = "request";
 
@@ -191,7 +193,7 @@ public class TestController {
         studentEntity.setSurname(studentDTO.getSurname());
         studentEntity.setBudjet(studentDTO.getBudjet());
         studentEntity.setAvscore(studentDTO.getAvscore());
-        studentEntity.setStatusstud("NeRaspredeln");
+        studentEntity.setStatusstud(STATUS_OF_PRACTICE_NO_DISTR);
 
         studentService.addStudent(studentEntity);
         StudentEntity studentEntitymax = studentService.findById(studentService.maxId());
@@ -233,151 +235,7 @@ public class TestController {
 
         return requestEntity;
     }
-    @RequestMapping(value = "/testel", method = RequestMethod.POST)
-    @ResponseBody
-    public void asd(@RequestBody StudentViewModel studentViewModel) {
-        List<String> list = studentViewModel.getListid();
-        for (String id : list){
-            StudentEntity studentEntity = studentService.findById(Integer.valueOf(id));
-            for (RequestEntity requestEntity:studentEntity.getRequest())
-            {
-                requestEntity.getStudent().remove(studentEntity);
-                Integer quantuty = requestEntity.getQuantity();
-                quantuty++;
-                requestEntity.setQuantity(quantuty);
-                requestService.addRequest(requestEntity);
-            }
-            studentService.deleteById(Integer.valueOf(id));
-        }
 
-        System.out.println();
-
-       // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
-    }
-
-
-
-
-    @RequestMapping(value = "/editRowStudent", method = RequestMethod.POST)
-    @ResponseBody
-    public StudentViewModel editRowStudent(@RequestBody StudentViewModel studentViewModel) {
-
-        List<String> list = studentViewModel.getListid();
-
-        StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
-        return  conversionService.convert(studentEntity, StudentViewModel.class);
-
-        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
-    }
-
-    @RequestMapping(value = "/editStudentBase", method = RequestMethod.POST)
-    @ResponseBody
-    public StudentViewModel editStudentBase(@RequestBody StudentViewModel studentViewModel) {
-
-        List<String> list = studentViewModel.getListid();
-        StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
-        studentEntity.setSurname(studentViewModel.getSurname());
-        studentEntity.setAvscore(Double.valueOf(studentViewModel.getAvscore()));
-        studentEntity.setBudjet(studentViewModel.getBudjet());
-        studentEntity.setNamestud(studentViewModel.getNamestud());
-        SpecialityEntity specialityEntity = specialityService.findById(Integer.valueOf(studentViewModel.getSpecialityId()));
-        studentEntity.setSpecialityEntity(specialityEntity);
-        studentEntity.setGroupstud(Integer.valueOf(studentViewModel.getGroupstud()));
-
-        studentService.addStudent(studentEntity);
-        return  conversionService.convert(studentEntity, StudentViewModel.class);
-
-        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
-    }
-
-
-
-    @RequestMapping(value = "/releseStydentPractice", method = RequestMethod.POST)
-    @ResponseBody
-    public   List<RequestEntity> releaseStudent(@RequestBody StudentViewModel studentViewModel) {
-
-        List<String> list = studentViewModel.getListid();
-        StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
-        List<RequestEntity> requestEntityList = studentEntity.getRequest();
-
-        return requestEntityList;
-
-        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
-    }
-    @RequestMapping(value = "/releaseStudents", method = RequestMethod.POST)
-    @ResponseBody
-    public   StudentViewModel releaseStudentS(@RequestBody StudentViewModel studentViewModel) {
-
-            List<String> list = studentViewModel.getListid();
-            StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
-
-            List<String> request = studentViewModel.getRequestsId();
-            for (String string : request)
-            {
-                RequestEntity requestEntity = requestService.findById(Integer.valueOf(string));
-                requestEntity.getStudent().remove(studentEntity);
-                Integer quantity = requestEntity.getQuantity();
-                quantity++;
-                requestEntity.setQuantity(quantity);
-                requestService.addRequest(requestEntity);
-
-            }
-        StudentEntity studentEntity2 = studentService.findById(Integer.valueOf(list.get(0)));
-            if (studentEntity2.getRequest().size()==0)
-                studentEntity2.setStatusstud("NeRaspredeln");
-            studentService.addStudent(studentEntity2);
-
-
-
-    return conversionService.convert(studentEntity2, StudentViewModel.class);
-
-        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
-    }
-
-
-
-
-
-
-
-
-
-    @RequestMapping(value = "/addAssign", method = RequestMethod.POST)
-    @ResponseBody
-    public List<StudentViewModel> addAssign(@RequestBody AssignDto assignDto) {
-        RequestEntity requestEntity = requestService.findById(assignDto.getRequestId());
-        Integer quantity = requestEntity.getQuantity();
-        int countofstudents = 0;
-        for(Integer id:assignDto.getStudents())
-
-        {
-            countofstudents++;
-            StudentEntity studentEntity = studentService.findById(id);
-            studentEntity.setStatusstud("Raspredelen");
-            studentService.addStudent(studentEntity);
-            requestEntity.getStudent().add(studentEntity);
-        }
-        quantity = quantity - countofstudents;
-            if (quantity>=0) {
-                requestEntity.setQuantity(quantity);
-                requestService.addRequest(requestEntity);
-            }
-
-        List<StudentEntity> allstudents = studentService.findall();
-    return (List<StudentViewModel>) conversionService.convert(allstudents, studentEntityDescriptor, studentViewModelDescriptor);
-
-
-    }
-
-
-
-
-    @RequestMapping(value = "/studentsForTable", method = RequestMethod.GET)
-    @ResponseBody
-    public List<StudentViewModel> getAllStudents() {
-        List<StudentEntity> allstudents = studentService.findall();
-        return (List<StudentViewModel>) conversionService.convert(allstudents, studentEntityDescriptor, studentViewModelDescriptor);
-    }
     @RequestMapping(value = "/requestsForTable", method = RequestMethod.GET)
     @ResponseBody
     public List<RequestViewModel> getAllRequests() {
