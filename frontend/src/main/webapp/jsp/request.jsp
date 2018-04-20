@@ -12,13 +12,6 @@
 <head>
     <title>Login page</title>
 </head>
-<script src="resources/js/libs/bootstrap.min.js"></script>
-<script src="resources/js/libs/popper.min.js"></script>
-<script src="resources/js/libs/jquery-3.2.1.min.js"></script>
-<link href="resources/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="resources/css/general.css" rel="stylesheet" type="text/css" media="all"/>
-<script src="resources/js/custom/login.js"></script>
-<script src="resources/js/custom/allrequest.js"></script>
 
 
 
@@ -95,7 +88,7 @@
                 <select id="example-getting-started" multiple="multiple" class="jsMultiSelectReleseRequest">
                 </select>
 
-                <button type="submit" class="btn btn-success btn-block jsReleaseRequest "><span class="glyphicon glyphicon-ok"></span> Create</button>
+                <button type="submit" class="btn btn-success btn-block jsReleaseRequest "><span class="glyphicon glyphicon-ok"></span> Release</button>
             </div>
         </div>
     </div>
@@ -133,7 +126,7 @@
                 <label for="quantity"><span class="glyphicon "></span>Quantity</label>
                 <input type="text" class="form-control mb-2 mr-sm-2 jsRequestQuantityEdit " id="quantity" placeholder="Quantity">
 
-                <button type="submit" class="btn btn-success btn-block jsAddRequestEdit"><span class="glyphicon glyphicon-ok"></span> Create</button>
+                <button type="submit" class="btn btn-success btn-block jsAddRequestEdit"><span class="glyphicon glyphicon-ok"></span> Edit</button>
             </div>
         </div>
     </div>

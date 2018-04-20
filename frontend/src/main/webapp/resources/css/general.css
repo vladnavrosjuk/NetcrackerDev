@@ -12,6 +12,10 @@ body {
     border-color: #5e5c5c;
 
 }
+.btn{
+    background-color: #fffcf3;
+    color: #000000;
+}
 .btn-success:disabled {
     background-color: #b9b7b7;
     border-color: #aeacac;
@@ -25,7 +29,13 @@ body {
 }*/
 .modal-body{
 
-    background: #d6d8b3;
+    background: #dfdddd;
+}
+.fixed-table-body {
+    overflow-x: auto;
+    overflow-y: auto;
+    height: auto;
+    width: auto;
 }
 
 .table thead th {

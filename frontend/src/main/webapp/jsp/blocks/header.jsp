@@ -21,10 +21,10 @@
 <script type="text/javascript" src="../../resources/js/libs/bootstrap-multiselect.js"></script>
 <link href="../../resources/css/libs/bootstrap-multiselect.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="resources/js/custom/login.js"></script>
-<script src="../../resources/js/custom/allrequest.js"></script>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><i class="	fa fa-hand-o-right"></i>N E T C R A C K E R</a>
+    <a class="navbar-brand" href="#"><i class="	fa fa-hand-o-right"></i><%--N E T C R A C K E R--%></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,7 +37,7 @@
         </ul>
 
 
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  href="#" data-toggle=".container2" id="sidebar-toggle23">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  href="#" data-toggle=".container2" id="sidebar-toggle23">OPTIONS</button>
 
 
     </div>

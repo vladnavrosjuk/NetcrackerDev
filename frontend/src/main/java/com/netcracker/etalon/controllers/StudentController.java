@@ -68,6 +68,16 @@ public class StudentController {
 
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
     }
+    @RequestMapping(value = "/infoaboustudent", method = RequestMethod.POST)
+    @ResponseBody
+    public List<RequestViewModel> aboutStudent (@RequestBody StudentViewModel studentViewModel) {
+        List<String> list = studentViewModel.getListid();
+        StudentEntity studentEntity = studentService.findById(Integer.valueOf(list.get(0)));
+
+
+
+         return (List<RequestViewModel>) conversionService.convert(studentEntity.getRequest(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
 
 
 

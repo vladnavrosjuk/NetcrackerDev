@@ -9,7 +9,9 @@ public class UserEntity {
     private int id;
     private String login;
     private String passuser;
+    private String role;
     private StudentEntity studentEntity;
+
 
     @Id
     @Column(name = "id")
@@ -39,6 +41,16 @@ public class UserEntity {
 
     public void setPassuser(String passuser) {
         this.passuser = passuser;
+    }
+
+    @Basic
+    @Column(name = "role")
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

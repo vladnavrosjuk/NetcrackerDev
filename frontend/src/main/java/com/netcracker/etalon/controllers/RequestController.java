@@ -108,13 +108,14 @@ public class RequestController {
     @RequestMapping(value = "/editRowRequestBase", method = RequestMethod.POST)
     @ResponseBody
     public RequestViewModel editRowRequestBase(@RequestBody RequestViewModel requestViewModel) {
-
+        java.sql.Date  datestart =  new java.sql.Date(Long.valueOf(requestViewModel.getDatestart()));
+        java.sql.Date  datefinish =  new java.sql.Date(Long.valueOf(requestViewModel.getDatefinish()));
         List<String> list = requestViewModel.getIdRequestList();
         RequestEntity requestEntity = requestService.findById(Integer.valueOf(list.get(0)));
         requestEntity.setQuantity(Integer.valueOf(requestViewModel.getQuantity()) );
         requestEntity.setMinavscore(Double.valueOf(requestViewModel.getMinavscore()));
-        requestEntity.setDatefinish(Date.valueOf(requestViewModel.getDatefinish()));
-        requestEntity.setDatestart(Date.valueOf(requestViewModel.getDatestart()));
+        requestEntity.setDatefinish(datefinish);
+        requestEntity.setDatestart(datestart);
         requestEntity.setNamecompany(requestViewModel.getName());
         SpecialityEntity specialityEntity = specialityService.findById(Integer.valueOf(requestViewModel.getIdSpeciality()));
         requestEntity.setSpecialityEntity(specialityEntity);

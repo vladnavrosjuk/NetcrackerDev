@@ -24,6 +24,7 @@
 <div class="container2">
     <div id="sidebar">
         <ul>
+
             <li class="jsModalCreateFaculty" data-toggle="modal" data-target="#createspeialty"><a class="text-left"> <i class="fa fa-plus"></i> Speciality</a></li>
             <li data-toggle="modal" data-target="#createfaculty"><a class="text-left" > <i class="fa fa-plus"></i> Faculty </a ></li>
             <li  class="jsModalAddRequest" data-toggle="modal" data-target="#addrequest"><a class="text-left"><i class="fa fa-plus" ></i> Request</a></li>
@@ -32,15 +33,18 @@
             <li ><a class="text-left" href="/allrequest2"> All Request</a></li>
         </ul>
     </div>
-    <div class="main-content">
+    <div  class="main-content">
         <div class="row">
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-3">
+                <button type="submit" data-toggle="modal" data-target="#infoaboutstudent" disabled class="btn btn-success btn-block  jsModalAboutStudent"><span class="glyphicon glyphicon-ok"></span> About</button>
+            </div>
+            <div class="col-6 col-md-3">
         <button type="submit" disabled class="btn btn-success btn-block jsTest"><span class="glyphicon glyphicon-ok"></span> Delete</button>
             </div>
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-3">
         <button type="submit" data-toggle="modal" data-target="#editStudent" disabled class="btn btn-success btn-block  jsEditStudent"><span class="glyphicon glyphicon-ok"></span> Edit</button>
             </div>
-            <div class="col-6 col-md-4">
+            <div class="col-6 col-md-3">
         <button type="submit" data-toggle="modal" data-target="#releasestudents" disabled class="btn btn-success btn-block jsAssignStudent"><span class="glyphicon glyphicon-ok"></span> Release</button>
             </div>
         </div>
@@ -56,14 +60,15 @@
             <tr>
 
                 <th  data-checkbox="idStudent"></th>
-                <th data-field="surname">First Name</th>
-                <th data-field="namestud">Last Name</th>
-                <th data-field="speciality">Spec.</th>
-                <th data-field="facultet">Facult.</th>
-                <th data-field="groupstud">Group</th>
-                <th data-field="budjet">Budjet</th>
-                <th data-field="avscore">Av.Score</th>
-                <th data-field="statusstud">StatusStud</th>
+                <th data-field="surname" data-sortable="true">First Name</th>
+                <th data-field="namestud" data-sortable="true">Last Name</th>
+                <th data-field="speciality" data-sortable="true">Spec.</th>
+                <th data-field="facultet" data-sortable="true">Facult.</th>
+                <th data-field="groupstud" data-sortable="true">Group</th>
+                <th data-field="budjet" data-sortable="true">Budjet</th>
+                <th data-field="avscore" data-sortable="true">Av.Score</th>
+                <th data-field="statusstud" data-sortable="true">StatusStud</th>
+
 
             </tr>
             </thead>
@@ -112,6 +117,56 @@ MODAL-------------------------------ADDREQUEST--
                         <input type="text" class="form-control mb-2 mr-sm-2 jsRequestQuantity " id="quantity" placeholder="Quantity">
 
                         <button type="submit" class="btn btn-success btn-block jsAddRequest"><span class="glyphicon glyphicon-ok"></span> Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade" id="infoaboutstudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" align="center" id="idinfoaboutstudent">Add request</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table
+
+                       data-toggle="table"
+
+
+
+                        class="jsPracticeStudent">
+
+                    <thead>
+                    <tr>
+
+
+
+
+                        <th data-field="name" data-sortable="true">Company</th>
+                        <th data-field="datestart" data-sortable="true">Date Start</th>
+                        <th data-field="datefinish" data-sortable="true">Date Finish</th>
+                        <th data-field="minavscore" data-sortable="true">Min.Sc.</th>
+                        <th data-field="quantity" data-sortable="true">Count</th>
+
+
+
+
+                    </tr>
+                    </thead>
+
+                </table >
+
+
             </div>
         </div>
     </div>
@@ -196,19 +251,24 @@ MODAL-AssignStudents-
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" align="center" id="AddAssign">Add Student</h2>
+                <h2 class="modal-title" align="center" id="AddAssign">Assign Student</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
 
+                <label for="idRequestForAssign">Requests</label>
+                <select class="form-control marginBottom1rem jsRequestForAssign" id="idRequestForAssign" >
 
-                <select class="form-control marginBottom1rem jsRequestForAssign" >
                 </select>
+                <label for="example-getting-started">Students</label>
+
 
                 <select id="example-getting-started" multiple="multiple" class="jsMultiSelect">
                 </select>
+
+                <br> </br>
 
                 <button type="submit" class="btn btn-success btn-block jsAddAssign "><span class="glyphicon glyphicon-ok"></span> Create</button>
             </div>
@@ -257,7 +317,7 @@ MODAL-AssignStudents-
                 <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScoreEdit" id="idAvScoreEdit"  placeholder="Av. score">
 
 
-                <button type="submit" class="btn btn-success btn-block jsUpdateEditStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
+                <button type="submit" class="btn btn-success btn-block jsUpdateEditStudent "><span class="glyphicon glyphicon-ok"></span> Edit</button>
             </div>
         </div>
     </div>
