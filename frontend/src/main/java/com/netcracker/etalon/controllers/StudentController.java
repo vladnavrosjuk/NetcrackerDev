@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +28,8 @@ public class StudentController {
     private SpecialityService specialityService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private StudentPaginationService studentPaginationService;
     @Autowired
     private UserService userService;
     @Autowired
@@ -109,6 +109,7 @@ public class StudentController {
         studentEntity.setGroupstud(Integer.valueOf(studentViewModel.getGroupstud()));
 
         studentService.addStudent(studentEntity);
+        List<StudentEntity> studentEntityList = studentService.findall();
         return  conversionService.convert(studentEntity, StudentViewModel.class);
 
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
@@ -201,5 +202,17 @@ public class StudentController {
     public List<StudentViewModel> getAllStudents() {
         List<StudentEntity> allstudents = studentService.findall();
         return (List<StudentViewModel>) conversionService.convert(allstudents, studentEntityDescriptor, studentViewModelDescriptor);
+    }
+
+    @RequestMapping(value = "/studentTableBootstrap", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelMap studentTable(@RequestParam String sort, @RequestParam String order, @RequestParam Integer offset, @RequestParam Integer limit){
+
+        ModelMap modelMap = new ModelMap();
+        List<StudentEntity> studentEntityList = studentPaginationService.getPaginationAndSortedPageList(sort,order,offset,limit);
+         List<StudentViewModel>  list = (List<StudentViewModel>) conversionService.convert(studentEntityList, studentEntityDescriptor, studentViewModelDescriptor);
+        modelMap.addAttribute("rows", list);
+        modelMap.addAttribute("total", studentService.findall().size());
+        return modelMap;
     }
 }

@@ -49,11 +49,17 @@
             </div>
         </div>
             <table
-                    data-search="true" data-toggle="table"
+                    data-toggle="table"
+                    data-search="true"
+
+                    data-sort-order="asc"
+                    data-sort-name="surname"
 
                     data-pagination="true"
-                    data-page-list="[5, 10, 25, 50, 100, ALL]"
-                    data-page-size="5"
+                    data-side-pagination="server"
+                    data-page-list="[5, 10, 25, 50, 100]"
+                    data-url="/studentTableBootstrap"
+
                     class="jsStudentsTable">
 
             <thead>
