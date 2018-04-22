@@ -8,7 +8,6 @@ import java.util.Objects;
 public class SpecialityEntity {
     private int id;
     private String name;
-
     private FacultetEntity faculty;
 
 

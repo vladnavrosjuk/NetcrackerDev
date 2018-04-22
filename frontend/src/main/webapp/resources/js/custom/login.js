@@ -582,6 +582,7 @@ $(document).ready(function () {
                     field: 'idStudent',
                     values: ids
                 });
+                $( ".jsStudentsTable" ). bootstrapTable('refresh');
 
             }
 
@@ -863,7 +864,8 @@ $(document).ready(function () {
             success: function (addedUser) {
                 $( ".jsStudentsTable" ).bootstrapTable('append', addedUser);
 
-                $( ".jsStudentsTable" ).bootstrapTable('scrollTo', 'bottom');
+               // $( ".jsStudentsTable" ).bootstrapTable('scrollTo', 'bottom');
+                $( ".jsStudentsTable" ). bootstrapTable('refresh');
                 noty({ text: 'Студент '+obj.namestud+' '+obj.surname+' создан!'});
                 $("#createstudent").modal('toggle');
 

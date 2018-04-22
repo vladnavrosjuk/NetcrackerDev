@@ -19,6 +19,10 @@ public class StudentPaginationServiceImpl implements StudentPaginationService {
     @Override
     public List<StudentEntity> getPaginationAndSortedPageList(String sort, String order, Integer offset, Integer limit) {
         int pageNumber = offset/limit;
+        if (sort.equals("speciality"))
+            sort = "specialityEntity.name";
+        if (sort.equals("facultet"))
+            sort = "specialityEntity.FacultetEntity.name";
         PageRequest pageRequest = new PageRequest(pageNumber,limit, Sort.Direction.fromString(order),sort);
 
         return studentPaginationRepository.findAll(pageRequest).getContent();
