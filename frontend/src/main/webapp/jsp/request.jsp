@@ -35,23 +35,28 @@
     </div>
 </div>
 <table
-        data-search="true" data-toggle="table"
+        data-toggle="table"
+        data-search="true"
+
+        data-sort-order="asc"
+        data-sort-name="namecompany"
 
         data-pagination="true"
-        data-page-list="[5, 10, 25, 50, 100, ALL]"
-        data-page-size="5"
+        data-side-pagination="server"
+        data-page-list="[5, 10, 25, 50, 100]"
+        data-url="/requestTableBootstrap"
         class="jsRequestsTable">
 
     <thead>
     <tr>
 
-        <th  data-checkbox="idRequest"></th>
-        <th data-field="name"> Name Company</th>
-        <th data-field="datestart">Date Start</th>
-        <th data-field="datefinish">Date Finish</th>
-        <th data-field="minavscore">Min.Av.Score</th>
-        <th data-field="specialityName">Spec.</th>
-        <th data-field="studentsofpractice">Students</th>
+        <th  data-checkbox="idRequest" data-sortable="true"></th>
+        <th data-field="name" data-sortable="true"> Name Company</th>
+        <th data-field="datestart" data-sortable="true">Date Start</th>
+        <th data-field="datefinish" data-sortable="true">Date Finish</th>
+        <th data-field="minavscore" data-sortable="true">Min.Av.Score</th>
+        <th data-field="specialityName" data-sortable="true">Spec.</th>
+        <th data-field="studentsofpractice" data-sortable="true">Students</th>
 
 
         <th data-field="quantity">Quantity</th>

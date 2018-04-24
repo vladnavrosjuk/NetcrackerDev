@@ -12,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.text.ParseException;
@@ -36,6 +34,8 @@ public class RequestController {
     private SpecialityService specialityService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private RequestPaginationService requestPaginationService;
     @Autowired
     private UserService userService;
     @Autowired
@@ -181,5 +181,16 @@ public class RequestController {
 
 
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+    @RequestMapping(value = "/requestTableBootstrap", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelMap requestTable(@RequestParam String sort, @RequestParam String order, @RequestParam Integer offset, @RequestParam Integer limit){
+
+        ModelMap modelMap = new ModelMap();
+        List<RequestEntity> requestEntityList = requestPaginationService.getPaginationAndSortedPageList(sort,order,offset,limit);
+        List<RequestViewModel>  list = (List<RequestViewModel>) conversionService.convert(requestEntityList, requestEntityDescriptor, requestViewModelDescriptor);
+        modelMap.addAttribute("rows", list);
+        modelMap.addAttribute("total", requestService.find().size());
+        return modelMap;
     }
 }
