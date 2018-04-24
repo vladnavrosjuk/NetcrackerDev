@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
@@ -48,6 +49,7 @@
         <button type="submit" data-toggle="modal" data-target="#releasestudents" disabled class="btn btn-success btn-block jsAssignStudent"><span class="glyphicon glyphicon-ok"></span> Release</button>
             </div>
         </div>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
             <table
                     data-toggle="table"
                     data-search="true"
@@ -81,10 +83,18 @@
 
         </table >
 
+        </sec:authorize>
+
+
 
     </div>
 
 </div>
+<sec:authorize access="hasRole('ROLE_STUDENT')">
+sdksmdkmsdk
+</sec:authorize>
+
+
 
 
 <!-- Modal -->

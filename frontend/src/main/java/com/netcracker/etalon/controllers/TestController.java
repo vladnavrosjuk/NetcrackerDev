@@ -85,7 +85,7 @@ public class TestController {
 
 
     @RequestMapping(value = "/admin-page", method = RequestMethod.GET)
-    public ModelAndView getAdminPage(ModelMap modelMap) {
+    public ModelAndView getAdminPage() {
 
 
         ModelAndView modelAndView = new ModelAndView();
@@ -96,7 +96,7 @@ public class TestController {
 
     @RequestMapping(value = "/dropdown", method = RequestMethod.GET)
     @ResponseBody
-    public List<FacultetEntity> getAdminPage() {
+    public List<FacultetEntity> getAdminPageDropdown() {
 
         return facultyService.findall();
     }

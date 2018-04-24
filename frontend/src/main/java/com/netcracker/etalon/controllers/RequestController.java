@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.TimeZone;
 
 @Controller
 public class RequestController {
@@ -108,14 +111,28 @@ public class RequestController {
     @RequestMapping(value = "/editRowRequestBase", method = RequestMethod.POST)
     @ResponseBody
     public RequestViewModel editRowRequestBase(@RequestBody RequestViewModel requestViewModel) {
-        java.sql.Date  datestart =  new java.sql.Date(Long.valueOf(requestViewModel.getDatestart()));
-        java.sql.Date  datefinish =  new java.sql.Date(Long.valueOf(requestViewModel.getDatefinish()));
+        //Сбился часовой пояс
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
         List<String> list = requestViewModel.getIdRequestList();
         RequestEntity requestEntity = requestService.findById(Integer.valueOf(list.get(0)));
+        try {
+            java.util.Date parse =  format.parse(requestViewModel.getDatestart());
+            java.util.Date parse2 =  format.parse(requestViewModel.getDatefinish());
+            java.sql.Date sql = new java.sql.Date(parse.getTime());
+            java.sql.Date sql2 = new java.sql.Date(parse2.getTime());
+            requestEntity.setDatefinish(sql);
+            requestEntity.setDatestart(sql2);
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
         requestEntity.setQuantity(Integer.valueOf(requestViewModel.getQuantity()) );
         requestEntity.setMinavscore(Double.valueOf(requestViewModel.getMinavscore()));
-        requestEntity.setDatefinish(datefinish);
-        requestEntity.setDatestart(datestart);
+
         requestEntity.setNamecompany(requestViewModel.getName());
         SpecialityEntity specialityEntity = specialityService.findById(Integer.valueOf(requestViewModel.getIdSpeciality()));
         requestEntity.setSpecialityEntity(specialityEntity);

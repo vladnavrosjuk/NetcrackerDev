@@ -4,12 +4,16 @@ import com.netcracker.etalon.dto.AssignDto;
 import com.netcracker.etalon.entities.RequestEntity;
 import com.netcracker.etalon.entities.SpecialityEntity;
 import com.netcracker.etalon.entities.StudentEntity;
+import com.netcracker.etalon.entities.UserEntity;
 import com.netcracker.etalon.models.RequestViewModel;
 import com.netcracker.etalon.models.StudentViewModel;
+import com.netcracker.etalon.security.impl.CustomUser;
 import com.netcracker.etalon.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -47,12 +51,19 @@ public class StudentController {
     private static final String VIEW_NAME_LOGIN = "adminpage";
     private static final String VIEW_ALL_REQUEST = "request";
 
+    @PreAuthorize("hasAuthority('admin')")
     @RequestMapping(value = "/testel", method = RequestMethod.POST)
     @ResponseBody
     public void asd(@RequestBody StudentViewModel studentViewModel) {
+        CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(customUser.getUsername());
         List<String> list = studentViewModel.getListid();
         for (String id : list){
             StudentEntity studentEntity = studentService.findById(Integer.valueOf(id));
+            UserEntity userEntity = userService.findByStudentEntity(studentEntity);
+            if (userEntity!=null)
+            userService.deleteById(userEntity.getId());
+
             for (RequestEntity requestEntity:studentEntity.getRequest())
             {
                 requestEntity.getStudent().remove(studentEntity);

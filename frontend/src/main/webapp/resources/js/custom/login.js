@@ -1450,6 +1450,8 @@ $(document).ready(function () {
     });
     $(".jsButtonAutor").click(function (event) {
         event.stopPropagation();
+        var obj = {   username: $(".jsInputNameAutor").val(),
+            password: $(".jsInputPassword").val()}
 
         $.ajax({
             url: '/authorizeUser',
@@ -1457,13 +1459,13 @@ $(document).ready(function () {
             contentType: "application/json",
             dataType: 'text',
             mimeType: 'application/json',
-            data: JSON.stringify({
-                username: $(".jsInputNameAutor").val(),
-                password: $(".jsInputPassword").val()
-            }),
+            data: JSON.stringify(obj
+            ),
             success: function (xhr) {
+
                 console.log(xhr.status);
-                window.location.href = "/admin-page"
+
+                window.location.href = "/admin-page";
             },
             error: function (xhr, textStatus) {
                 xhr.status == 401 ? alert('Credentials are not correct.'): alert('Something went wrong, try again later.');
@@ -1472,6 +1474,8 @@ $(document).ready(function () {
 
 
     })
+
+
 
 
 

@@ -55,6 +55,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         UserEntity userEntity = userEntities.get(0);
         List<GrantedAuthority> authorities = new ArrayList<>();
+        
         authorities.add(new SimpleGrantedAuthority(userEntity.getRole()));
         return buildUserForAuthentication(userEntity, authorities);
     }
@@ -63,6 +64,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         UserViewModel userViewModel = new UserViewModel(userEntity.getLogin(), userEntity.getPassuser(), authorities);
 
         userViewModel.setId(String.valueOf(userEntity.getId()));
+        userViewModel.setRole(userEntity.getRole());
 
         return userViewModel;
     }

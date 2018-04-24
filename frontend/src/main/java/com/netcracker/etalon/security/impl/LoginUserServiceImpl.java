@@ -47,11 +47,11 @@ import java.util.List;
 public class LoginUserServiceImpl implements LoginUserService {
 
 
-    private static final String VIEW_NAME_HOME_ADMIN = "home-admin";
+    private static final String VIEW_NAME_HOME_ADMIN = "admin-page";
     private static final String VIEW_NAME_HOME_STUDENT = "home-student";
 
     private static final String ROLE_STUDENT = "student";//todo create general enum
-    private static final String ROLE_ADMIN = "admin";
+    private static final String ROLE_ADMIN = "ROLE_ADMIN";
 
 
     @Autowired
@@ -70,14 +70,14 @@ public class LoginUserServiceImpl implements LoginUserService {
     public String resolveHomeView(List<GrantedAuthority> authorities) {
         if (!CollectionUtils.isEmpty(authorities)) {
             String authority = authorities.get(0).getAuthority();
-            if (authority.equalsIgnoreCase(ROLE_STUDENT)) {
-                return VIEW_NAME_HOME_STUDENT;
+            if (authority.equalsIgnoreCase("ROLE_STUDENT")) {
+                return "redirect:/student-page";
             }
-            if (authority.equalsIgnoreCase(ROLE_ADMIN)) {
-                return VIEW_NAME_HOME_ADMIN;
+            if (authority.equalsIgnoreCase("ROLE_ADMIN")) {
+                return "redirect:/admin-page";
             }
         }
-        return "redirect:/login-page";
+        return "redirect:/autorization";
     }
 
 }

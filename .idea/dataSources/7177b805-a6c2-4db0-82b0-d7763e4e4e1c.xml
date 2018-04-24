@@ -1186,14 +1186,14 @@
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="239" name="student_id">
+    <column id="287" parent="239" name="role">
       <Position>4</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="239" name="role">
+    <column id="288" parent="239" name="student_id">
       <Position>5</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="289" parent="239" name="user_student_id_fk">
