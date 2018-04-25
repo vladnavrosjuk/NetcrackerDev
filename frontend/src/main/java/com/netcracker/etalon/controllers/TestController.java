@@ -50,7 +50,7 @@ public class TestController {
     private  final TypeDescriptor studentEntityDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentEntity.class));
     private  final TypeDescriptor studentViewModelDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentViewModel.class));
     private static final String STATUS_OF_PRACTICE_DISTR = "Awaits practice";
-    private static  final String STATUS_OF_PRACTICE_NO_DISTR = "N0 DISTRIBUTED";
+    private static  final String STATUS_OF_PRACTICE_NO_DISTR = "NO DISTRIBUTED";
     private static  final String STATUS_OF_PRACTICE_IN_PRACTICE = "On practice";
     private static final String VIEW_NAME_LOGIN = "adminpage";
     private static final String VIEW_ALL_REQUEST = "request";
@@ -60,6 +60,14 @@ public class TestController {
     public ModelAndView getAutorization() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("autorization");//constants
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/student-page", method = RequestMethod.GET)
+    public ModelAndView getStudentPAge() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("student");//constants
 
         return modelAndView;
     }
@@ -89,7 +97,7 @@ public class TestController {
 
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(VIEW_NAME_LOGIN);
+        modelAndView.setViewName("adminpage");
 
         return modelAndView;
     }

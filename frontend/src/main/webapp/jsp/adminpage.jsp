@@ -22,6 +22,13 @@
 
 
 <body>
+<style>
+    html,body{
+        overflow-x:hidden;
+        overflow-y:hidden;
+    }
+</style>
+
 <div class="container2">
     <div id="sidebar">
         <ul>
@@ -52,7 +59,7 @@
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <table
                     data-toggle="table"
-                    data-search="true"
+
 
                     data-sort-order="asc"
                     data-sort-name="surname"
@@ -61,7 +68,7 @@
                     data-side-pagination="server"
                     data-page-list="[5, 10, 25, 50, 100]"
                     data-url="/studentTableBootstrap"
-
+                    data-search="true"
                     class="jsStudentsTable">
 
             <thead>

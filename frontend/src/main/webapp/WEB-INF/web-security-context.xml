@@ -13,6 +13,7 @@
         <form-login login-page="/autorization"/>
 
         <intercept-url pattern="/admin-page" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/student-page" access="hasRole('ROLE_STUDENT')"/>
 
         <csrf disabled="true" />
     </http>

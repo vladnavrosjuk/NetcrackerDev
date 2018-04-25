@@ -1465,12 +1465,18 @@ $(document).ready(function () {
 
                 console.log(xhr.status);
 
-                window.location.href = "/admin-page";
+                window.location.href = xhr;
             },
             error: function (xhr, textStatus) {
                 xhr.status == 401 ? alert('Credentials are not correct.'): alert('Something went wrong, try again later.');
             }
         });
+        $(".jsGoBack").click(function (event) {
+            event.stopPropagation();
+           var oldURL = document.referrer;
+            alert(oldURL);
+
+        })
 
 
     })
