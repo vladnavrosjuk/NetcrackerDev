@@ -36,6 +36,11 @@ public class RequestServiceImpl  implements RequestService{
     }
 
     @Override
+    public void deleteByNamecompany(String name) {
+        requestRepository.deleteByNamecompany(name);
+    }
+
+    @Override
     public List<RequestEntity> requestAfterCurentDate() {
         return requestRepository.requestAfterCurentDate();
     }

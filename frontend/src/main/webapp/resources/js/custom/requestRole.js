@@ -1,0 +1,37 @@
+
+$(document).ready(function() {
+
+
+    $.ajax({
+        url: 'setRequestNameRole',
+        type: 'GET',
+        dataType: 'text',
+        contentType: "application/json",
+        mimeType: 'application/json',
+        data: '',
+        success: function (name) {
+            $(".headerStudent").text(name);
+
+
+        }
+
+    });
+    $.ajax({
+        url: 'getRequestTableRole',
+        type: 'GET',
+        dataType: 'json',
+        contentType: "application/json",
+        mimeType: 'application/json',
+        data: '',
+        success: function (name) {
+
+            $( ".jsRequestTableRole" ).bootstrapTable('load', name);
+
+
+
+        }
+
+    });
+
+
+});

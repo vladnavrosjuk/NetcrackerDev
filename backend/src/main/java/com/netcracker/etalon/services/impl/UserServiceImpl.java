@@ -1,5 +1,6 @@
 package com.netcracker.etalon.services.impl;
 
+import com.netcracker.etalon.entities.RequestEntity;
 import com.netcracker.etalon.entities.StudentEntity;
 import com.netcracker.etalon.entities.UserEntity;
 import com.netcracker.etalon.repository.UserRepository;
@@ -36,6 +37,10 @@ public class UserServiceImpl implements UserService {
     public UserEntity findByStudentEntity(StudentEntity studentEntity) {
         return userRepository.findByStudentEntity(studentEntity);
     }
+
+
+
+
 
     @Override
     public void deleteById(Integer id) {

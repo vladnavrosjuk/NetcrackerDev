@@ -1,16 +1,16 @@
 package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.dto.RequestDto;
-import com.netcracker.etalon.entities.FacultetEntity;
-import com.netcracker.etalon.entities.RequestEntity;
-import com.netcracker.etalon.entities.SpecialityEntity;
-import com.netcracker.etalon.entities.StudentEntity;
+import com.netcracker.etalon.entities.*;
 import com.netcracker.etalon.models.RequestViewModel;
 import com.netcracker.etalon.models.StudentViewModel;
+import com.netcracker.etalon.models.StydentAndRequestViewModel;
+import com.netcracker.etalon.security.impl.CustomUser;
 import com.netcracker.etalon.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -61,6 +62,9 @@ public class RequestController {
         List<String> listid = requestViewModel.getIdRequestList();
         for(String id : listid){
             RequestEntity requestEntity = requestService.findById(Integer.valueOf(id));
+            /*UserEntity userEntity = userService.findByRequestEntity(requestEntity);
+            if (userEntity!=null)
+            userService.deleteById(userEntity.getId());*/
             for(StudentEntity studentEntity: requestEntity.getStudent()){
                 studentEntity.setStatusstud(STATUS_OF_PRACTICE_NO_DISTR);
                 studentService.addStudent(studentEntity);
@@ -193,4 +197,69 @@ public class RequestController {
         modelMap.addAttribute("total", requestService.find().size());
         return modelMap;
     }
+    @RequestMapping(value = "/setRequestNameRole", method = RequestMethod.GET)
+    @ResponseBody
+    public String  requestName(){
+        CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(customUser.getUsername());
+        UserEntity userEntity = userService.find(customUser.getUsername()).get(0);
+        RequestEntity requestEntity = userEntity.getRequestEntity();
+        String name = requestEntity.getNamecompany() ;
+
+
+
+
+
+
+        return name;
+    }
+
+    @RequestMapping(value = "/getRequestTableRole", method = RequestMethod.GET)
+    @ResponseBody
+    public  List<StydentAndRequestViewModel>  getRequestTable(){
+        CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        UserEntity userEntity = userService.find(customUser.getUsername()).get(0);
+        RequestEntity requestEntity = userEntity.getRequestEntity();
+        String name = requestEntity.getNamecompany() ;
+        StydentAndRequestViewModel stydentAndRequestViewModel = new StydentAndRequestViewModel();
+        stydentAndRequestViewModel.setName(requestEntity.getNamecompany());
+
+        List<StudentEntity> studentEntityList = requestEntity.getStudent();
+        SpecialityEntity specialityEntity = requestEntity.getSpecialityEntity();
+        FacultetEntity facultetEntity = specialityEntity.getFacultetEntity();
+        List<StydentAndRequestViewModel> stydentAndRequestViewModelList = new ArrayList<>();
+        if (studentEntityList.size()==0) {
+            stydentAndRequestViewModel.setDatestart(String.valueOf(requestEntity.getDatestart()));
+            stydentAndRequestViewModel.setDatefinish(String.valueOf(requestEntity.getDatefinish()));
+            stydentAndRequestViewModel.setSpeciality(specialityEntity.getName());
+            stydentAndRequestViewModel.setFacultet(facultetEntity.getName());
+            stydentAndRequestViewModel.setQuantity(String.valueOf(requestEntity.getQuantity()));
+            stydentAndRequestViewModelList.add(stydentAndRequestViewModel);
+        }
+        for (StudentEntity studentEntity:studentEntityList){
+            StydentAndRequestViewModel stud = new StydentAndRequestViewModel();
+            stud.setDatestart(String.valueOf(requestEntity.getDatestart()));
+            stud.setName(requestEntity.getNamecompany());
+            stud.setBudjet(studentEntity.getBudjet());
+            stud.setDatefinish(String.valueOf(requestEntity.getDatefinish()));
+            stud.setSpeciality(specialityEntity.getName());
+            stud.setFacultet(facultetEntity.getName());
+            stud.setQuantity(String.valueOf(requestEntity.getQuantity()));
+            stud.setNamestud(studentEntity.getNamestud());
+
+            stud.setSurname(studentEntity.getSurname());
+            stud.setGroupstud(String.valueOf(studentEntity.getGroupstud()));
+            stud.setAvscore(String.valueOf(studentEntity.getAvscore()));
+            stydentAndRequestViewModelList.add(stud);
+        }
+
+
+
+
+        return stydentAndRequestViewModelList;
+    }
+
+
+
 }

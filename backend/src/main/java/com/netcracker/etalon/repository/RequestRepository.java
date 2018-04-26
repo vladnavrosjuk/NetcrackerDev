@@ -9,6 +9,7 @@ import java.util.List;
 public interface RequestRepository extends CrudRepository<RequestEntity, Integer> {
     RequestEntity findById(Integer id);
     void deleteById(Integer id);
+    void deleteByNamecompany(String name);
     @Query (value = "SELECT * FROM request WHERE request.datestart < curdate()", nativeQuery = true)
     List<RequestEntity> requestAfterCurentDate();
 

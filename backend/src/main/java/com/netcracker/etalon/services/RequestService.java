@@ -10,6 +10,7 @@ public interface RequestService {
     List<RequestEntity> find();
     RequestEntity findById(Integer id);
     void deleteById(Integer id);
+    void deleteByNamecompany(String name);
     List<RequestEntity> requestAfterCurentDate();
 
 

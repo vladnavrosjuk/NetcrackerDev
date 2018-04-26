@@ -41,6 +41,8 @@ public class LoginController {
             return "/admin-page";
             if (role.equals("ROLE_STUDENT"))
                 return "/student-page";
+            if (role.equals("ROLE_REQUEST"))
+                return "/request-page";
 
 
             //response.sendRedirect("/admin-page");

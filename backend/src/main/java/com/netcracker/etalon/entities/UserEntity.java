@@ -1,5 +1,8 @@
 package com.netcracker.etalon.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -11,6 +14,8 @@ public class UserEntity {
     private String passuser;
     private String role;
     private StudentEntity studentEntity;
+    private RequestEntity requestEntity;
+
 
 
     @Id
@@ -68,7 +73,8 @@ public class UserEntity {
 
         return Objects.hash(id, login, passuser);
     }
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn (name = "student_id", referencedColumnName = "id", nullable = false)
     public StudentEntity getStudentEntity() {
         return studentEntity;
@@ -76,5 +82,17 @@ public class UserEntity {
 
     public void setStudentEntity(StudentEntity studentEntity) {
         this.studentEntity = studentEntity;
+    }
+
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn (name = "id_request", referencedColumnName = "id", nullable = false)
+
+    public RequestEntity getRequestEntity() {
+        return requestEntity;
+    }
+
+    public void setRequestEntity(RequestEntity requestEntity) {
+        this.requestEntity = requestEntity;
     }
 }

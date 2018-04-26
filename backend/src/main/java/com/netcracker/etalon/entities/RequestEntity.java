@@ -15,10 +15,14 @@ public class RequestEntity {
     private String namecompany;
     private Date datestart;
     private Date datefinish;
+
     private Double minavscore;
     private Integer quantity;
+
     private List<StudentEntity> student = new ArrayList<>();
+
     private SpecialityEntity specialityEntity;
+    private UserEntity userEntity;
 
 
     @Id
@@ -120,4 +124,6 @@ public class RequestEntity {
     public void setStudent(List<StudentEntity> student) {
         this.student = student;
     }
+
+
 }

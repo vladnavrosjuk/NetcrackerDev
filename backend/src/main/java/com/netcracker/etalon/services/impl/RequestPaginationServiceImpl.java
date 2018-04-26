@@ -23,6 +23,11 @@ public class RequestPaginationServiceImpl implements RequestPaginationService {
         int pageNumber = offset/limit;
         if (sort.equals("name"))
             sort = "namecompany";
+        if (sort.equals("specialityName"))
+            sort = "specialityEntity.name";
+        if (sort.equals("studentsofpractice"))
+            sort = "students";
+
 
         PageRequest pageRequest = new PageRequest(pageNumber,limit, Sort.Direction.fromString(order),sort);
 

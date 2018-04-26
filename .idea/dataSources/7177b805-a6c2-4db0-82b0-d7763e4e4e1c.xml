@@ -1196,18 +1196,32 @@
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="289" parent="239" name="user_student_id_fk">
+    <column id="289" parent="239" name="id_request">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="290" parent="239" name="user_student_id_fk">
       <ColNames>student_id</ColNames>
     </index>
-    <key id="290" parent="239" name="PRIMARY">
+    <index id="291" parent="239" name="user_request_id_fk">
+      <ColNames>id_request</ColNames>
+    </index>
+    <key id="292" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="291" parent="239" name="user_student_id_fk">
+    <foreign-key id="293" parent="239" name="user_student_id_fk">
       <ColNames>student_id</ColNames>
       <RefSchemaName>navr</RefSchemaName>
       <RefTableName>student</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="294" parent="239" name="user_request_id_fk">
+      <ColNames>id_request</ColNames>
+      <RefSchemaName>navr</RefSchemaName>
+      <RefTableName>request</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
   </database-model>

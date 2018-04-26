@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +61,7 @@ public class StudentController {
         for (String id : list){
             StudentEntity studentEntity = studentService.findById(Integer.valueOf(id));
             UserEntity userEntity = userService.findByStudentEntity(studentEntity);
-            if (userEntity!=null)
-            userService.deleteById(userEntity.getId());
+
 
             for (RequestEntity requestEntity:studentEntity.getRequest())
             {
@@ -287,6 +287,15 @@ public class StudentController {
 
 
         return stydentAndRequestViewModelList;
+    }
+    @RequestMapping(value = "/request-page", method = RequestMethod.GET)
+    public ModelAndView getAdminPage() {
+
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("requestRole");
+
+        return modelAndView;
     }
 
 }
