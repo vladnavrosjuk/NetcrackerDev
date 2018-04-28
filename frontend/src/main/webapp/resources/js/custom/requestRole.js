@@ -32,6 +32,32 @@ $(document).ready(function() {
         }
 
     });
+    $(".jsButtonExitinAutoriation").click(function (event) {
+        event.stopPropagation();
+        $.ajax({
+
+            url: 'exitUser',
+            type: 'POST',
+
+            contentType: "application/json",
+            dataType: 'text',
+            mimeType: 'application/json',
+
+            success: function (xhr) {
+
+
+                window.location.href = xhr;
+
+
+
+            }
+
+        });
+
+
+
+
+    })
 
 
 });

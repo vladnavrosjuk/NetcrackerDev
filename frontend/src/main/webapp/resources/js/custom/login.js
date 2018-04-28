@@ -1483,6 +1483,66 @@ $(document).ready(function () {
 
 
 
+    $(".jsButtonExitinAutoriation").click(function (event) {
+        event.stopPropagation();
+        $.ajax({
+
+            url: 'exitUser',
+            type: 'POST',
+
+            contentType: "application/json",
+            dataType: 'text',
+            mimeType: 'application/json',
+
+            success: function (xhr) {
+
+
+                window.location.href = xhr;
+
+
+
+            }
+
+        });
+
+
+
+
+    })
+
+
+    $( ".jsModalAssignStudents" ).click(function() {
+
+
+        $.ajax({
+            url: 'studentForFirstRequest',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+
+            success: function (students) {
+                $('.jsMultiSelect').text('');
+                students ? function () {
+                    students.some(function (student) {
+
+                        window.print();
+                        $('.jsMultiSelect').append('<option value="'+student.id+'">'+student.surname+' '+student.namestud+' '+student.avscore+'</option>');
+
+
+                    });
+                    $('.jsMultiSelect').multiselect('rebuild');
+
+
+
+                    // $('.jsMultiSelect').attr('multiple','multiple');
+
+                }() : false;
+            }
+        });
+    });
+
+
 
 
 

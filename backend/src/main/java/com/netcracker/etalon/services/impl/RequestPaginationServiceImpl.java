@@ -26,7 +26,7 @@ public class RequestPaginationServiceImpl implements RequestPaginationService {
         if (sort.equals("specialityName"))
             sort = "specialityEntity.name";
         if (sort.equals("studentsofpractice"))
-            sort = "students";
+            sort = "student.size";
 
 
         PageRequest pageRequest = new PageRequest(pageNumber,limit, Sort.Direction.fromString(order),sort);

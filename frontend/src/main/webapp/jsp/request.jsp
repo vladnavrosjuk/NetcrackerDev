@@ -19,7 +19,7 @@
 
 
 
-<jsp:include page="/jsp/blocks/header.jsp"/>
+<jsp:include page="/jsp/blocks/headerAllRequest.jsp"/>
 <br>
 <!-- Кнопка, открывающее модальное окно -->
 </div>
@@ -50,7 +50,7 @@
     <thead>
     <tr>
 
-        <th  data-checkbox="idRequest" data-sortable="true"></th>
+        <th  data-checkbox="idRequest" ></th>
         <th data-field="name" data-sortable="true"> Name Company</th>
         <th data-field="datestart" data-sortable="true">Date Start</th>
         <th data-field="datefinish" data-sortable="true">Date Finish</th>

@@ -34,12 +34,13 @@
 
 
 
+
         </ul>
-
-
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"  href="#" data-toggle=".container2" id="sidebar-toggle23">OPTIONS</button>
-
+        <a class="headerStudent" href="/admin-page"><i class="	fa fa-hand-o-right"></i>Home  </a>
         <button class="btn btn-outline-success my-2 my-sm-0 jsButtonExitinAutoriation" type="submit"  >Exit</button>
+
+
+
 
 
     </div>

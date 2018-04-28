@@ -37,7 +37,7 @@
 
         </ul>
         <a class="headerStudent" href="#"><i class="	fa fa-hand-o-right"></i>N E T C R A C K E R</a>
-
+        <button class="btn btn-outline-success my-2 my-sm-0 jsButtonExitinAutoriation" type="submit"  >Exit</button>
 
 
 

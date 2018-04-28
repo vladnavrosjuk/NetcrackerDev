@@ -297,5 +297,77 @@ public class StudentController {
 
         return modelAndView;
     }
+    @RequestMapping(value = "/test-page", method = RequestMethod.GET)
+    public ModelAndView gettest() {
+
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("test");
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/studentForFirstRequest", method = RequestMethod.GET)
+    @ResponseBody
+    public List<StudentEntity> studentForFirstRequest() {
+
+
+            RequestEntity requestEntity = requestService.find().get(0);
+        Double score = requestEntity.getMinavscore();
+        SpecialityEntity specialityEntity = requestEntity.getSpecialityEntity();
+        Integer id = specialityEntity.getId();
+        List<StudentEntity> students = requestEntity.getStudent();
+        List<StudentEntity> studentsfotrequest = studentService.findbyquantityandfacultet(score, id);
+        for (StudentEntity studentEntity:students){
+            studentsfotrequest.remove(studentEntity);
+
+        }
+
+
+        return studentsfotrequest;
+    }
+
+
+    @RequestMapping(value = "/setStudentPrint", method = RequestMethod.GET)
+    @ResponseBody
+    public StringBuilder  setStudentPrint(){
+        CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(customUser.getUsername());
+        UserEntity userEntity = userService.find(customUser.getUsername()).get(0);
+        StudentEntity studentEntity = userEntity.getStudentEntity();
+        List<RequestEntity> requestEntities = studentEntity.getRequest();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<center>"+"Student:"+"</center>"+"<br>");
+          stringBuilder.append("Name:"+studentEntity.getNamestud()+"<br>");
+            stringBuilder.append("Surname:" + studentEntity.getSurname()+"<br>");
+
+
+
+            SpecialityEntity specialityEntity = studentEntity.getSpecialityEntity();
+            stringBuilder.append("Speciality:"+specialityEntity.getName()+"<br>");
+            FacultetEntity facultetEntity = specialityEntity.getFacultetEntity();
+            stringBuilder.append("Facultet:"+facultetEntity.getName()+"<br>");
+            stringBuilder.append("Group:"+studentEntity.getGroupstud()+"<br>");
+            stringBuilder.append("AvScore:"+studentEntity.getAvscore()+"<br>");
+            stringBuilder.append("Group:"+studentEntity.getGroupstud()+"<br>");
+
+
+
+
+        int i = 0;
+        for(RequestEntity requestEntity: requestEntities)
+        {   i++;
+            stringBuilder.append("<center>"+"Requset:"+i+"</center>"+"<br>");
+
+            stringBuilder.append("NameCompany:"+requestEntity.getNamecompany()+"<br>");
+            stringBuilder.append("DateStart:"+requestEntity.getDatestart()+"<br>");
+            stringBuilder.append("DateFinish:"+requestEntity.getDatefinish()+"<br>");
+
+        }
+        System.out.println("lol");
+
+
+        return stringBuilder;
+    }
 
 }

@@ -1,7 +1,30 @@
 
 $(document).ready(function() {
-    $(".jstesting").click(function (event) {
+
+    $(".jsButtonExitinAutoriation").click(function (event) {
         event.stopPropagation();
+        $.ajax({
+
+            url: 'exitUser',
+            type: 'POST',
+
+            contentType: "application/json",
+            dataType: 'text',
+            mimeType: 'application/json',
+
+            success: function (xhr) {
+
+
+                window.location.href = xhr;
+
+
+
+            }
+
+        });
+
+
+
 
     })
 
@@ -13,7 +36,7 @@ $(document).ready(function() {
         mimeType: 'application/json',
         data: '',
         success: function (name) {
-            $(".headerStudent").text(name);
+            $(".headerStudent").text(name+" ");
 
 
         }
@@ -35,4 +58,31 @@ $(document).ready(function() {
         }
 
     });
+
+
+    $(".jsPrint").click(function (event) {
+
+
+
+
+    $.ajax({
+        url: 'setStudentPrint',
+        type: 'GET',
+        dataType: 'text',
+        contentType: "application/json",
+        mimeType: 'application/json',
+        data: '',
+        success: function (name) {
+
+
+            w=  window.open();
+            w.document.write(name);
+
+            w.print();
+            w.close();
+
+        }
+
+    });
+    })
 });

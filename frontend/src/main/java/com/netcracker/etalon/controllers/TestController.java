@@ -59,7 +59,7 @@ public class TestController {
     @RequestMapping(value = "/autorization", method = RequestMethod.GET)
     public ModelAndView getAutorization() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("autorization");//constants
+        modelAndView.setViewName("test");//constants
 
         return modelAndView;
     }

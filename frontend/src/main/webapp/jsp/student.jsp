@@ -43,6 +43,7 @@
     </thead>
 
 </table >
+<button type="submit" class="btn btn-success btn-block jsPrint "><span class="glyphicon glyphicon-ok"></span> Print</button>
 
 
 </body>

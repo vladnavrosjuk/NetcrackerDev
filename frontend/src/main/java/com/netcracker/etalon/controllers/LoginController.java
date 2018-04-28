@@ -7,6 +7,7 @@ import com.netcracker.etalon.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.SpringSecurityCoreVersion;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,12 +31,14 @@ public class LoginController {
     public String   login(@RequestBody CustomUser loginData, HttpServletRequest request, HttpServletResponse response) {
         String role = "";
         try {
+
             loginUserService.authenticateUserAndSetSession(loginData.getUsername(), loginData.getPassword(), request, response);
             CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             System.out.println(customUser.getUsername());
             UserEntity userEntity = userService.find(customUser.getUsername()).get(0);
             System.out.println(userEntity.getRole());
             role = userEntity.getRole();
+
             //loginUserService.resolveHomeView((List<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities());
             if (role.equals("ROLE_ADMIN"))
             return "/admin-page";
@@ -54,6 +57,16 @@ public class LoginController {
 
         }
         return "eror";
+    }
+
+
+    @RequestMapping(value = "/exitUser", method = RequestMethod.POST)
+    @ResponseBody
+    public String    exit() {
+        SecurityContextHolder.clearContext();
+        System.out.println();
+        return  "/autorization";
+
     }
 
 
