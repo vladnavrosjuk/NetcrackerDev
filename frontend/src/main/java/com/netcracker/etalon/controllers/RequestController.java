@@ -260,6 +260,54 @@ public class RequestController {
         return stydentAndRequestViewModelList;
     }
 
+    @RequestMapping(value = "/setRolePrint", method = RequestMethod.GET)
+    @ResponseBody
+    public StringBuilder  setRolePrint(){
+        CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(customUser.getUsername());
+        UserEntity userEntity = userService.find(customUser.getUsername()).get(0);
+        RequestEntity requestEntity = userEntity.getRequestEntity();
+        List<StudentEntity> studentEntityList = requestEntity.getStudent();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<center>"+"<strong>"+"Company :"+"</strong>"+"</center>"+"<br>");
+        stringBuilder.append("NameCompany:"+requestEntity.getNamecompany()+"<br>");
+        stringBuilder.append("DateStart:" + requestEntity.getDatestart()+"<br>");
+        stringBuilder.append("DateFinish:" + requestEntity.getDatefinish()+"<br>");
+        stringBuilder.append("Quantity:" + requestEntity.getQuantity()+"<br>");
+        stringBuilder.append("Students:" +studentEntityList.size()+"<br>");
+
+
+
+
+
+
+
+
+
+
+        int i = 0;
+        for(StudentEntity studentEntity: studentEntityList)
+        {   i++;
+            stringBuilder.append("<center>"+"Student:"+i+"</center>"+"<br>");
+            stringBuilder.append("Name:"+studentEntity.getNamestud()+"<br>");
+            stringBuilder.append("Surname:" + studentEntity.getSurname()+"<br>");
+
+
+
+            SpecialityEntity specialityEntity = studentEntity.getSpecialityEntity();
+            stringBuilder.append("Speciality:"+specialityEntity.getName()+"<br>");
+            FacultetEntity facultetEntity = specialityEntity.getFacultetEntity();
+            stringBuilder.append("Facultet:"+facultetEntity.getName()+"<br>");
+            stringBuilder.append("Group:"+studentEntity.getGroupstud()+"<br>");
+            stringBuilder.append("AvScore:"+studentEntity.getAvscore()+"<br>");
+
+        }
+        System.out.println("lol");
+
+
+        return stringBuilder;
+    }
+
 
 
 }

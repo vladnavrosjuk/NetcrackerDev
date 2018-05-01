@@ -20,7 +20,11 @@
 <link href="resources/css/general.css" rel="stylesheet" type="text/css" media="all"/>
 <script type="text/javascript" src="../../resources/js/libs/bootstrap-multiselect.js"></script>
 <link href="../../resources/css/libs/bootstrap-multiselect.css" rel="stylesheet" type="text/css" media="all"/>
+<script src="../resources/js/libs/jquery.inputmask.bundle.js" ></script>
 <script src="resources/js/custom/login.js"></script>
+<script src="../../resources/js/custom/validation.js"></script>
+
+
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

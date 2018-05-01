@@ -10,6 +10,7 @@
 <head>
     <jsp:include page="/jsp/blocks/headerstudent.jsp"/>
     <link href="resources/css/menu.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
     <title>Title</title>
 </head>
@@ -43,7 +44,11 @@
     </thead>
 
 </table >
-<button type="submit" class="btn btn-success btn-block jsPrint "><span class="glyphicon glyphicon-ok"></span> Print</button>
+<div class="row">
+    <div class=" col-md-1   ">
+<button type="submit" class="btn btn-success btn-md btn-block pull-right jsPrint "><span class="glyphicon glyphicon-ok"></span> <i class="fas fa-print"></i></button>
+    </div>
+</div>
 
 
 </body>

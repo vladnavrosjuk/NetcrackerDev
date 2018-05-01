@@ -58,6 +58,31 @@ $(document).ready(function() {
 
 
     })
+    $(".jsPrintRole").click(function (event) {
+
+
+
+
+        $.ajax({
+            url: 'setRolePrint',
+            type: 'GET',
+            dataType: 'text',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (name) {
+
+
+                w=  window.open();
+                w.document.write(name);
+
+                w.print();
+                w.close();
+
+            }
+
+        });
+    })
 
 
 });

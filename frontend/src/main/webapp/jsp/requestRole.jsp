@@ -10,11 +10,12 @@
 <head>
     <jsp:include page="/jsp/blocks/headerRequest.jsp"/>
     <link href="resources/css/menu.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="../resources/css/libs/fontawesome-all.css" rel="stylesheet" type="text/css" media="all"/>
 
     <title>Title</title>
 </head>
 <body>
-sdsd
+
 <table
         data-toggle="table"
 
@@ -25,6 +26,7 @@ sdsd
 
     <thead>
     <tr>
+
 
         <th data-field="name" data-sortable="true">Company</th>
         <th data-field="datestart" data-sortable="true">Date Start</th>
@@ -45,6 +47,11 @@ sdsd
     </thead>
 
 </table >
+<div class="row">
+    <div class=" col-md-1   ">
+        <button type="submit" class="btn btn-success btn-md btn-block pull-right jsPrintRole "><span class="glyphicon glyphicon-ok"></span> <i class="fas fa-print"></i></button>
+    </div>
+</div>
 
 
 </body>

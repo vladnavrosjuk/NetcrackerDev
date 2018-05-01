@@ -36,6 +36,7 @@ import java.util.List;
 public interface FacultyRepository extends CrudRepository<FacultetEntity, Integer> {
     FacultetEntity findByName(String name);
     FacultetEntity findById(Integer id);
+
     List<FacultetEntity> findListById(Integer id);
 
 

@@ -139,7 +139,7 @@ MODAL-------------------------------ADDREQUEST--
                         <label for="quantity"><span class="glyphicon "></span>Quantity</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsRequestQuantity " id="quantity" placeholder="Quantity">
 
-                        <button type="submit" class="btn btn-success btn-block jsAddRequest"><span class="glyphicon glyphicon-ok"></span> Create</button>
+                        <button type="submit" disabled class="btn btn-success btn-block jsAddRequest"><span class="glyphicon glyphicon-ok"></span> Create</button>
             </div>
         </div>
     </div>
@@ -235,7 +235,7 @@ MODAL-------------------------------CREATESTUDENT
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScore" id="idAvScore"  placeholder="Av. score">
 
 
-                        <button type="submit" class="btn btn-success btn-block jsAddStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
+                        <button type="submit" disabled class="btn btn-success btn-block jsAddStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
             </div>
         </div>
     </div>
@@ -340,7 +340,7 @@ MODAL-AssignStudents-
                 <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScoreEdit" id="idAvScoreEdit"  placeholder="Av. score">
 
 
-                <button type="submit" class="btn btn-success btn-block jsUpdateEditStudent "><span class="glyphicon glyphicon-ok"></span> Edit</button>
+                <button type="submit"  class="btn btn-success btn-block jsUpdateEditStudent "><span class="glyphicon glyphicon-ok"></span> Edit</button>
             </div>
         </div>
     </div>
@@ -367,7 +367,7 @@ MODAL-AssignStudents-
                     <select class="form-control marginBottom1rem jsDataSpeciality" id="jsFacultyIdInCreateStudentWindow">
                     </select>
 
-                    <button type="submit" class="btn btn-success btn-block jsSendData "><span class="glyphicon glyphicon-ok"></span> Create</button>
+                    <button type="submit" disabled class="btn btn-success btn-block  jsSendData "><span class="glyphicon glyphicon-ok"></span> Create</button>
                 </div>
             </div>
         </div>
@@ -392,7 +392,7 @@ Create Faculty
                 <label for="inputFacult">Facultet</label>
                 <input type="text" class="form-control mb-2 mr-sm-2 jsAddFacultyInput "  id="inputFacult"placeholder="Name of faculty">
 
-                <button type="submit" class="btn btn-success btn-block jsAddFacultyButton "><span class="glyphicon glyphicon-ok"></span> Create</button>
+                <button type="submit" disabled class="btn btn-success btn-block jsAddFacultyButton "><span class="glyphicon glyphicon-ok"></span> Create</button>
             </div>
         </div>
     </div>

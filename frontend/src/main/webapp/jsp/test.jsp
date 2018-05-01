@@ -1,4 +1,5 @@
 <script src="resources/js/libs/jquery-3.2.1.min.js"></script>
+
 <script src="resources/js/libs/packaged.min.js"></script>
 
 <script src="resources/js/libs/popper.min.js"></script>
@@ -11,7 +12,9 @@
 <link href="resources/css/general.css" rel="stylesheet" type="text/css" media="all"/>
 <script type="text/javascript" src="../../resources/js/libs/bootstrap-multiselect.js"></script>
 <link href="../../resources/css/libs/bootstrap-multiselect.css" rel="stylesheet" type="text/css" media="all"/>
+<script src="../resources/js/libs/jquery.inputmask.bundle.js" ></script>
 <script src="resources/js/custom/login.js"></script>
+
 
 
 

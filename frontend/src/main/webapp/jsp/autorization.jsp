@@ -11,6 +11,7 @@
 <html>
 <head>
     <jsp:include page="/jsp/blocks/header.jsp"/>
+
     <link href="resources/css/menu.css" rel="stylesheet" type="text/css" media="all"/>
     <script src="resources/js/custom/menu.js"></script>
     <title></title>

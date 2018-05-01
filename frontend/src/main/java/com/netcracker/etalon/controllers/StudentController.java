@@ -220,7 +220,7 @@ public class StudentController {
 
         ModelMap modelMap = new ModelMap();
         List<StudentEntity> studentEntityList = studentPaginationService.getPaginationAndSortedPageList(sort,order,offset,limit);
-         List<StudentViewModel>  list = (List<StudentViewModel>) conversionService.convert(studentEntityList, studentEntityDescriptor, studentViewModelDescriptor);
+        List<StudentViewModel>  list = (List<StudentViewModel>) conversionService.convert(studentEntityList, studentEntityDescriptor, studentViewModelDescriptor);
         modelMap.addAttribute("rows", list);
         modelMap.addAttribute("total", studentService.findall().size());
         return modelMap;
@@ -337,7 +337,7 @@ public class StudentController {
         StudentEntity studentEntity = userEntity.getStudentEntity();
         List<RequestEntity> requestEntities = studentEntity.getRequest();
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<center>"+"Student:"+"</center>"+"<br>");
+        stringBuilder.append("<center>"+"<strong>"+"Student:"+"</strong>"+"</center>"+"<br>");
           stringBuilder.append("Name:"+studentEntity.getNamestud()+"<br>");
             stringBuilder.append("Surname:" + studentEntity.getSurname()+"<br>");
 
@@ -349,7 +349,7 @@ public class StudentController {
             stringBuilder.append("Facultet:"+facultetEntity.getName()+"<br>");
             stringBuilder.append("Group:"+studentEntity.getGroupstud()+"<br>");
             stringBuilder.append("AvScore:"+studentEntity.getAvscore()+"<br>");
-            stringBuilder.append("Group:"+studentEntity.getGroupstud()+"<br>");
+
 
 
 
