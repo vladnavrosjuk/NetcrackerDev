@@ -74,8 +74,8 @@ public class UserEntity {
         return Objects.hash(id, login, passuser);
     }
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn (name = "student_id", referencedColumnName = "id", nullable = false)
+    /*@OnDelete(action = OnDeleteAction.CASCADE)*/
+    @JoinColumn (name = "student_id", referencedColumnName = "id")
     public StudentEntity getStudentEntity() {
         return studentEntity;
     }
@@ -83,10 +83,10 @@ public class UserEntity {
     public void setStudentEntity(StudentEntity studentEntity) {
         this.studentEntity = studentEntity;
     }
-
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn (name = "id_request", referencedColumnName = "id", nullable = false)
+    /*@OnDelete(action = OnDeleteAction.CASCADE)*/
+
+    @JoinColumn (name = "id_request", referencedColumnName = "id")
 
     public RequestEntity getRequestEntity() {
         return requestEntity;

@@ -219,7 +219,7 @@ public class StudentController {
     public ModelMap studentTable(@RequestParam String search, @RequestParam String sort, @RequestParam String order, @RequestParam Integer offset, @RequestParam Integer limit){
 
         ModelMap modelMap = new ModelMap();
-        List<StudentEntity> studentEntityList = studentPaginationService.getPaginationAndSortedPageList(sort,order,offset,limit);
+        List<StudentEntity> studentEntityList = studentPaginationService.getPaginationAndSortedPageList(search,sort,order,offset,limit);
         List<StudentViewModel>  list = (List<StudentViewModel>) conversionService.convert(studentEntityList, studentEntityDescriptor, studentViewModelDescriptor);
         modelMap.addAttribute("rows", list);
         modelMap.addAttribute("total", studentService.findall().size());

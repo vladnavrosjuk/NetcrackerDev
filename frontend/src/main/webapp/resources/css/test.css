@@ -32,9 +32,9 @@
 .login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #737171;}
 .login-sec h2:after{content:" "; width:100px; height:5px; background: #b9b7b7; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
 .btn-login{background: #5e5c5c; color:#fff; font-weight:600;}
-.banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
+.banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;    border-radius: 10px;    background: #fffcf3;    border: 2px solid #1b1e21;}
 .banner-text h2{color: #000000; font-weight:600;}
-.banner-text h2:after{content:" "; width:100px; height:5px; background: #000000; display:block; margin-top:20px; border-radius:3px;}
+.banner-text h2:after{content:" "; width:100px; height:5px; background: #fffcf3; display:block; margin-top:20px; border-radius:3px;}
 .banner-text p{color: #000000;}
 .img-fluid {
     width: 100%;

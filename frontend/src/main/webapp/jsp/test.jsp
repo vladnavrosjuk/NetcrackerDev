@@ -14,6 +14,8 @@
 <link href="../../resources/css/libs/bootstrap-multiselect.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="../resources/js/libs/jquery.inputmask.bundle.js" ></script>
 <script src="resources/js/custom/login.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+<script src="../resources/js/custom/registration.js"></script>
 
 
 
@@ -42,8 +44,18 @@
                             <input type="checkbox" class="form-check-input">
                             <small>Remember Me</small>
                         </label>
+                <div class="row">
+                    <div class=" col-md-9   ">
                         <button type="submit" class="btn btn-login float-right jsButtonAutor">Submit</button>
-                <button type="submit" data-toggle="modal" data-target="#register" class="btn btn-login float-right jsButtonReg">Registr</button>
+
+
+                    </div>
+                    <div class=" col-md-3   ">
+
+                        <button type="submit" data-toggle="modal" data-target="#register" class="btn btn-login float-right jsButtonReg">Registr</button>
+
+                    </div>
+                </div>
 
 
 
@@ -58,7 +70,7 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
-                            <img class="d-block img-fluid" src="/resources/css/images/1.JPG" alt="First slide">
+                            <img class="d-block img-fluid" src="/resources/css/images/11.JPG" alt="First slide">
                             <div class="carousel-caption d-none d-md-block">
                                 <div class="banner-text">
 
@@ -68,7 +80,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid" src="/resources/css/images/2.JPG" alt="First slide">
+                            <img class="d-block img-fluid" src="/resources/css/images/22.JPG" alt="First slide">
                             <div class="carousel-caption d-none d-md-block">
                                 <div class="banner-text">
                                     <h2>Flexible editing</h2>
@@ -77,7 +89,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid" src="/resources/css/images/3.JPG" alt="First slide">
+                            <img class="d-block img-fluid" src="/resources/css/images/stud.JPG" alt="First slide">
                             <div class="carousel-caption d-none d-md-block">
                                 <div class="banner-text">
                                     <br>
@@ -99,12 +111,31 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" align="center" id="isReleaseStudent">idReleaseStudent</h2>
+                <h2 class="modal-title" align="center" id="isReleaseStudent">Registration</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <label for="idNameRegistr"><span class="glyphicon "></span> Login</label>
+                <input type="text" id ="idNameRegistr"class="form-control mb-2 mr-sm-2 jsLoginRegisrt"  placeholder="Login">
+
+                <label for="idPasswordRegistr"><span class="glyphicon "></span> Password</label>
+                <input type="password" id="idPasswordRegistr"class="form-control jsPasswordRegistr ">
+
+
+                <label for="idPasswordConfirmRegistr"><span class="glyphicon "></span> Confirm Password</label>
+                <input type="password" id="idPasswordConfirmRegistr"class="form-control jsPasswordConfirmRegistr ">
+
+                <label for="idRole"><span class="glyphicon "></span> Role</label>
+                <select class="form-control marginBottom1rem jsRoleRegistration" id="idRole">
+                    <option value=1>Student</option>
+                    <option value=2>Company</option>
+                </select>
+
+
+                <br>
+                <button type="submit" disabled class="btn btn-success btn-block jsAddRegistr"><span class="glyphicon glyphicon-ok"></span> Registr</button>
 
 
 

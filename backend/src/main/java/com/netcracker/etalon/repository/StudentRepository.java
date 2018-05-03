@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 public interface StudentRepository extends CrudRepository<StudentEntity, Integer>
@@ -18,4 +19,6 @@ public interface StudentRepository extends CrudRepository<StudentEntity, Integer
         StudentEntity findById(Integer id);
       @Query (value = "SELECT * FROM student WHERE avscore > :score AND  spec_id = :specid ", nativeQuery = true)
         List<StudentEntity> selectfronscore(@Param("score") Double score, @Param("specid") Integer specid);
+
+
 }

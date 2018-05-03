@@ -43,19 +43,23 @@
     </div>
     <div  class="main-content">
         <div class="row">
-            <div class="col-6 col-md-3">
+            <div class="col-6 col-md-2">
                 <button type="submit" data-toggle="modal" data-target="#infoaboutstudent" disabled class="btn btn-success btn-block  jsModalAboutStudent"><span class="glyphicon glyphicon-ok"></span> About</button>
             </div>
             <div class="col-6 col-md-3">
         <button type="submit" disabled class="btn btn-success btn-block jsTest"><span class="glyphicon glyphicon-ok"></span> Delete</button>
             </div>
-            <div class="col-6 col-md-3">
+            <div class="col-6 col-md-2">
         <button type="submit" data-toggle="modal" data-target="#editStudent" disabled class="btn btn-success btn-block  jsEditStudent"><span class="glyphicon glyphicon-ok"></span> Edit</button>
             </div>
             <div class="col-6 col-md-3">
         <button type="submit" data-toggle="modal" data-target="#releasestudents" disabled class="btn btn-success btn-block jsAssignStudent"><span class="glyphicon glyphicon-ok"></span> Release</button>
             </div>
+            <div class="col-6 col-md-2">
+                <button type="submit" data-toggle="modal" data-target="#registrstudent"  class="btn btn-success btn-block jsRegistrStudent"><span class="glyphicon glyphicon-ok"></span> Registr</button>
+            </div>
         </div>
+
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <table
                     data-toggle="table"
@@ -97,9 +101,7 @@
     </div>
 
 </div>
-<sec:authorize access="hasRole('ROLE_STUDENT')">
-sdksmdkmsdk
-</sec:authorize>
+
 
 
 
@@ -397,6 +399,36 @@ Create Faculty
         </div>
     </div>
 </div>
+
+
+
+
+
+<div class="modal fade" id="registrstudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title jsRegistrName" align="center" id="RegStudent">Registr Student</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <label for="idDropdownStudent">Wait Registration</label>
+                <select class="form-control marginBottom1rem jsRegistrationStudentDropdown" id="idDropdownStudent">
+                </select>
+
+
+
+                <button type="submit"  class="btn btn-success btn-block jsRegistrNewStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 </div>
 </body>

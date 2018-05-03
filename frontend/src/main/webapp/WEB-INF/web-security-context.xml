@@ -15,6 +15,7 @@
         <intercept-url pattern="/admin-page" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/student-page" access="hasRole('ROLE_STUDENT')"/>
         <intercept-url pattern="/request-page" access="hasRole('ROLE_REQUEST')"/>
+        <intercept-url pattern="/autorization" access="isAnonymous()"/>
 
         <csrf disabled="true" />
     </http>

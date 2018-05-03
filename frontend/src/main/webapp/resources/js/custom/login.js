@@ -1471,16 +1471,15 @@ $(document).ready(function () {
                 xhr.status == 401 ? alert('Credentials are not correct.'): alert('Something went wrong, try again later.');
             }
         });
-        $(".jsGoBack").click(function (event) {
-            event.stopPropagation();
-           var oldURL = document.referrer;
-            alert(oldURL);
-
-        })
 
 
     })
 
+    $(".jsGoBack").click(function (event) {
+        event.stopPropagation();
+        history.back();
+
+    })
 
 
     $(".jsButtonExitinAutoriation").click(function (event) {
@@ -1526,7 +1525,7 @@ $(document).ready(function () {
                 students ? function () {
                     students.some(function (student) {
 
-                        window.print();
+
                         $('.jsMultiSelect').append('<option value="'+student.id+'">'+student.surname+' '+student.namestud+' '+student.avscore+'</option>');
 
 
@@ -1539,6 +1538,98 @@ $(document).ready(function () {
 
                 }() : false;
             }
+        });
+    });
+
+
+
+    $(".jsRegistrNewStudent").click(function (event) {
+
+        var ids =  $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idStudent;});
+        var id2 = $(".jsRegistrationStudentDropdown option:selected").attr("value");
+        var obj = {
+            listid: ids,
+            idStudent : id2
+
+
+
+        };
+
+
+
+
+
+        $.ajax({
+
+            url: 'addNewStudentInUser',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (name) {
+
+
+
+
+            }
+
+        });
+    });
+
+    $(".jsRegistrStudent").click(function (event) {
+
+        var ids =  $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
+            return row.idStudent;});
+        var obj = {
+            listid: ids,
+
+
+
+        };
+
+
+
+
+
+        $.ajax({
+
+            url: 'setRegistrationStudentName',
+            type: 'POST',
+            dataType: 'text',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (name) {
+                $(".jsRegistrName").text(name);
+
+
+
+            }
+
+        });
+    });
+
+    $(".jsRegistrStudent").click(function (event) {
+        $.ajax({
+
+            url: 'getRegistrationStudentDropwdon',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+
+            success: function (users) {
+                $('.jsRegistrationStudentDropdown').text('');
+                users ? function () {
+                    users.some(function (user) {
+                        $('.jsRegistrationStudentDropdown').append('<option value="'+user.id+'">'+user.login+'</option>')
+                    });
+
+                }() : false;
+            }
+
         });
     });
 
