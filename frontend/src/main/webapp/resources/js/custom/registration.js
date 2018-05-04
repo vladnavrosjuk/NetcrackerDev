@@ -48,12 +48,14 @@ $(document).ready(function() {
 
               url: 'addNewRegistration',
               type: 'POST',
-              dataType: 'json',
+              dataType: 'text',
               contentType: "application/json",
               mimeType: 'application/json',
               data: JSON.stringify(obj),
               success: function (addedUser) {
-                  alert("Wait for administrator approval")
+
+                  noty({ text: 'Wait for administrator approval'});
+                  $("#register").modal('hide');
 
 
 

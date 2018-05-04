@@ -22,6 +22,7 @@ import java.util.List;
 public class RegistrationController {
     @Autowired
     RegistrationService registrationService;
+
     @Autowired
     RequestService requestService;
     @Autowired
@@ -104,6 +105,17 @@ public class RegistrationController {
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
     }
 
+    @RequestMapping(value = "/setRegistrationRequestName", method = RequestMethod.POST)
+    @ResponseBody
+    public String setRegistrationName(@RequestBody StudentViewModel studentViewModel) {
+
+        RequestEntity requestEntity = requestService.findById(Integer.valueOf(studentViewModel.getListid().get(0)));
+        String name = requestEntity.getNamecompany();
+        return name;
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
     @RequestMapping(value = "/getRegistrationStudentDropwdon", method = RequestMethod.GET)
     @ResponseBody
     public List<RegistrationEntity> addNewDropdownStudent() {
@@ -113,6 +125,46 @@ public class RegistrationController {
 
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
     }
+    @RequestMapping(value = "/getRegistrationRequestDropwdon", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RegistrationEntity> addNewDropdownRequest() {
+
+        List<RegistrationEntity> registrationEntities = registrationService.findByRole("2");
+        return registrationEntities;
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+
+
+
+    @RequestMapping(value = "/addNewRequestInUser", method = RequestMethod.POST)
+    @ResponseBody
+    public void addNewRequestInUser(@RequestBody StudentViewModel studentViewModel) {
+
+
+       RequestEntity requestEntity = requestService.findById(Integer.valueOf(studentViewModel.getListid().get(0)));
+        RegistrationEntity registrationEntity =  registrationService.findById(Integer.valueOf(studentViewModel.getIdStudent()) );
+        UserEntity userEntity = new UserEntity();
+        userEntity.setRequestEntity(requestEntity);
+        userEntity.setLogin(registrationEntity.getLogin());
+        userEntity.setPassuser(registrationEntity.getPassword());
+        userEntity.setRole("ROLE_REQUEST");
+
+
+        userService.add(userEntity);
+        registrationService.deleteById(registrationEntity.getId());
+
+        /*
+        userService.add(userEntity);
+*/
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+
+
+
 
 
 

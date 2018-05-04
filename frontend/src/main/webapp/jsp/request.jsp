@@ -1,12 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: anpi0316
-  Date: 15.03.2018
-  Time: 10:14
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,14 +18,17 @@
 <!-- Кнопка, открывающее модальное окно -->
 </div>
 <div class="row">
-    <div class="col-6 col-md-4">
+    <div class="col-6 col-md-3">
         <button type="submit" disabled class="btn btn-success btn-block jsDeleteRequest"><span class="glyphicon glyphicon-ok"></span> Delete</button>
     </div>
-    <div class="col-6 col-md-4">
+    <div class="col-6 col-md-3">
         <button type="submit" data-toggle="modal" data-target="#editRequest"  disabled class="btn btn-success btn-block  jsEditRequest"><span class="glyphicon glyphicon-ok"></span> Edit</button>
     </div>
-    <div class="col-6 col-md-4">
+    <div class="col-6 col-md-3">
         <button type="submit" data-toggle="modal" data-target="#releaseRequest" disabled class="btn btn-success btn-block jsAssignRequest"><span class="glyphicon glyphicon-ok"></span> Release</button>
+    </div>
+    <div class="col-6 col-md-3">
+        <button type="submit" data-toggle="modal" data-target="#registrrequest" disabled  class="btn btn-success btn-block jsRegistrRequestModal"><span class="glyphicon glyphicon-ok"></span> Registr</button>
     </div>
 </div>
 <table
@@ -99,6 +96,32 @@
     </div>
 </div>
 
+
+
+<div class="modal fade" id="registrrequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title jsRegistrNameRequest" align="center" id="RegRequest">Registr Request</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <label for="idDropdownRequest">Wait Registration</label>
+                <select class="form-control marginBottom1rem jsRegistrationRequestDropdown" id="idDropdownRequest">
+                </select>
+
+                <br>
+
+
+                <button type="submit"  class="btn btn-success btn-block jsRegistrNewRequest "><span class="glyphicon glyphicon-ok"></span> Create</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

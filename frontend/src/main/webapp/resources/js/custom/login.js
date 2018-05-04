@@ -1,6 +1,4 @@
-/**
- * Created by anpi0316 on 15.03.2018.
- */
+
 var valueAbout = 0;
 $(document).ready(function () {
     var x = document.getElementById("createfaculty");
@@ -435,6 +433,8 @@ $(document).ready(function () {
             requestId : $(".jsRequestForAssign option:selected").attr("value")
         };
 
+        noty({ text: 'Assign Create!'});
+        $("#assignstudents").modal('hide');
         $.ajax({
             url: 'addAssign',
             type: 'POST',
@@ -693,6 +693,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
+            $(".jsRegistrStudent").prop('disabled', true);
 
 
         }
@@ -702,6 +703,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
+            $(".jsRegistrStudent").prop('disabled', false);
 
 
         }
@@ -711,6 +713,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
+            $(".jsRegistrStudent").prop('disabled', true);
 
         }
 
@@ -722,6 +725,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
+            $(".jsRegistrStudent").prop('disabled', true);
 
         }
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
@@ -730,6 +734,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
+            $(".jsRegistrStudent").prop('disabled', false);
 
         }
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
@@ -738,6 +743,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
+            $(".jsRegistrStudent").prop('disabled', true);
 
         }
 
@@ -752,6 +758,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
+            $(".jsRegistrStudent").prop('disabled', true);
 
         }
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
@@ -760,6 +767,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
+            $(".jsRegistrStudent").prop('disabled', false);
 
 
         }
@@ -769,6 +777,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
+            $(".jsRegistrStudent").prop('disabled', true);
 
         }
 
@@ -784,6 +793,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
+            $(".jsRegistrStudent").prop('disabled', true);
 
         }
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
@@ -792,6 +802,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
+            $(".jsRegistrStudent").prop('disabled', false);
 
         }
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
@@ -800,7 +811,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
-
+            $(".jsRegistrStudent").prop('disabled', true);
         }
 
     });
@@ -813,6 +824,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
+            $(".jsRegistrStudent").prop('disabled', true);
 
         }
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
@@ -821,6 +833,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
+            $(".jsRegistrStudent").prop('disabled', false);
 
         }
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
@@ -829,6 +842,7 @@ $(document).ready(function () {
             $( ".jsTest" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
+            $(".jsRegistrStudent").prop('disabled', true);
 
         }
 
@@ -911,6 +925,7 @@ $(document).ready(function () {
             $( ".jsEditRequest" ).prop('disabled', true);
             $( ".jsDeleteRequest" ).prop('disabled', false);
             $( ".jsAssignRequest" ).prop('disabled', true);
+            $(".jsRegistrRequestModal").prop('disabled', true);
 
         }
         if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 1)
@@ -918,6 +933,7 @@ $(document).ready(function () {
             $( ".jsEditRequest" ).prop('disabled', false);
             $( ".jsDeleteRequest" ).prop('disabled', false);
             $( ".jsAssignRequest" ).prop('disabled', false);
+            $(".jsRegistrRequestModal").prop('disabled', false);
 
         }
         if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 0)
@@ -925,6 +941,7 @@ $(document).ready(function () {
             $( ".jsEditRequest" ).prop('disabled', true);
             $( ".jsDeleteRequest" ).prop('disabled', true);
             $( ".jsAssignRequest" ).prop('disabled', true);
+            $(".jsRegistrRequestModal").prop('disabled', true);
         }
 
     });
@@ -935,6 +952,7 @@ $(document).ready(function () {
             $( ".jsEditRequest" ).prop('disabled', true);
             $( ".jsDeleteRequest" ).prop('disabled', false);
             $( ".jsAssignRequest" ).prop('disabled', true);
+            $(".jsRegistrRequestModal").prop('disabled', true);
 
         }
         if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 1)
@@ -942,6 +960,7 @@ $(document).ready(function () {
             $( ".jsEditRequest" ).prop('disabled', false);
             $( ".jsDeleteRequest" ).prop('disabled', false);
             $( ".jsAssignRequest" ).prop('disabled', false);
+            $(".jsRegistrRequestModal").prop('disabled', false);
 
         }
         if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 0)
@@ -949,6 +968,7 @@ $(document).ready(function () {
             $( ".jsEditRequest" ).prop('disabled', true);
             $( ".jsDeleteRequest" ).prop('disabled', true);
             $( ".jsAssignRequest" ).prop('disabled', true);
+            $(".jsRegistrRequestModal").prop('disabled', true);
         }
 
     });
@@ -959,6 +979,7 @@ $(document).ready(function () {
             $( ".jsEditRequest" ).prop('disabled', true);
             $( ".jsDeleteRequest" ).prop('disabled', false);
             $( ".jsAssignRequest" ).prop('disabled', true);
+            $(".jsRegistrRequestModal").prop('disabled', true);
 
         }
         if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 1)
@@ -966,6 +987,7 @@ $(document).ready(function () {
             $( ".jsEditRequest" ).prop('disabled', false);
             $( ".jsDeleteRequest" ).prop('disabled', false);
             $( ".jsAssignRequest" ).prop('disabled', false);
+            $(".jsRegistrRequestModal").prop('disabled', false);
 
         }
         if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 0)
@@ -973,6 +995,7 @@ $(document).ready(function () {
             $( ".jsEditRequest" ).prop('disabled', true);
             $( ".jsDeleteRequest" ).prop('disabled', true);
             $( ".jsAssignRequest" ).prop('disabled', true);
+            $(".jsRegistrRequestModal").prop('disabled', true);
         }
 
     });
@@ -980,21 +1003,21 @@ $(document).ready(function () {
 
     $( ".jsRequestsTable" ).on('uncheck.bs.table', function (e, clickedUser) {
         if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length > 1)
-        {
+        {    $(".jsRegistrRequestModal").prop('disabled', true);
             $( ".jsEditRequest" ).prop('disabled', true);
             $( ".jsDeleteRequest" ).prop('disabled', false);
             $( ".jsAssignRequest" ).prop('disabled', true);
 
         }
         if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 1)
-        {
+        {   $(".jsRegistrRequestModal").prop('disabled', false);
             $( ".jsEditRequest" ).prop('disabled', false);
             $( ".jsDeleteRequest" ).prop('disabled', false);
             $( ".jsAssignRequest" ).prop('disabled', false);
 
         }
         if($( ".jsRequestsTable" ).bootstrapTable('getSelections').length == 0)
-        {
+        {   $(".jsRegistrRequestModal").prop('disabled', true);
             $( ".jsEditRequest" ).prop('disabled', true);
             $( ".jsDeleteRequest" ).prop('disabled', true);
             $( ".jsAssignRequest" ).prop('disabled', true);
@@ -1558,7 +1581,8 @@ $(document).ready(function () {
 
 
 
-
+        noty({ text: 'Student Registr!'});
+        $("#registrstudent").modal('hide');
 
         $.ajax({
 
@@ -1636,7 +1660,109 @@ $(document).ready(function () {
 
 
 
-   /* */
+
+    $(".jsRegistrRequestModal").click(function (event) {
+
+        var ids =  $.map($( ".jsRequestsTable " ).bootstrapTable('getSelections'), function (row) {
+            return row.idRequest;});
+        var obj = {
+            listid: ids,
+
+
+
+        };
+
+
+
+
+
+        $.ajax({
+
+            url: 'setRegistrationRequestName',
+            type: 'POST',
+            dataType: 'text',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (name) {
+                $(".jsRegistrNameRequest").text(name);
+
+
+
+            }
+
+        });
+    });
+
+
+
+
+    $(".jsRegistrRequestModal").click(function (event) {
+        $.ajax({
+
+            url: 'getRegistrationRequestDropwdon',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+
+            success: function (users) {
+                $('.jsRegistrationRequestDropdown').text('');
+                users ? function () {
+                    users.some(function (user) {
+                        $('.jsRegistrationRequestDropdown').append('<option value="'+user.id+'">'+user.login+'</option>')
+                    });
+
+                }() : false;
+            }
+
+        });
+    });
+
+
+
+
+
+    $(".jsRegistrNewRequest").click(function (event) {
+
+        var ids =  $.map($( ".jsRequestsTable " ).bootstrapTable('getSelections'), function (row) {
+            return row.idRequest;});
+        var id2 = $(".jsRegistrationRequestDropdown option:selected").attr("value");
+        var obj = {
+            listid: ids,
+            idStudent : id2
+
+
+
+        };
+
+
+
+        noty({ text: 'Request Registr!'});
+        $("#registrrequest").modal('hide');
+
+        $.ajax({
+
+            url: 'addNewRequestInUser',
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (name) {
+
+
+
+
+            }
+
+        });
+    });
+
+
+
+
+    /* */
 
 
 

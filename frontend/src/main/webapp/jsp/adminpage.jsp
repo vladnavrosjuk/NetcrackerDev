@@ -1,13 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: anpi0316
-  Date: 15.03.2018
-  Time: 10:14
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -56,7 +50,7 @@
         <button type="submit" data-toggle="modal" data-target="#releasestudents" disabled class="btn btn-success btn-block jsAssignStudent"><span class="glyphicon glyphicon-ok"></span> Release</button>
             </div>
             <div class="col-6 col-md-2">
-                <button type="submit" data-toggle="modal" data-target="#registrstudent"  class="btn btn-success btn-block jsRegistrStudent"><span class="glyphicon glyphicon-ok"></span> Registr</button>
+                <button type="submit" data-toggle="modal" data-target="#registrstudent"  disabled class="btn btn-success btn-block jsRegistrStudent"><span class="glyphicon glyphicon-ok"></span> Registr</button>
             </div>
         </div>
 
@@ -420,6 +414,7 @@ Create Faculty
                 <select class="form-control marginBottom1rem jsRegistrationStudentDropdown" id="idDropdownStudent">
                 </select>
 
+                <br>
 
 
                 <button type="submit"  class="btn btn-success btn-block jsRegistrNewStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>

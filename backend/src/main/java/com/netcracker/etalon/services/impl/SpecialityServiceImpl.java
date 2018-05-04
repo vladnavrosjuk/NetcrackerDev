@@ -33,11 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * @author anpi0316
- *         Date: 27.03.2018
- *         Time: 19:57
- */
+
 @Transactional
 @Service
 public class SpecialityServiceImpl implements SpecialityService {

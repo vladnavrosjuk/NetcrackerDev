@@ -28,11 +28,7 @@ import com.netcracker.etalon.entities.SpecialityEntity;
 
 import java.util.List;
 
-/**
- * @author anpi0316
- *         Date: 27.03.2018
- *         Time: 19:57
- */
+
 public interface SpecialityService {
 
     List<SpecialityEntity> findall();

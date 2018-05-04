@@ -28,11 +28,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-/**
- * @author anpi0316
- *         Date: 27.03.2018
- *         Time: 19:59
- */
+
 public interface FacultyRepository extends CrudRepository<FacultetEntity, Integer> {
     FacultetEntity findByName(String name);
     FacultetEntity findById(Integer id);
