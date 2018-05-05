@@ -26,7 +26,7 @@ import java.util.List;
 
 @Controller
 
-public class TestController {
+public class AdminController {
 
 
     @Autowired
@@ -60,6 +60,23 @@ public class TestController {
     public ModelAndView getAutorization() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("test");//constants
+
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/testuser", method = RequestMethod.GET)
+    public ModelAndView gettest() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("testuser");//constants
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/testrequest", method = RequestMethod.GET)
+    public ModelAndView gettestreq() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("testrequest");//constants
 
         return modelAndView;
     }
@@ -139,6 +156,7 @@ public class TestController {
     public void addFacultet(@RequestBody FacultetEntity facultetEntity) {
 
         facultyService.addFaculty(facultetEntity);
+
 
 
     }

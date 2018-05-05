@@ -20,9 +20,33 @@ $(document).ready(function() {
             $( ".jsAddRegistr" ).prop('disabled', false);
         else
             $( ".jsAddRegistr" ).prop('disabled', true);
+        if ($(this).val()!=$('.jsPasswordRegistr').val()) {
+
+            var testElem = document.getElementById('idConfirmPasswordHint');
+
+            testElem.style.color = "#ff0000";
+
+            $(".jsConfirmPasswordHint").text("Passwords do not match!!!");
+        }
+        else {
+
+            var testElem = document.getElementById('idConfirmPasswordHint');
+
+            testElem.style.color = "#00c01e";
+            $(".jsConfirmPasswordHint").text("OK");
+
+        }
+
+
 
     })
+    $(".jsButtonReg").click(function () {
+        $(".jsPasswordRegistr").val("");
+        $(".jsLoginRegisrt").val("");
+        $(".jsPasswordConfirmRegistr").val("");
 
+
+    })
 
   $('.jsAddRegistr').click(function () {
 
@@ -54,7 +78,8 @@ $(document).ready(function() {
               data: JSON.stringify(obj),
               success: function (addedUser) {
 
-                  noty({ text: 'Wait for administrator approval'});
+                  noty({ text: 'Wait for administrator approval',
+                      timeout:1000});
                   $("#register").modal('hide');
 
 
@@ -67,8 +92,13 @@ $(document).ready(function() {
           });
       }
       else
-          alert("Passwords do not match")
+      {
+          var testElem = document.getElementById('idConfirmPasswordHint');
 
+          testElem.style.color = "#ff0000";
+
+          $(".jsConfirmPasswordHint").text("Passwords do not match!!!");
+      }
 
 
   })

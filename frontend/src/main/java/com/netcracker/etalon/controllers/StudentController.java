@@ -370,4 +370,27 @@ public class StudentController {
         return stringBuilder;
     }
 
+    @RequestMapping(value = "/setInfoAboutStudent", method = RequestMethod.GET)
+    @ResponseBody
+    public StudentViewModel  setInfoAboutStudent(){
+        CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(customUser.getUsername());
+        UserEntity userEntity = userService.find(customUser.getUsername()).get(0);
+        StudentEntity studentEntity = userEntity.getStudentEntity();
+        StudentViewModel studentViewModel = new StudentViewModel();
+        studentViewModel.setNamestud(studentEntity.getNamestud());
+        studentViewModel.setSurname(studentEntity.getSurname());
+        SpecialityEntity specialityEntity  = studentEntity.getSpecialityEntity();
+        studentViewModel.setSpeciality(specialityEntity.getName());
+        FacultetEntity facultetEntity = specialityEntity.getFacultetEntity();
+        studentViewModel.setFacultet(facultetEntity.getName());
+        studentViewModel.setGroupstud(String.valueOf(studentEntity.getGroupstud()));
+        studentViewModel.setAvscore(String.valueOf(studentEntity.getAvscore()));
+        studentViewModel.setBudjet(studentEntity.getBudjet());
+
+
+
+        return studentViewModel ;
+    }
+
 }

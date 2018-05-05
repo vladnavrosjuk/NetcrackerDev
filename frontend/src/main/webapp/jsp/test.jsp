@@ -40,10 +40,10 @@
 
 
                         <br>
-                        <label class="form-check-label">
+                     <%--   <label class="form-check-label">
                             <input type="checkbox" class="form-check-input">
                             <small>Remember Me</small>
-                        </label>
+                        </label>--%>
                 <div class="row">
                     <div class=" col-md-9   ">
                         <button type="submit" class="btn btn-login float-right jsButtonAutor">Submit</button>
@@ -126,7 +126,7 @@
 
                 <label for="idPasswordConfirmRegistr"><span class="glyphicon "></span> Confirm Password</label>
                 <input type="password" id="idPasswordConfirmRegistr"class="form-control jsPasswordConfirmRegistr ">
-
+                <h6 class="jsConfirmPasswordHint" id="idConfirmPasswordHint"> </h6>
                 <label for="idRole"><span class="glyphicon "></span> Role</label>
                 <select class="form-control marginBottom1rem jsRoleRegistration" id="idRole">
                     <option value=1>Student</option>
@@ -135,7 +135,7 @@
 
 
                 <br>
-                <button type="submit" disabled class="btn btn-success btn-block jsAddRegistr"><span class="glyphicon glyphicon-ok"></span> Registr</button>
+                <button type="submit" disabled class="btn btn-success btn-block jsAddRegistr" id="idAddRegistr"><span class="glyphicon glyphicon-ok"></span> Registr</button>
 
 
 

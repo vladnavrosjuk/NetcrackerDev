@@ -1,12 +1,29 @@
+
+var  avScore = "([0-9]{1}[.]{1}[0-9]{1,2})|10";
+var faculty = "([A-Z])\\w{8}";
+var name = "[A-Z]{1}[a-z]{10}";
+var group = "[0-9]{1,7}";
+
 $(document).ready(function() {
     validateAddStudent();
     validateeditStudent();
     validateAddRequest();
+    hint();
 
+
+    $('.jsStudentSurname').on("keyup",function () {
+        if ( $('.jsStudentSurname').val().length == 0 )
+            $('.jsRegEnter').text("Please,fill in the fields with a Latin letter starting with a capital letter!!!");
+        else  $('.jsRegEnter').text("");
+    })
+    $('.jsStudentSurname').blur(function () {
+        $('.jsRegEnter').text("");
+
+    })
 
 
     $('.jsAddFacultyInput').inputmask('Regex', {
-        regex: "([A-Z])\\w{8}"
+        regex: faculty
 
 
     });
@@ -21,7 +38,7 @@ $(document).ready(function() {
     })
 
     $('.jsInputPassword').inputmask('Regex', {
-        regex: "([A-Z])\\w{8}"
+        regex: faculty
 
 
     });
@@ -38,26 +55,72 @@ $(document).ready(function() {
 
 
 })
+function hint() {
+    $('.jsStudentGroup').on("keyup",function () {
+        if ( $('.jsStudentGroup').val().length == 0 )
+            $('.jsHintGroup').text("Please, fill in the field with numbers only!!!");
+        else  $('.jsHintGroup').text("");
+    })
+    $('.jsStudentGroup').blur(function () {
+        $('.jsHintGroup').text("");
+
+    })
+
+    $('.jsStudentAvScore').on("keyup",function () {
+        if ( $('.jsStudentAvScore').val().length == 0 )
+            $('.jsHintAvScore').text(" Please, fill in the field only with numbers up to 10!!!");
+        else  $('.jsHintAvScore').text("");
+    })
+    $('.jsStudentAvScore').blur(function () {
+        $('.jsHintAvScore').text("");
+
+    })
+
+
+
+
+
+    $('.jsStudentSurname').on("keyup",function () {
+        if ( $('.jsStudentSurname').val().length == 0 )
+            $('.jsHintSurname').text("Please,fill in the fields with a Latin letter starting with a capital letter!!!");
+        else  $('.jsHintSurname').text("");
+    })
+    $('.jsStudentSurname').blur(function () {
+        $('.jsHintSurname').text("");
+
+    })
+
+    $('.jsStudentName').on("keyup",function () {
+        if ( $('.jsStudentName').val().length == 0 )
+            $('.jsHintName').text("Please,fill in the fields with a Latin letter starting with a capital letter!!!");
+        else  $('.jsHintName').text("");
+    })
+    $('.jsStudentName').blur(function () {
+        $('.jsHintName').text("");
+
+    })
+
+}
 function validateeditStudent() {
 
 
     $('.jsStudentNameEdit').inputmask('Regex', {
-        regex: "[A-Z]{1}[a-z]{10}"
+        regex: name
 
 
     });
 
     $('.jsStudentGroupEdit').inputmask('Regex', {
-        regex: "[0-9]{1,7}"
+        regex: group
 
     });
     $('.jsStudentSurnameEdit').inputmask('Regex', {
-        regex: "[A-Z]{1}[a-z]{10}"
+        regex: name
 
     });
 
     $('.jsStudentAvScoreEdit').inputmask('Regex', {
-        regex: "\\d{1}|10"
+        regex: avScore
 
 
     });
@@ -99,12 +162,12 @@ function validateeditStudent() {
 function validateAddRequest() {
 
     $('.jsCompanyName').inputmask('Regex', {
-        regex: "([A-Z])\\w+"
+        regex: faculty
 
     });
 
     $('.jsMinAvScore').inputmask('Regex', {
-        regex: "\\d{1}|10"
+        regex: avScore
 
 
     });
@@ -158,20 +221,20 @@ function validateAddRequest() {
 }
 function validateAddStudent() {
     $('.jsStudentGroup').inputmask('Regex', {
-        regex: "[0-9]{1,7}"
+        regex: group
 
     });
     $('.jsStudentSurname').inputmask('Regex', {
-        regex: "[A-Z]{1}[a-z]{10}"
+        regex: name
 
     });
     $('.jsStudentName').inputmask('Regex', {
-        regex: "[A-Z]{1}[a-z]{10}"
+        regex: name
 
 
     });
     $('.jsStudentAvScore').inputmask('Regex', {
-        regex: "\\d{1}|10"
+        regex: avScore
 
 
     });

@@ -39,10 +39,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-/**
- * @author anpi0316
- *         Date: 10.04.2018
- */
+
 @Service
 public class LoginUserServiceImpl implements LoginUserService {
 

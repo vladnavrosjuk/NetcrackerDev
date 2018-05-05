@@ -55,6 +55,31 @@ $(document).ready(function() {
 
 
 
+
+        }
+
+    });
+    $.ajax({
+        url: 'setInfoAboutStudent',
+        type: 'GET',
+        dataType: 'json',
+        contentType: "application/json",
+        mimeType: 'application/json',
+        data: '',
+        success: function (student) {
+
+
+            $(".jsNameStudent").text(student.namestud),
+                $(".jsSurnameStudent").text(student.surname),
+                $(".jsSpecStudent").text(student.speciality),
+                $(".jsFacultStudent").text(student.facultet),
+                $(".jsGroupStudent").text(student.groupstud),
+                $(".jsBudjetStudent").text(student.budjet),
+                $(".jsScoreStudent").text(student.avscore)
+
+
+
+
         }
 
     });

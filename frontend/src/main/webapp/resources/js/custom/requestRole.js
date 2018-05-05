@@ -32,6 +32,26 @@ $(document).ready(function() {
         }
 
     });
+    $.ajax({
+        url: 'setInfoAboutRequest',
+        type: 'GET',
+        dataType: 'json',
+        contentType: "application/json",
+        mimeType: 'application/json',
+        data: '',
+        success: function (request) {
+
+            $( ".jsNameRequest" ).text(request.name);
+            $( ".jsDateStartRequest" ).text(request.datestart);
+            $( ".jsDateFinishRequest" ).text(request.datefinish);
+            $( ".jsQuantityRequest" ).text(request.quantity);
+
+
+
+        }
+
+    });
+
     $(".jsButtonExitinAutoriation").click(function (event) {
         event.stopPropagation();
         $.ajax({

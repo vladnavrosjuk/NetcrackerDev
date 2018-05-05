@@ -1,6 +1,7 @@
 
 var valueAbout = 0;
 $(document).ready(function () {
+
     var x = document.getElementById("createfaculty");
 
     var indexeow =1 ;
@@ -128,7 +129,8 @@ $(document).ready(function () {
                         var count = $(".jsMultiSelect :selected").length;
 
                         if (count>students.quantity)
-                        {      noty({ text: 'Вы превысили кол-во выборов'});
+                        {      noty({ text: 'Вы превысили кол-во выборов',
+                            timeout:1000});
 
                             $( ".jsAddAssign" ).prop('disabled', true);
 
@@ -433,7 +435,8 @@ $(document).ready(function () {
             requestId : $(".jsRequestForAssign option:selected").attr("value")
         };
 
-        noty({ text: 'Assign Create!'});
+        noty({ text: 'Assign Create!',
+            timeout: 1000});
         $("#assignstudents").modal('hide');
         $.ajax({
             url: 'addAssign',
@@ -547,10 +550,15 @@ $(document).ready(function () {
 
 
 
+    $(".jsNoDelete").click(function () {
+        $("#modaldelete").modal('hide');
 
+    })
 
 
     $(".jsTest").click(function (event) {
+
+        $("#modaldelete").modal('hide');
 
         var ids =  $.map($( ".jsStudentsTable" ).bootstrapTable('getSelections'), function (row) {
             return row.idStudent;});
@@ -561,8 +569,11 @@ $(document).ready(function () {
         };
 
         $( ".jsEditStudent" ).prop('disabled', true);
-        $( ".jsTest" ).prop('disabled', true);
+        $( ".jsModalDelete" ).prop('disabled', true);
         $( ".jsAssignStudent" ).prop('disabled', true);
+        $( ".jsModalAboutStudent" ).prop('disabled', true);
+        $( ".jsRegistrStudent" ).prop('disabled', true);
+
 
         $( ".jsStudentsTable" ).bootstrapTable('remove', {
             field: 'idStudent',
@@ -577,12 +588,14 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
-                alert("lol");
+
+
                 $( ".jsStudentsTable" ).bootstrapTable('remove', {
                     field: 'idStudent',
                     values: ids
                 });
                 $( ".jsStudentsTable" ). bootstrapTable('refresh');
+
 
             }
 
@@ -617,7 +630,8 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
-                noty({ text: 'Специальность '+obj.name+' создана!'});
+                noty({ text: 'Специальность '+obj.name+' создана!',
+                    timeout: 1000});
                 $("#createspeialty").modal('hide');
 
 
@@ -679,7 +693,8 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
-                noty({ text: 'Запрос компании '+obj.namecompany+' создан!'});
+                noty({ text: 'Запрос компании '+obj.namecompany+' создан!',
+                    timeout: 1000});
                 $("#addrequest").modal('toggle');
 
             }
@@ -690,7 +705,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -700,7 +715,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
         {
             $( ".jsEditStudent" ).prop('disabled', false);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
             $(".jsRegistrStudent").prop('disabled', false);
@@ -710,7 +725,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsModalDelete" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -722,7 +737,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -731,7 +746,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
         {
             $( ".jsEditStudent" ).prop('disabled', false);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
             $(".jsRegistrStudent").prop('disabled', false);
@@ -740,7 +755,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsModalDelete" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -755,7 +770,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -764,7 +779,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
         {
             $( ".jsEditStudent" ).prop('disabled', false);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
             $(".jsRegistrStudent").prop('disabled', false);
@@ -774,7 +789,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsModalDelete" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -790,7 +805,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -799,7 +814,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
         {
             $( ".jsEditStudent" ).prop('disabled', false);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
             $(".jsRegistrStudent").prop('disabled', false);
@@ -808,7 +823,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsModalDelete" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -821,7 +836,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length > 1)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -830,7 +845,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 1)
         {
             $( ".jsEditStudent" ).prop('disabled', false);
-            $( ".jsTest" ).prop('disabled', false);
+            $( ".jsModalDelete" ).prop('disabled', false);
             $( ".jsAssignStudent" ).prop('disabled', false);
             $( ".jsModalAboutStudent" ).prop('disabled', false);
             $(".jsRegistrStudent").prop('disabled', false);
@@ -839,7 +854,7 @@ $(document).ready(function () {
         if($( ".jsStudentsTable" ).bootstrapTable('getSelections').length == 0)
         {
             $( ".jsEditStudent" ).prop('disabled', true);
-            $( ".jsTest" ).prop('disabled', true);
+            $( ".jsModalDelete" ).prop('disabled', true);
             $( ".jsAssignStudent" ).prop('disabled', true);
             $( ".jsModalAboutStudent" ).prop('disabled', true);
             $(".jsRegistrStudent").prop('disabled', true);
@@ -880,7 +895,8 @@ $(document).ready(function () {
 
                // $( ".jsStudentsTable" ).bootstrapTable('scrollTo', 'bottom');
                 $( ".jsStudentsTable" ). bootstrapTable('refresh');
-                noty({ text: 'Студент '+obj.namestud+' '+obj.surname+' создан!'});
+                noty({ text: 'Студент '+obj.namestud+' '+obj.surname+' создан!',
+                    timeout: 1000});
                 $("#createstudent").modal('toggle');
 
             }
@@ -912,7 +928,8 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
-                noty({ text: 'Факультет '+obj.name+' создан!'});
+                noty({ text: 'Факультет '+obj.name+' создан!',
+                    timeout: 1000});
                 $("#createfaculty").modal('toggle');
             }
 
@@ -1395,14 +1412,13 @@ $(document).ready(function () {
 
         event.stopPropagation();
 
-        alert("Sd");
 
     })
 
 
 
     $(".jsInfo").click(function () {
-        alert("sd")
+
 
     })
     $( ".jsReleaseRequest" ).click(function() {
@@ -1581,7 +1597,8 @@ $(document).ready(function () {
 
 
 
-        noty({ text: 'Student Registr!'});
+        noty({ text: 'Student Registr!',
+            timeout: 1000});
         $("#registrstudent").modal('hide');
 
         $.ajax({
@@ -1738,7 +1755,8 @@ $(document).ready(function () {
 
 
 
-        noty({ text: 'Request Registr!'});
+        noty({ text: 'Request Registr!',
+            timeout: 1000});
         $("#registrrequest").modal('hide');
 
         $.ajax({

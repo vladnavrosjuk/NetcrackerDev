@@ -36,10 +36,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author anpi0316
- *         Date: 10.04.2018
- */
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired

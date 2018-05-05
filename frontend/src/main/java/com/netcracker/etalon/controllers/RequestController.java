@@ -308,6 +308,25 @@ public class RequestController {
         return stringBuilder;
     }
 
+    @RequestMapping(value = "/setInfoAboutRequest", method = RequestMethod.GET)
+    @ResponseBody
+    public RequestViewModel  setInfoAboutStudent(){
+        CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(customUser.getUsername());
+        UserEntity userEntity = userService.find(customUser.getUsername()).get(0);
+        RequestEntity requestEntity = userEntity.getRequestEntity();
+        RequestViewModel requestViewModel = new RequestViewModel();
+        requestViewModel.setName(requestEntity.getNamecompany());
+        requestViewModel.setDatestart(String.valueOf(requestEntity.getDatestart()));
+        requestViewModel.setDatefinish(String.valueOf(requestEntity.getDatefinish()));
+        requestViewModel.setQuantity(String.valueOf(requestEntity.getQuantity()));
+
+
+
+
+        return requestViewModel;
+    }
+
 
 
 }

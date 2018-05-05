@@ -32,6 +32,7 @@
             <li  class="jsModalAddRequest" data-toggle="modal" data-target="#addrequest"><a class="text-left"><i class="fa fa-plus" ></i> Request</a></li>
             <li class="jsModalCreateStudent" data-toggle="modal" data-target="#createstudent"><a class="text-left"> <i class="fa fa-plus"></i> Student</a></li>
             <li class="jsModalAssignStudents" data-toggle="modal" data-target="#assignstudents"><a class="text-left">    Assign Students</a></li>
+            <li class="jsRequestRegistrStudents" data-toggle="modal" data-target="#registrrequesstudet"><a class="text-left">    Registr Request</a></li>
             <li ><a class="text-left" href="/allrequest2"> All Request</a></li>
         </ul>
     </div>
@@ -41,7 +42,8 @@
                 <button type="submit" data-toggle="modal" data-target="#infoaboutstudent" disabled class="btn btn-success btn-block  jsModalAboutStudent"><span class="glyphicon glyphicon-ok"></span> About</button>
             </div>
             <div class="col-6 col-md-3">
-        <button type="submit" disabled class="btn btn-success btn-block jsTest"><span class="glyphicon glyphicon-ok"></span> Delete</button>
+
+        <button type="submit" data-toggle="modal" data-target="#modaldelete"  disabled class="btn btn-success btn-block jsModalDelete " id="idModalDelete"><span class="glyphicon glyphicon-ok"></span> Delete</button>
             </div>
             <div class="col-6 col-md-2">
         <button type="submit" data-toggle="modal" data-target="#editStudent" disabled class="btn btn-success btn-block  jsEditStudent"><span class="glyphicon glyphicon-ok"></span> Edit</button>
@@ -54,7 +56,7 @@
             </div>
         </div>
 
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
+
             <table
                     data-toggle="table"
 
@@ -88,7 +90,7 @@
 
         </table >
 
-        </sec:authorize>
+
 
 
 
@@ -206,10 +208,10 @@ MODAL-------------------------------CREATESTUDENT
 
                         <label for="inputSurname">Surname</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentSurname "id="inputSurname" placeholder="Surname student">
-
+                        <h6 class="jsHintSurname"> </h6>
                         <label for="inputName">Name</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentName"  id="inputName" placeholder="Name student">
-
+                <h6 class="jsHintName"> </h6>
                         <label for="jsFacultyIdInCreateStudentWindowtest">Facultet</label>
                         <select class="form-control marginBottom1rem jsDataUsingAjax" id="jsFacultyIdInCreateStudentWindowtest">
                         </select>
@@ -220,7 +222,7 @@ MODAL-------------------------------CREATESTUDENT
 
                         <label for="idInputGroup">Group</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentGroup" id="idInputGroup" placeholder="Group">
-
+                <h6 class="jsHintGroup"> </h6>
                         <label for="idBudjet">Budjet</label>
                         <select class="form-control marginBottom1rem jsStudentBudjet" id="idBudjet">
                             <option value=1>Budjet</option>
@@ -229,6 +231,7 @@ MODAL-------------------------------CREATESTUDENT
 
                         <label for="idAvScore">Av.Score.</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsStudentAvScore" id="idAvScore"  placeholder="Av. score">
+                        <h6 class="jsHintAvScore"> </h6>
 
 
                         <button type="submit" disabled class="btn btn-success btn-block jsAddStudent "><span class="glyphicon glyphicon-ok"></span> Create</button>
@@ -262,6 +265,33 @@ MODAL-------------------------------CREATESTUDENT
         </div>
     </div>
 </div>
+
+
+
+<div class="modal fade" id="registrrequesstudet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" align="center" id="idRegistrRequest">Registr Request</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+
+
+                <select id="registRequest" multiple="multiple" class="jsReleaseMultiSelecr">
+                </select>
+
+                <button type="submit" class="btn btn-success btn-block jsRealeaseStudent "><span class="glyphicon glyphicon-ok"></span> Release</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <%-----------------------------------------------------------------------------------------------------------------------------
 MODAL-AssignStudents-
@@ -423,6 +453,36 @@ Create Faculty
     </div>
 </div>
 
+
+
+
+
+<div class="modal fade" id="modaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title jsRegistrName" align="center" id="idDeleteStudent">Delete Student</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+            <div class="col-6 col-md-6">
+                <button type="submit"  class="btn btn-success btn-block  jsTest "><span class="glyphicon glyphicon-ok"></span> Yes</button>
+            </div>
+            <div class="col-md-6">
+                <button type="submit"   class="btn btn-success btn-block jsNoDelete "><span class="glyphicon glyphicon-ok"></span> No</button>
+            </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+</div>
 
 
 </div>
