@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
 
+
+
     $(".jsButtonExitinAutoriation").click(function (event) {
         event.stopPropagation();
         $.ajax({
@@ -84,6 +86,39 @@ $(document).ready(function() {
 
     });
 
+    $(".jsViewCoordinate").click(function (event) {
+
+
+
+
+        $.ajax({
+            url: 'setStudentCoordinate',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (coordinat) {
+                var latlng = new google.maps.LatLng(coordinat.lat, coordinat.lng);
+                var options = {
+                    zoom: 15,
+                    center: latlng,
+
+                };
+                map = new google.maps.Map(document.getElementById("map"), options);
+                marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    title: "Your Company"
+                });
+
+
+
+
+            }
+
+        });
+    })
 
     $(".jsPrint").click(function (event) {
 

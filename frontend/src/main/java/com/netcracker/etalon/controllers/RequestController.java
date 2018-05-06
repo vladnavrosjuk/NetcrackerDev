@@ -40,7 +40,8 @@ public class RequestController {
     @Autowired
     private UserService userService;
     @Autowired
-    private RoleService roleService;
+    private CoordinateService coordinateService;
+
     private  final TypeDescriptor requestEntityDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(RequestEntity.class));
     private  final TypeDescriptor requestViewModelDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(RequestViewModel.class));
 
@@ -156,6 +157,36 @@ public class RequestController {
         List<StudentEntity> studentEntityList = requestEntity.getStudent();
 
         return  studentEntityList;
+
+        // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
+    }
+
+    @RequestMapping(value = "/saveRequestCoordinate", method = RequestMethod.POST)
+    @ResponseBody
+    public void saveRequestCoordinate(@RequestBody RequestViewModel requestViewModel) {
+        RequestEntity requestEntity = requestService.findById(Integer.valueOf(requestViewModel.getIdRequestList().get(0)) );
+
+        if (coordinateService.findByRequest(requestEntity)==null){
+            CoordinatEntity coordinatEntity = new CoordinatEntity();
+        coordinatEntity.setRequest(requestEntity);
+        coordinatEntity.setLat(requestViewModel.getLat());
+        coordinatEntity.setLng(requestViewModel.getLan());
+
+        coordinateService.addCoordinate(coordinatEntity);}
+        else {
+            CoordinatEntity coordinatEntity = coordinateService.findByRequest(requestEntity);
+            coordinatEntity.setRequest(requestEntity);
+            coordinatEntity.setLat(requestViewModel.getLat());
+            coordinatEntity.setLng(requestViewModel.getLan());
+            coordinateService.addCoordinate(coordinatEntity);
+
+        }
+
+
+
+
+
+
 
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
     }

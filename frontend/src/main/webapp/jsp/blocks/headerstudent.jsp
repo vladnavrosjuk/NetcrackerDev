@@ -3,6 +3,9 @@
 <%--bootstrap table--%>
 <script src="resources/js/libs/jquery-3.2.1.min.js"></script>
 <script src="resources/js/libs/packaged.min.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSfqj0z4gUb9oF8ZoWwtLmowiqqw2rWUk&callback=initMap">
+</script>
 
 <script src="resources/js/libs/popper.min.js"></script>
 <script src="resources/js/libs/bootstrap.min.js"></script>
@@ -15,6 +18,8 @@
 <script type="text/javascript" src="../../resources/js/libs/bootstrap-multiselect.js"></script>
 <link href="../../resources/css/libs/bootstrap-multiselect.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="../resources/js/libs/jquery.inputmask.bundle.js" ></script>
+
+<script src="resources/js/custom/geocoder.js"></script>
 <script src="resources/js/custom/student.js"></script>
 
 

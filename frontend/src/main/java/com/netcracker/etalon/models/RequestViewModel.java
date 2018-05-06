@@ -9,12 +9,29 @@ public class RequestViewModel {
     private String name;
     private String datestart;
     private String datefinish;
-
+    private String lat;
+    private String lan;
     private String minavscore;
     private String quantity;
     private String idSpeciality;
     private String specialityName;
     private String studentsofpractice;
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLan() {
+        return lan;
+    }
+
+    public void setLan(String lan) {
+        this.lan = lan;
+    }
 
     public String getStudentsofpractice() {
         return studentsofpractice;

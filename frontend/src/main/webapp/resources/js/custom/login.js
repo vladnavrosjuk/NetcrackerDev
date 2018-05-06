@@ -1487,6 +1487,36 @@ $(document).ready(function () {
 
         });
     });
+
+    $(".jsInputPassword").keyup(function (event) {
+        if(event.keyCode==13)
+        {
+            var obj = {   username: $(".jsInputNameAutor").val(),
+                password: $(".jsInputPassword").val()}
+
+            $.ajax({
+                url: '/authorizeUser',
+                type: 'POST',
+                contentType: "application/json",
+                dataType: 'text',
+                mimeType: 'application/json',
+                data: JSON.stringify(obj
+                ),
+                success: function (xhr) {
+
+                    console.log(xhr.status);
+
+                    window.location.href = xhr;
+                },
+                error: function (xhr, textStatus) {
+                    xhr.status == 401 ? alert('Credentials are not correct.'): alert('Something went wrong, try again later.');
+                }
+            });
+
+
+        }
+
+    })
     $(".jsButtonAutor").click(function (event) {
         event.stopPropagation();
         var obj = {   username: $(".jsInputNameAutor").val(),

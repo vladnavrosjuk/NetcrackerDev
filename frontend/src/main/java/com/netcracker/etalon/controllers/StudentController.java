@@ -37,7 +37,8 @@ public class StudentController {
     @Autowired
     private UserService userService;
     @Autowired
-    private RoleService roleService;
+    private CoordinateService coordinateService;
+
     private static final String STATUS_OF_PRACTICE_DISTR = "Awaits practice";
     private static  final String STATUS_OF_PRACTICE_NO_DISTR = "N0 DISTRIBUTED";
     private static  final String STATUS_OF_PRACTICE_IN_PRACTICE = "On practice";
@@ -392,5 +393,27 @@ public class StudentController {
 
         return studentViewModel ;
     }
+    @RequestMapping(value = "/setStudentCoordinate", method = RequestMethod.GET)
+    @ResponseBody
+    public CoordinatEntity  setStudentCoordinate(){
+        CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(customUser.getUsername());
+        UserEntity userEntity = userService.find(customUser.getUsername()).get(0);
+        StudentEntity studentEntity = userEntity.getStudentEntity();
+        if (studentEntity.getRequest().size()!=0) {
+            RequestEntity requestEntity = studentEntity.getRequest().get(0);
+            CoordinatEntity coordinatEntity = coordinateService.findByRequest(requestEntity);
+
+
+            return coordinatEntity;
+        }
+        CoordinatEntity coordinatEntity = new CoordinatEntity();
+        coordinatEntity.setLng("1.0");
+        coordinatEntity.setLat("1.0");
+
+
+        return coordinatEntity;
+    }
+
 
 }

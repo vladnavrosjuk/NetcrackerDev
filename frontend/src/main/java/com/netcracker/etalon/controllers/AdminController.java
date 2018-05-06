@@ -41,8 +41,7 @@ public class AdminController {
     private StudentService studentService;
     @Autowired
     private UserService userService;
-    @Autowired
-    private RoleService roleService;
+
     private  final TypeDescriptor requestEntityDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(RequestEntity.class));
     private  final TypeDescriptor requestViewModelDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(RequestViewModel.class));
 
@@ -84,7 +83,7 @@ public class AdminController {
     @RequestMapping(value = "/student-page", method = RequestMethod.GET)
     public ModelAndView getStudentPAge() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("student");//constants
+        modelAndView.setViewName("maps");//constants
 
         return modelAndView;
     }

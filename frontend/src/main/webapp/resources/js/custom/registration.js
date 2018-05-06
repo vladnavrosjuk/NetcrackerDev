@@ -48,6 +48,7 @@ $(document).ready(function() {
 
     })
 
+
   $('.jsAddRegistr').click(function () {
 
       var password  = $(".jsPasswordRegistr").val();

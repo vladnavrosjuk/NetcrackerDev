@@ -6,29 +6,50 @@
 <head>
     <title>Login page</title>
 </head>
-
-
-
-
-
-
-
+<body>
 <jsp:include page="/jsp/blocks/headerAllRequest.jsp"/>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSfqj0z4gUb9oF8ZoWwtLmowiqqw2rWUk&callback=initMap">
+</script>
+<script src="resources/js/custom/geocoder.js"></script>
+
+<script src="resources/js/custom/maps.js"></script>
+<style>
+
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+
+
+
+
+
+
+
+
 <br>
 <!-- Кнопка, открывающее модальное окно -->
 </div>
 <div class="row">
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-2">
         <button type="submit" disabled class="btn btn-success btn-block jsDeleteRequest"><span class="glyphicon glyphicon-ok"></span> Delete</button>
     </div>
     <div class="col-6 col-md-3">
         <button type="submit" data-toggle="modal" data-target="#editRequest"  disabled class="btn btn-success btn-block  jsEditRequest"><span class="glyphicon glyphicon-ok"></span> Edit</button>
     </div>
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-2">
         <button type="submit" data-toggle="modal" data-target="#releaseRequest" disabled class="btn btn-success btn-block jsAssignRequest"><span class="glyphicon glyphicon-ok"></span> Release</button>
     </div>
+
     <div class="col-6 col-md-3">
+
         <button type="submit" data-toggle="modal" data-target="#registrrequest" disabled  class="btn btn-success btn-block jsRegistrRequestModal"><span class="glyphicon glyphicon-ok"></span> Registr</button>
+    </div>
+    <div class="col-6 col-md-2">
+
+        <button type="submit" data-toggle="modal" data-target="#modalmaps"   class="btn btn-success btn-block "><span class="glyphicon glyphicon-ok"></span> Map</button>
     </div>
 </div>
 <table
@@ -71,7 +92,30 @@
     </diw>
 </div>
 
+<div class="modal fade" id="modalmaps" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title jsRegistrName" align="center" id="idModalMaps">Map</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control mb-2 mr-sm-2 jsSearchInMap"  id="search" placeholder="Map">
+                <button type="submit"  class="btn btn-success btn-block jsClickSearch " id="idSearchMapa"><span class="glyphicon glyphicon-ok"></span> Search</button>
+                <button type="submit"  class="btn btn-success btn-block jsAddCoordinate" id="idAddCoord"><span class="glyphicon glyphicon-ok"></span> Save</button>
 
+
+                <div id="map"></div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="releaseRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

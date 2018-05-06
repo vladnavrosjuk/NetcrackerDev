@@ -15,11 +15,17 @@
 <script src="resources/js/custom/menu.js"></script>
 
 
+
+
 <body>
 <style>
     html,body{
         overflow-x:hidden;
         overflow-y:hidden;
+    }
+    #map {
+        height: 400px;
+        width: 100%;
     }
 </style>
 
@@ -32,7 +38,7 @@
             <li  class="jsModalAddRequest" data-toggle="modal" data-target="#addrequest"><a class="text-left"><i class="fa fa-plus" ></i> Request</a></li>
             <li class="jsModalCreateStudent" data-toggle="modal" data-target="#createstudent"><a class="text-left"> <i class="fa fa-plus"></i> Student</a></li>
             <li class="jsModalAssignStudents" data-toggle="modal" data-target="#assignstudents"><a class="text-left">    Assign Students</a></li>
-            <li class="jsRequestRegistrStudents" data-toggle="modal" data-target="#registrrequesstudet"><a class="text-left">    Registr Request</a></li>
+            <li class="jsRequestRegistrStudents" data-toggle="modal" data-target="#modalmaps"><a class="text-left">    modalmap</a></li>
             <li ><a class="text-left" href="/allrequest2"> All Request</a></li>
         </ul>
     </div>
@@ -483,6 +489,10 @@ Create Faculty
     </div>
 </div>
 </div>
+
+
+
+
 
 
 </div>

@@ -11,7 +11,7 @@
     <mapping class="com.netcracker.etalon.entities.FacultetEntity"/>
     <mapping class="com.netcracker.etalon.entities.SpecialityEntity"/>
     <mapping class="com.netcracker.etalon.entities.StudentEntity"/>
-    <mapping class="com.netcracker.etalon.entities.RoleEntity"/>
+
     <mapping class="com.netcracker.etalon.entities.UserEntity"/>
 
   </session-factory>
