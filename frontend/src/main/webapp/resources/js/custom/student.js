@@ -54,6 +54,7 @@ $(document).ready(function() {
         success: function (name) {
 
             $( ".jsStudentsTableRole" ).bootstrapTable('load', name);
+            $(".jsStudentsTableRole").bootstrapTable('check', 0);
 
 
 
@@ -88,17 +89,26 @@ $(document).ready(function() {
 
     $(".jsViewCoordinate").click(function (event) {
 
+        var ids = $.map($(".jsStudentsTableRole").bootstrapTable('getSelections'), function (row) {
+            return row.idRequestCompany;
+        });
+        var obj = {
+            listRequest: ids,
 
+
+        };
 
 
         $.ajax({
             url: 'setStudentCoordinate',
-            type: 'GET',
+            type: 'POST',
             dataType: 'json',
             contentType: "application/json",
             mimeType: 'application/json',
-            data: '',
+            data: JSON.stringify(obj),
             success: function (coordinat) {
+                if (coordinat.lng=="39.55951988697052")
+                {alert("Company location not specified");}
                 var latlng = new google.maps.LatLng(coordinat.lat, coordinat.lng);
                 var options = {
                     zoom: 15,

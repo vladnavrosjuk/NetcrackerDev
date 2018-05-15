@@ -1,7 +1,12 @@
 package com.netcracker.etalon.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StydentAndRequestViewModel {
     private String idStudent;
+    private String idRequestCompany;
+    private List<String> listRequest = new ArrayList<>();
     private String surname;
     private String namestud;
     private String speciality;
@@ -20,6 +25,23 @@ public class StydentAndRequestViewModel {
     private String quantity;
     private String idSpeciality;
     private String specialityName;
+
+
+    public List<String> getListRequest() {
+        return listRequest;
+    }
+
+    public void setListRequest(List<String> listRequest) {
+        this.listRequest = listRequest;
+    }
+
+    public String getIdRequestCompany() {
+        return idRequestCompany;
+    }
+
+    public void setIdRequestCompany(String idRequestCompany) {
+        this.idRequestCompany = idRequestCompany;
+    }
 
     public String getIdStudent() {
         return idStudent;

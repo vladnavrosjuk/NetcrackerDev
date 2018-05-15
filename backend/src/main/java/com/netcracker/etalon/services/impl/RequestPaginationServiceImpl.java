@@ -19,7 +19,7 @@ public class RequestPaginationServiceImpl implements RequestPaginationService {
     @Autowired
     RequestPaginationRepository requestPaginationRepository;
     @Override
-    public List<RequestEntity> getPaginationAndSortedPageList(String sort, String order, Integer offset, Integer limit) {
+    public List<RequestEntity> getPaginationAndSortedPageList(String search, String sort, String order, Integer offset, Integer limit) {
         int pageNumber = offset/limit;
         if (sort.equals("name"))
             sort = "namecompany";
@@ -30,7 +30,8 @@ public class RequestPaginationServiceImpl implements RequestPaginationService {
 
 
         PageRequest pageRequest = new PageRequest(pageNumber,limit, Sort.Direction.fromString(order),sort);
-
+        if (search!="")
+            return requestPaginationRepository.searchbyname("%"+search+"%",pageRequest);
         return requestPaginationRepository.findAll(pageRequest).getContent();
     }
 }

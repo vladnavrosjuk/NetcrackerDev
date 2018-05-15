@@ -9,5 +9,6 @@ import java.util.List;
 public interface RegistrationRepository extends CrudRepository<RegistrationEntity,Integer> {
     List<RegistrationEntity> findByRole (String name);
     RegistrationEntity findById(Integer id);
+
     void deleteById (Integer id);
 }

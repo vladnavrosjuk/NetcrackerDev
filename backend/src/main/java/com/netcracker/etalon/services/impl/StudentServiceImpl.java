@@ -47,6 +47,11 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
+    public List<StudentEntity> searchbyname(String score) {
+        return studentRepository.searchbyname(score);
+    }
+
+    @Override
     public Integer maxId() {
         return studentRepository.maxId();
     }

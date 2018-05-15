@@ -5,7 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login page</title>
+    <title>Admin page</title>
 
 </head>
 
@@ -38,8 +38,8 @@
             <li  class="jsModalAddRequest" data-toggle="modal" data-target="#addrequest"><a class="text-left"><i class="fa fa-plus" ></i> Request</a></li>
             <li class="jsModalCreateStudent" data-toggle="modal" data-target="#createstudent"><a class="text-left"> <i class="fa fa-plus"></i> Student</a></li>
             <li class="jsModalAssignStudents" data-toggle="modal" data-target="#assignstudents"><a class="text-left">    Assign Students</a></li>
-            <li class="jsRequestRegistrStudents" data-toggle="modal" data-target="#modalmaps"><a class="text-left">    modalmap</a></li>
-            <li ><a class="text-left" href="/allrequest2"> All Request</a></li>
+            <li class="jsRequestRegistrStudents" data-toggle="modal" data-target="#regRequest"><a class="text-left">    Registr Request</a></li>
+            <li ><a class="text-left" href="/allRequest"> All Request</a></li>
         </ul>
     </div>
     <div  class="main-content">
@@ -198,6 +198,55 @@ MODAL-------------------------------ADDREQUEST--
         </div>
     </div>
 </div>
+
+
+
+
+<div class="modal fade" id="regRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" align="center" id="idregRequest">Registr Request</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table
+
+                        data-toggle="table"
+                        data-pagination="true"
+                        data-search="true"
+                        data-page-list="[5, 10, 25, 50, 100]"
+
+
+                        class="jsRegistrStudentsTable">
+
+                    <thead>
+                    <tr>
+
+
+
+                        <th  data-checkbox="id"></th>
+                        <th data-field="login" data-sortable="true">Login</th>
+                        <th data-field="role" data-sortable="true">Role</th>
+
+
+
+
+
+                    </tr>
+                    </thead>
+
+                </table >
+
+
+                <button type="submit"  class="btn btn-success btn-block jsRegRequestDelete"><span class="glyphicon glyphicon-ok"></span> Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <%-----------------------------------------------------------------------------------------------------------------------------
 MODAL-------------------------------CREATESTUDENT
 -----------------------------------------------------------------------------------------------------------------------------%>

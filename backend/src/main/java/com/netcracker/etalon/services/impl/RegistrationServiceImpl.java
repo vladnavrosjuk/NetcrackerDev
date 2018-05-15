@@ -15,6 +15,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     RegistrationRepository registrationRepository;
 
+
     @Override
     public void addRegistration(RegistrationEntity registrationEntity) {
         registrationRepository.save(registrationEntity);
@@ -23,6 +24,11 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public List<RegistrationEntity> findByRole(String name) {
         return registrationRepository.findByRole(name);
+    }
+
+    @Override
+    public List<RegistrationEntity> findAll() {
+        return (List<RegistrationEntity>) registrationRepository.findAll();
     }
 
     @Override

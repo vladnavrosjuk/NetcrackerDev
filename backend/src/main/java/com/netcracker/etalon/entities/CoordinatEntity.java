@@ -6,6 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "coordinat", schema = "navr", catalog = "")
 public class CoordinatEntity {
+
     private int id;
     private String lat;
     private String lng;

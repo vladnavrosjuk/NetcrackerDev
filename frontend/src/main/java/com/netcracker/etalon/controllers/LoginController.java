@@ -41,11 +41,11 @@ public class LoginController {
 
             //loginUserService.resolveHomeView((List<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities());
             if (role.equals("ROLE_ADMIN"))
-            return "/admin-page";
+            return "/adminPage";
             if (role.equals("ROLE_STUDENT"))
-                return "/testuser";
+                return "/userPage";
             if (role.equals("ROLE_REQUEST"))
-                return "/testrequest";
+                return "/requestPage";
 
 
             //response.sendRedirect("/admin-page");

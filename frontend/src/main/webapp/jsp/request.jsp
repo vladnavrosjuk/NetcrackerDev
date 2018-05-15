@@ -4,9 +4,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login page</title>
+    <title>All Request</title>
 </head>
 <body>
+
 <jsp:include page="/jsp/blocks/headerAllRequest.jsp"/>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSfqj0z4gUb9oF8ZoWwtLmowiqqw2rWUk&callback=initMap">
@@ -34,6 +35,7 @@
 </div>
 <div class="row">
     <div class="col-6 col-md-2">
+
         <button type="submit" disabled class="btn btn-success btn-block jsDeleteRequest"><span class="glyphicon glyphicon-ok"></span> Delete</button>
     </div>
     <div class="col-6 col-md-3">
@@ -49,7 +51,7 @@
     </div>
     <div class="col-6 col-md-2">
 
-        <button type="submit" data-toggle="modal" data-target="#modalmaps"   class="btn btn-success btn-block "><span class="glyphicon glyphicon-ok"></span> Map</button>
+        <button type="submit" data-toggle="modal" data-target="#modalmaps"  disabled class="btn btn-success btn-block jsModalMapOpen "><span class="glyphicon glyphicon-ok"></span> Map</button>
     </div>
 </div>
 <table
@@ -102,9 +104,21 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="row">
+                <div class="col-6 col-md-9">
                 <input type="text" class="form-control mb-2 mr-sm-2 jsSearchInMap"  id="search" placeholder="Map">
+                </div>
+
+                <div class="col-6 col-md-3">
+
+
                 <button type="submit"  class="btn btn-success btn-block jsClickSearch " id="idSearchMapa"><span class="glyphicon glyphicon-ok"></span> Search</button>
+                </div>
+                </div>
+
                 <button type="submit"  class="btn btn-success btn-block jsAddCoordinate" id="idAddCoord"><span class="glyphicon glyphicon-ok"></span> Save</button>
+
+
 
 
                 <div id="map"></div>

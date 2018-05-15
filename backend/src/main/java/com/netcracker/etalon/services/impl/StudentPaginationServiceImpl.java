@@ -27,7 +27,7 @@ public class StudentPaginationServiceImpl implements StudentPaginationService {
             sort = "specialityEntity.FacultetEntity.name";
         PageRequest pageRequest = new PageRequest(pageNumber,limit, Sort.Direction.fromString(order),sort);
         if (search!="")
-            return studentPaginationRepository.searchbyname("%"+search+"%");
+            return studentPaginationRepository.searchbyname("%"+search+"%",pageRequest);
         return studentPaginationRepository.findAll(pageRequest).getContent();
     }
 

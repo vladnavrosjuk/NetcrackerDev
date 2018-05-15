@@ -20,5 +20,8 @@ public interface StudentRepository extends CrudRepository<StudentEntity, Integer
       @Query (value = "SELECT * FROM student WHERE avscore > :score AND  spec_id = :specid ", nativeQuery = true)
         List<StudentEntity> selectfronscore(@Param("score") Double score, @Param("specid") Integer specid);
 
+    @Query (value = "SELECT * FROM student WHERE  student.namestud LIKE :namestudena ", nativeQuery = true)
+    List<StudentEntity> searchbyname(@Param("namestudena") String score);
+
 
 }

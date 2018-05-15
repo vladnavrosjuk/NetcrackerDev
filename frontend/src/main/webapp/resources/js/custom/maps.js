@@ -1,10 +1,6 @@
 
 
-
-
-$(document).ready(function() {
-    var latmarker = null;
-    var lngmarker = null;
+function initMap() {
     var latlng = new google.maps.LatLng(59.9386300,30.3141300);
     var options = {
         zoom: 15,
@@ -13,6 +9,13 @@ $(document).ready(function() {
     };
 
     map = new google.maps.Map(document.getElementById("map"), options);
+
+}
+
+$(document).ready(function() {
+    var latmarker = null;
+    var lngmarker = null;
+
 
     var a = null;
     var b = null;

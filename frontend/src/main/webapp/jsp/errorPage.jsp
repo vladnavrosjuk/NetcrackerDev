@@ -18,6 +18,7 @@
     <script src="resources/js/custom/login.js"></script>
 
     <link href="../resources/css/libs/error.css" rel="stylesheet" type="text/css" media="all"/>
+    <title>Error</title>
 </head>
 <body>
 <div class="travolta">

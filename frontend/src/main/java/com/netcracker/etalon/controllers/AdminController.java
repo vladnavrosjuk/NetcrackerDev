@@ -2,10 +2,7 @@ package com.netcracker.etalon.controllers;
 
 
 import com.netcracker.etalon.dto.*;
-import com.netcracker.etalon.entities.FacultetEntity;
-import com.netcracker.etalon.entities.RequestEntity;
-import com.netcracker.etalon.entities.SpecialityEntity;
-import com.netcracker.etalon.entities.StudentEntity;
+import com.netcracker.etalon.entities.*;
 import com.netcracker.etalon.models.RequestViewModel;
 import com.netcracker.etalon.models.StudentViewModel;
 import com.netcracker.etalon.services.*;
@@ -40,6 +37,8 @@ public class AdminController {
     @Autowired
     private StudentService studentService;
     @Autowired
+    private RegistrationService registrationService;
+    @Autowired
     private UserService userService;
 
     private  final TypeDescriptor requestEntityDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(RequestEntity.class));
@@ -53,67 +52,60 @@ public class AdminController {
     private static  final String STATUS_OF_PRACTICE_IN_PRACTICE = "On practice";
     private static final String VIEW_NAME_LOGIN = "adminpage";
     private static final String VIEW_ALL_REQUEST = "request";
+    private static final String VIEW_LOGIN_PAGE = "loginpage";
+    private static final String VIEW_USER_PAGE = "userPage";
+    private static final String VIEW_ADMIN_PAGE = "adminpage";
+    private static final String VIEW_COMPANY_PAGE = "companyPage";
+
+
 
 
     @RequestMapping(value = "/autorization", method = RequestMethod.GET)
     public ModelAndView getAutorization() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("test");//constants
+        modelAndView.setViewName(VIEW_LOGIN_PAGE);//constants
 
         return modelAndView;
     }
 
 
-    @RequestMapping(value = "/testuser", method = RequestMethod.GET)
+    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
     public ModelAndView gettest() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("testuser");//constants
+        modelAndView.setViewName(VIEW_USER_PAGE);//constants
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/testrequest", method = RequestMethod.GET)
+    @RequestMapping(value = "/requestPage", method = RequestMethod.GET)
     public ModelAndView gettestreq() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("testrequest");//constants
-
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/student-page", method = RequestMethod.GET)
-    public ModelAndView getStudentPAge() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("maps");//constants
+        modelAndView.setViewName(VIEW_COMPANY_PAGE  );//constants
 
         return modelAndView;
     }
 
 
-    @RequestMapping(value = "/allrequest2", method = RequestMethod.GET)//?
+
+
+    @RequestMapping(value = "/allRequest", method = RequestMethod.GET)//?
     public ModelAndView getAllrequest() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("request");//constants
+        modelAndView.setViewName(VIEW_ALL_REQUEST);//constants
 
         return modelAndView;
     }
 
 
-    @RequestMapping(value = "/infostudent", method = RequestMethod.GET)
-    public ModelAndView getInfoStudent(ModelMap modelMap) {
 
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("informstudent");
-        return modelAndView;
-    }
 
-
-    @RequestMapping(value = "/admin-page", method = RequestMethod.GET)
+    @RequestMapping(value = "/adminPage", method = RequestMethod.GET)
     public ModelAndView getAdminPage() {
 
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("adminpage");
+        modelAndView.setViewName(VIEW_ADMIN_PAGE);
 
         return modelAndView;
     }
@@ -174,18 +166,18 @@ public class AdminController {
 
     }
 
-    @RequestMapping(value = "/specialityfor1", method = RequestMethod.GET)
+    @RequestMapping(value = "/specialityForFirstFaculty", method = RequestMethod.GET)
     @ResponseBody
-    public List<SpecialityEntity> specialityfor1add() {
+    public List<SpecialityEntity> specialityForFirstFaculty() {
         FacultetEntity facultetEntity = facultyService.findByid(1);
         return specialityService.findByFacultetEntity(facultetEntity);
 
 
     }
 
-    @RequestMapping(value = "/dropDown2", method = RequestMethod.POST)
+    @RequestMapping(value = "/specialityForFaculty", method = RequestMethod.POST)
     @ResponseBody
-    public List<SpecialityEntity> dropdown2(@RequestBody SpecialityDto specialityDto) {
+    public List<SpecialityEntity> specialityForFaculty(@RequestBody SpecialityDto specialityDto) {
         FacultetEntity facultetEntity = facultyService.findByid(specialityDto.getFacultetId());
         return specialityService.findByFacultetEntity(facultetEntity);
 
@@ -253,9 +245,9 @@ public class AdminController {
     }
 
 
-    @RequestMapping(value = "/ogr", method = RequestMethod.POST)
+    @RequestMapping(value = "/findRequest", method = RequestMethod.POST)
     @ResponseBody
-    public RequestEntity findrequest(@RequestBody RequestDto requestDto) {
+    public RequestEntity findRequest(@RequestBody RequestDto requestDto) {
         RequestEntity requestEntity = requestService.findById(requestDto.getId());
 
         return requestEntity;
@@ -268,24 +260,35 @@ public class AdminController {
         return (List<RequestViewModel>) conversionService.convert(allrequests, requestEntityDescriptor, requestViewModelDescriptor);
     }
 
+    @RequestMapping(value = "/findAllRegistrationRequest", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RegistrationEntity> findAllRegistrationRequest() {
+        List<RegistrationEntity> registrationEntities =registrationService.findAll();
+        for (RegistrationEntity registrationEntity : registrationEntities)
+        {
+            if (registrationEntity.getRole().equals("1"))
+                registrationEntity.setRole("Student");
+            else registrationEntity.setRole("Company");
+        }
+        return  registrationEntities;
+    }
+
+    @RequestMapping(value = "/deleteRegistrRequest", method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteRegistrRequest(@RequestBody RequestViewModel requestViewModel) {
+        for (String id : requestViewModel.getIdRequestList())
+        {
+            registrationService.deleteById(Integer.valueOf(id));
+        }
+
+        System.out.println();
+    }
+
+
+
+
+
 
 
 
 }
-/*
- WITHOUT LIMITING THE FOREGOING, COPYING, REPRODUCTION, REDISTRIBUTION,
- REVERSE ENGINEERING, DISASSEMBLY, DECOMPILATION OR MODIFICATION
- OF THE SOFTWARE IS EXPRESSLY PROHIBITED, UNLESS SUCH COPYING,
- REPRODUCTION, REDISTRIBUTION, REVERSE ENGINEERING, DISASSEMBLY,
- DECOMPILATION OR MODIFICATION IS EXPRESSLY PERMITTED BY THE LICENSE
- AGREEMENT WITH NETCRACKER.
- THIS SOFTWARE IS WARRANTED, IF AT ALL, ONLY AS EXPRESSLY PROVIDED IN
- THE TERMS OF THE LICENSE AGREEMENT, EXCEPT AS WARRANTED IN THE
- LICENSE AGREEMENT, NETCRACKER HEREBY DISCLAIMS ALL WARRANTIES AND
- CONDITIONS WITH REGARD TO THE SOFTWARE, WHETHER EXPRESS, IMPLIED
- OR STATUTORY, INCLUDING WITHOUT LIMITATION ALL WARRANTIES AND
- CONDITIONS OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
- TITLE AND NON-INFRINGEMENT.
- Copyright (c) 1995-2017 NetCracker Technology Corp.
- All Rights Reserved.
-*/

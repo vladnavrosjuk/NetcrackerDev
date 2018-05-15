@@ -10,7 +10,6 @@ import com.netcracker.etalon.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,14 +21,19 @@ import java.util.List;
 
 @Controller
 public class StudentController {
+
     @Autowired
     ConversionService conversionService;
+
     @Autowired
     private RequestService requestService;
+
     @Autowired
     private FacultyService facultyService;
+
     @Autowired
     private SpecialityService specialityService;
+
     @Autowired
     private StudentService studentService;
     @Autowired
@@ -59,27 +63,29 @@ public class StudentController {
         CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(customUser.getUsername());
         List<String> list = studentViewModel.getListid();
-        for (String id : list){
+        for (String id : list) {
             StudentEntity studentEntity = studentService.findById(Integer.valueOf(id));
-            UserEntity userEntity = userService.findByStudentEntity(studentEntity);
+            if (studentEntity != null) {
+                UserEntity userEntity = userService.findByStudentEntity(studentEntity);
 
 
-            for (RequestEntity requestEntity:studentEntity.getRequest())
-            {
-                requestEntity.getStudent().remove(studentEntity);
-                Integer quantuty = requestEntity.getQuantity();
-                quantuty++;
-                requestEntity.setQuantity(quantuty);
-                requestService.addRequest(requestEntity);
+                for (RequestEntity requestEntity : studentEntity.getRequest()) {
+                    requestEntity.getStudent().remove(studentEntity);
+                    Integer quantuty = requestEntity.getQuantity();
+                    quantuty++;
+                    requestEntity.setQuantity(quantuty);
+                    requestService.addRequest(requestEntity);
+                }
+
+                studentService.deleteById(Integer.valueOf(id));
             }
-            studentService.deleteById(Integer.valueOf(id));
         }
 
         System.out.println();
 
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
     }
-    @RequestMapping(value = "/infoaboustudent", method = RequestMethod.POST)
+    @RequestMapping(value = "/infoAboutStudent", method = RequestMethod.POST)
     @ResponseBody
     public List<RequestViewModel> aboutStudent (@RequestBody StudentViewModel studentViewModel) {
         List<String> list = studentViewModel.getListid();
@@ -159,7 +165,10 @@ public class StudentController {
 
         }
         StudentEntity studentEntity2 = studentService.findById(Integer.valueOf(list.get(0)));
-        if (studentEntity2.getRequest().size()==0)
+        /*if (CollectionUtils.isEmpty(studentEntity2.getRequest())){
+            todo
+        }*/
+        if (studentEntity2.getRequest().size()== 0)
             studentEntity2.setStatusstud(STATUS_OF_PRACTICE_NO_DISTR);
         studentService.addStudent(studentEntity2);
 
@@ -223,7 +232,13 @@ public class StudentController {
         List<StudentEntity> studentEntityList = studentPaginationService.getPaginationAndSortedPageList(search,sort,order,offset,limit);
         List<StudentViewModel>  list = (List<StudentViewModel>) conversionService.convert(studentEntityList, studentEntityDescriptor, studentViewModelDescriptor);
         modelMap.addAttribute("rows", list);
-        modelMap.addAttribute("total", studentService.findall().size());
+        if (search=="")
+            modelMap.addAttribute("total", studentService.findall().size());
+        else
+            modelMap.addAttribute("total",studentService.searchbyname("%"+search+"%").size());
+
+
+
         return modelMap;
     }
 
@@ -270,6 +285,7 @@ public class StudentController {
         {
             StydentAndRequestViewModel stydentAndRequestViewModel  =  new StydentAndRequestViewModel();
             stydentAndRequestViewModel.setNamestud(studentEntity.getNamestud());
+            stydentAndRequestViewModel.setIdRequestCompany(String.valueOf(requestEntity.getId()));
             stydentAndRequestViewModel.setSurname(studentEntity.getSurname());
             SpecialityEntity specialityEntity = studentEntity.getSpecialityEntity();
             stydentAndRequestViewModel.setSpeciality(specialityEntity.getName());
@@ -289,7 +305,7 @@ public class StudentController {
 
         return stydentAndRequestViewModelList;
     }
-    @RequestMapping(value = "/request-page", method = RequestMethod.GET)
+ /*   @RequestMapping(value = "/request-page", method = RequestMethod.GET)
     public ModelAndView getAdminPage() {
 
 
@@ -303,10 +319,10 @@ public class StudentController {
 
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("test");
+        modelAndView.setViewName("loginpage");
 
         return modelAndView;
-    }
+    }*/
 
     @RequestMapping(value = "/studentForFirstRequest", method = RequestMethod.GET)
     @ResponseBody
@@ -393,23 +409,32 @@ public class StudentController {
 
         return studentViewModel ;
     }
-    @RequestMapping(value = "/setStudentCoordinate", method = RequestMethod.GET)
+    @RequestMapping(value = "/setStudentCoordinate", method = RequestMethod.POST)
     @ResponseBody
-    public CoordinatEntity  setStudentCoordinate(){
+    public CoordinatEntity  setStudentCoordinate(@RequestBody StydentAndRequestViewModel stydentAndRequestViewModel){
         CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(customUser.getUsername());
         UserEntity userEntity = userService.find(customUser.getUsername()).get(0);
         StudentEntity studentEntity = userEntity.getStudentEntity();
-        if (studentEntity.getRequest().size()!=0) {
-            RequestEntity requestEntity = studentEntity.getRequest().get(0);
-            CoordinatEntity coordinatEntity = coordinateService.findByRequest(requestEntity);
+        if (stydentAndRequestViewModel.getListRequest().size() !=0 ) {
 
+            RequestEntity requestEntity = requestService.findById(Integer.valueOf(stydentAndRequestViewModel.getListRequest().get(0) ));
+            CoordinatEntity coordinatEntity = coordinateService.findByRequest(requestEntity);
+            if (coordinateService.findByRequest(requestEntity)==null )
+            {   CoordinatEntity coordinatEntity1 = new CoordinatEntity();
+                coordinatEntity1.setLng("39.55951988697052");
+
+                coordinatEntity1.setLat("52.621990284095254");
+                return coordinatEntity1;
+
+            }
 
             return coordinatEntity;
         }
         CoordinatEntity coordinatEntity = new CoordinatEntity();
-        coordinatEntity.setLng("1.0");
-        coordinatEntity.setLat("1.0");
+        coordinatEntity.setLng("38.42719214875535");
+
+        coordinatEntity.setLat("55.76230247166097");
 
 
         return coordinatEntity;

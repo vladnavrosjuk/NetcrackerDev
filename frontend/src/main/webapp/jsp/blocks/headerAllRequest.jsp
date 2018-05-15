@@ -31,7 +31,7 @@
 
 
         </ul>
-        <a class="headerStudent" href="/admin-page"><i class="	fa fa-hand-o-right"></i>Home  </a>
+        <a class="headerStudent" href="/adminPage"><i class="	fa fa-hand-o-right"></i>Home  </a>
         <button class="btn btn-outline-success my-2 my-sm-0 jsButtonExitinAutoriation" type="submit"  >Exit</button>
 
 

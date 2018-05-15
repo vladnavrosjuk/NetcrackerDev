@@ -12,13 +12,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-@Repository
+
 public interface StudentPaginationRepository extends PagingAndSortingRepository<StudentEntity, Integer>  {
 
-    @Query (value = "SELECT * FROM student WHERE  student.namestud LIKE :namestudena", nativeQuery = true)
-    List<StudentEntity> searchbyname(@Param("namestudena") String score);
-
-
+    @Query (value = "SELECT * FROM student WHERE  student.namestud LIKE :namestudena \n#pageable\n", nativeQuery = true)
+    List<StudentEntity> searchbyname(@Param("namestudena") String score, Pageable pageable);
 
 
 }

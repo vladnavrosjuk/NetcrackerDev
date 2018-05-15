@@ -56,18 +56,20 @@ public class RegistrationController {
     public void sd(@RequestBody StudentViewModel studentViewModel) {
 
 
-        StudentEntity studentEntity = studentService.findById(Integer.valueOf(studentViewModel.getListid().get(0)));
-        RegistrationEntity registrationEntity =  registrationService.findById(Integer.valueOf(studentViewModel.getIdStudent()) );
-        UserEntity userEntity = new UserEntity();
-        userEntity.setStudentEntity(studentEntity);
-        userEntity.setLogin(registrationEntity.getLogin());
-        userEntity.setPassuser(registrationEntity.getPassword());
-        userEntity.setRole("ROLE_STUDENT");
-        RequestEntity requestEntity = requestService.findById(14);
-        userEntity.setRequestEntity(null);
+        if (studentViewModel.getIdStudent()!=null) {
+            StudentEntity studentEntity = studentService.findById(Integer.valueOf(studentViewModel.getListid().get(0)));
+            RegistrationEntity registrationEntity = registrationService.findById(Integer.valueOf(studentViewModel.getIdStudent()));
+            UserEntity userEntity = new UserEntity();
+            userEntity.setStudentEntity(studentEntity);
+            userEntity.setLogin(registrationEntity.getLogin());
+            userEntity.setPassuser(registrationEntity.getPassword());
+            userEntity.setRole("ROLE_STUDENT");
 
-        userService.add(userEntity);
-        registrationService.deleteById(registrationEntity.getId());
+
+
+            userService.add(userEntity);
+            registrationService.deleteById(registrationEntity.getId());
+        }
 
         /*
         userService.add(userEntity);

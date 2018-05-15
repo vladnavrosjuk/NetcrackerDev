@@ -63,17 +63,19 @@ public class RequestController {
         List<String> listid = requestViewModel.getIdRequestList();
         for(String id : listid){
             RequestEntity requestEntity = requestService.findById(Integer.valueOf(id));
+            if (requestEntity!=null) {
             /*UserEntity userEntity = userService.findByRequestEntity(requestEntity);
             if (userEntity!=null)
             userService.deleteById(userEntity.getId());*/
-            for(StudentEntity studentEntity: requestEntity.getStudent()){
-                studentEntity.setStatusstud(STATUS_OF_PRACTICE_NO_DISTR);
-                studentService.addStudent(studentEntity);
-            }
-            requestEntity.getStudent().clear();
-            requestService.addRequest(requestEntity);
+                for (StudentEntity studentEntity : requestEntity.getStudent()) {
+                    studentEntity.setStatusstud(STATUS_OF_PRACTICE_NO_DISTR);
+                    studentService.addStudent(studentEntity);
+                }
+                requestEntity.getStudent().clear();
+                requestService.addRequest(requestEntity);
 
-            requestService.deleteById(Integer.valueOf(id));
+                requestService.deleteById(Integer.valueOf(id));
+            }
         }
 
 
@@ -219,13 +221,16 @@ public class RequestController {
     }
     @RequestMapping(value = "/requestTableBootstrap", method = RequestMethod.GET)
     @ResponseBody
-    public ModelMap requestTable(@RequestParam String sort, @RequestParam String order, @RequestParam Integer offset, @RequestParam Integer limit){
+    public ModelMap requestTable(@RequestParam String search,  @RequestParam String sort, @RequestParam String order, @RequestParam Integer offset, @RequestParam Integer limit){
 
         ModelMap modelMap = new ModelMap();
-        List<RequestEntity> requestEntityList = requestPaginationService.getPaginationAndSortedPageList(sort,order,offset,limit);
+        List<RequestEntity> requestEntityList = requestPaginationService.getPaginationAndSortedPageList(search, sort,order,offset,limit);
         List<RequestViewModel>  list = (List<RequestViewModel>) conversionService.convert(requestEntityList, requestEntityDescriptor, requestViewModelDescriptor);
         modelMap.addAttribute("rows", list);
+        if (search=="")
         modelMap.addAttribute("total", requestService.find().size());
+        else
+            modelMap.addAttribute("total",requestService.searchbyname("%"+search+"%").size());
         return modelMap;
     }
     @RequestMapping(value = "/setRequestNameRole", method = RequestMethod.GET)

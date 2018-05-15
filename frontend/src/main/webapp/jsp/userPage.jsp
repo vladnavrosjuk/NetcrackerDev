@@ -60,7 +60,7 @@
             <tr>
 
 
-
+                <th  data-radio="idRequestCompany"></th>
                 <th data-field="name" data-sortable="true">Company</th>
                 <th data-field="datestart" data-sortable="true">Date Start</th>
                 <th data-field="datefinish" data-sortable="true">Date Finish</th>

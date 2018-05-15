@@ -45,5 +45,10 @@ public class RequestServiceImpl  implements RequestService{
         return requestRepository.requestAfterCurentDate();
     }
 
+    @Override
+    public List<RequestEntity> searchbyname(String score) {
+        return requestRepository.searchbyname(score);
+    }
+
 
 }
