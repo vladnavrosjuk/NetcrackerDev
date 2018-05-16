@@ -17,6 +17,11 @@
 <script src="resources/js/custom/maps.js"></script>
 <style>
 
+    html,body{
+        overflow-x:hidden;
+        overflow-y:hidden;
+    }
+
     #map {
         height: 400px;
         width: 100%;

@@ -654,13 +654,21 @@ $(document).ready(function () {
         $.ajax({
             url: 'addRequest',
             type: 'POST',
-            dataType: 'text',
+            dataType: 'json',
             contentType: "application/json",
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function (addedUser) {
                 noty({
                     text: 'Запрос компании ' + obj.namecompany + ' создан!',
+                    timeout: 1000
+                });
+                $("#addrequest").modal('toggle');
+
+            },
+            error: function () {
+                noty({
+                    text: 'Error in validate server',
                     timeout: 1000
                 });
                 $("#addrequest").modal('toggle');
@@ -850,7 +858,17 @@ $(document).ready(function () {
                 });
                 $("#createstudent").modal('toggle');
 
+            },
+            error : function () {
+                noty({
+                    text: 'Bad server validation ' ,
+                    timeout: 1000
+                });
+                $("#createstudent").modal('toggle');
+
+
             }
+
 
         });
     });
@@ -1069,8 +1087,6 @@ $(document).ready(function () {
 
                     });
                     $('.jsReleaseMultiSelecr').multiselect('rebuild');
-
-
 
 
                 }() : false;
@@ -1455,8 +1471,6 @@ $(document).ready(function () {
                     $('.jsMultiSelect').multiselect('rebuild');
 
 
-
-
                 }() : false;
             }
         });
@@ -1538,6 +1552,11 @@ $(document).ready(function () {
             mimeType: 'application/json',
 
             success: function (users) {
+                if (users.length==0) {
+                    $(".jsRegistrNewStudent ").prop('disabled', true);
+                }
+                else $(".jsRegistrNewStudent ").prop('disabled', false);
+
                 $('.jsRegistrationStudentDropdown').text('');
                 users ? function () {
                     users.some(function (user) {
@@ -1549,7 +1568,6 @@ $(document).ready(function () {
 
         });
     });
-
 
 
     $(".jsRegRequestDelete").click(function (event) {
@@ -1577,7 +1595,6 @@ $(document).ready(function () {
             mimeType: 'application/json',
             data: JSON.stringify(obj),
             success: function () {
-
 
 
             }
@@ -1626,6 +1643,10 @@ $(document).ready(function () {
             mimeType: 'application/json',
 
             success: function (users) {
+                if (users.length==0){
+                    $(".jsRegistrNewRequest ").prop('disabled', true);
+                }
+                else  $(".jsRegistrNewRequest ").prop('disabled', false);
                 $('.jsRegistrationRequestDropdown').text('');
                 users ? function () {
                     users.some(function (user) {
@@ -1656,9 +1677,6 @@ $(document).ready(function () {
         });
 
     })
-
-
-
 
 
     $(".jsRegistrNewRequest").click(function (event) {
@@ -1696,7 +1714,6 @@ $(document).ready(function () {
 
         });
     });
-
 
 
 });

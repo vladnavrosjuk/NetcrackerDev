@@ -6,11 +6,12 @@ import com.netcracker.etalon.entities.*;
 import com.netcracker.etalon.models.RequestViewModel;
 import com.netcracker.etalon.models.StudentViewModel;
 import com.netcracker.etalon.services.*;
+import com.netcracker.etalon.validator.ValidRequest;
+import com.netcracker.etalon.validator.ValidStudent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,8 +25,10 @@ import java.util.List;
 @Controller
 
 public class AdminController {
-
-
+    @Autowired
+    ValidRequest validRequest;
+    @Autowired
+    ValidStudent validStudent;
     @Autowired
     ConversionService conversionService;
     @Autowired
@@ -63,7 +66,7 @@ public class AdminController {
     @RequestMapping(value = "/autorization", method = RequestMethod.GET)
     public ModelAndView getAutorization() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName(VIEW_LOGIN_PAGE);//constants
+        modelAndView.setViewName(VIEW_LOGIN_PAGE);
 
         return modelAndView;
     }
@@ -187,22 +190,28 @@ public class AdminController {
 
     @RequestMapping(value = "/addRequest", method = RequestMethod.POST)
     @ResponseBody
-    public void addRequest(@RequestBody RequestDto requestDto) {
+    public RequestEntity addRequest(@RequestBody RequestDto requestDto) {
         RequestEntity requestEntity = new RequestEntity();
         requestEntity.setNamecompany(requestDto.getNamecompany());
+
         SpecialityEntity specialitentity = specialityService.findById(requestDto.getFacultetid());
         requestEntity.setSpecialityEntity(specialitentity);
         requestEntity.setDatestart(requestDto.getDatestart());
         requestEntity.setDatefinish(requestDto.getDatefinish());
         requestEntity.setMinavscore(requestDto.getMinavscore());
         requestEntity.setQuantity(requestDto.getQuantity());
-        requestService.addRequest(requestEntity);
+        if (validRequest.validRequest(requestEntity)) {
+            requestService.addRequest(requestEntity);
+            return  requestEntity;
+        }
+        else return null;
+
     }
 
 
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
     @ResponseBody
-    public List<StudentViewModel> addStudent(@RequestBody StudentDTO studentDTO) {
+    public StudentViewModel addStudent(@RequestBody StudentDTO studentDTO) {
         StudentEntity studentEntity = new StudentEntity();
         studentEntity.setGroupstud(studentDTO.getGroupstud());
         studentEntity.setNamestud(studentDTO.getNamestud());
@@ -211,13 +220,17 @@ public class AdminController {
         studentEntity.setBudjet(studentDTO.getBudjet());
         studentEntity.setAvscore(studentDTO.getAvscore());
         studentEntity.setStatusstud(STATUS_OF_PRACTICE_NO_DISTR);
+        if (validStudent.validStudent(studentEntity))
+        {
 
-        studentService.addStudent(studentEntity);
-        StudentEntity studentEntitymax = studentService.findById(studentService.maxId());
+            studentService.addStudent(studentEntity);
 
-        List<StudentEntity> studentEntityList =  new ArrayList<>();
-        studentEntityList.add(studentEntitymax);
-        return  (List<StudentViewModel>) conversionService.convert(studentEntityList, studentEntityDescriptor, studentViewModelDescriptor);
+            StudentEntity studentEntitymax = studentService.findById(studentService.maxId());
+            List<StudentEntity> studentEntityList = new ArrayList<>();
+            studentEntityList.add(studentEntitymax);
+            return  conversionService.convert(studentEntitymax, StudentViewModel.class);
+        }
+        return null;
 
 
 

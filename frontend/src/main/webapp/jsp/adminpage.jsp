@@ -126,6 +126,7 @@ MODAL-------------------------------ADDREQUEST--
             <div class="modal-body">
                         <label for="companuname"><span class="glyphicon "></span> Company name</label>
                         <input type="text" id ="companuname"class="form-control mb-2 mr-sm-2 jsCompanyName"  placeholder="Company name">
+                        <h6 class="jsHintCompanyName"> </h6>
 
                         <label for="startDate"><span class="glyphicon "></span> Start date</label>
                         <input type="date" id="startDate"class="form-control jsStartDate ">
@@ -135,6 +136,7 @@ MODAL-------------------------------ADDREQUEST--
 
                         <label for="minscore"><span class="glyphicon "></span> Min.Av.Score</label>
                         <input type="text" id="minscore"class="form-control jsMinAvScore">
+                         <h6 class="jsHintMinScoreRequest"> </h6>
 
                         <label for="facultetinrequest"><span class="glyphicon "></span>Facultet</label>
                         <select class="form-control marginBottom1rem jsFacultetinAddRequest" id="facultetinrequest">
@@ -142,6 +144,7 @@ MODAL-------------------------------ADDREQUEST--
 
                         <label for="quantity"><span class="glyphicon "></span>Quantity</label>
                         <input type="text" class="form-control mb-2 mr-sm-2 jsRequestQuantity " id="quantity" placeholder="Quantity">
+                        <h6 class="jsHintQuantity"> </h6>
 
                         <button type="submit" disabled class="btn btn-success btn-block jsAddRequest"><span class="glyphicon glyphicon-ok"></span> Create</button>
             </div>

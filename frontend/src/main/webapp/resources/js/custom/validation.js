@@ -1,6 +1,6 @@
 
 var  avScore = "([0-9]{1}[.]{1}[0-9]{1,2})|10";
-var faculty = "([A-Z])\\w{8}";
+var faculty = "([A-Z])\\w{20}";
 var name = "[A-Z]{1}[a-z]{10}";
 var group = "[0-9]{1,7}";
 
@@ -56,6 +56,43 @@ $(document).ready(function() {
 
 })
 function hint() {
+
+
+
+    $('.jsCompanyName').on("keyup",function () {
+        if ( $('.jsCompanyName').val().length == 0 )
+            $('.jsHintCompanyName').text("Please,fill in the fields with a Latin letter starting with a capital letter!!!");
+        else  $('.jsHintCompanyName').text("");
+    })
+    $('.jsCompanyName').blur(function () {
+        $('.jsHintCompanyName').text("");
+
+    })
+
+    $('.jsMinAvScore').on("keyup",function () {
+        if ( $('.jsMinAvScore').val().length == 0 )
+            $('.jsHintMinScoreRequest').text("Please, fill in the field with numbers only 1 - 10!!!");
+        else  $('.jsHintMinScoreRequest').text("");
+    })
+    $('.jsMinAvScore').blur(function () {
+        $('.jsHintMinScoreRequest').text("");
+
+    })
+
+    $('.jsRequestQuantity').on("keyup",function () {
+        if ( $('.jsRequestQuantity').val().length == 0 )
+            $('.jsHintQuantity').text("Please, fill in the field with numbers only!!!");
+        else  $('.jsHintQuantity').text("");
+    })
+    $('.jsRequestQuantity').blur(function () {
+        $('.jsHintQuantity').text("");
+
+    })
+
+
+
+
+
     $('.jsStudentGroup').on("keyup",function () {
         if ( $('.jsStudentGroup').val().length == 0 )
             $('.jsHintGroup').text("Please, fill in the field with numbers only!!!");
