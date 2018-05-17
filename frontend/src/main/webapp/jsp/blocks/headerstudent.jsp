@@ -18,8 +18,9 @@
 <script type="text/javascript" src="../../resources/js/libs/bootstrap-multiselect.js"></script>
 <link href="../../resources/css/libs/bootstrap-multiselect.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="../resources/js/libs/jquery.inputmask.bundle.js" ></script>
+<script src="resources/js/libs/geocoder.js"></script>
 
-<script src="resources/js/custom/geocoder.js"></script>
+<%--<script src="resources/js/custom/geocoder.js"></script>--%>
 <script src="resources/js/custom/student.js"></script>
 
 

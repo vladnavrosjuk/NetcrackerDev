@@ -13,6 +13,7 @@ import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -57,7 +58,7 @@ public class StudentController {
     private static final String VIEW_ALL_REQUEST = "request";
 
 
-    @RequestMapping(value = "/testel", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteStudentById", method = RequestMethod.POST)
     @ResponseBody
     public void asd(@RequestBody StudentViewModel studentViewModel) {
         CustomUser customUser = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -66,7 +67,7 @@ public class StudentController {
         for (String id : list) {
             StudentEntity studentEntity = studentService.findById(Integer.valueOf(id));
             if (studentEntity != null) {
-                UserEntity userEntity = userService.findByStudentEntity(studentEntity);
+
 
 
                 for (RequestEntity requestEntity : studentEntity.getRequest()) {
@@ -232,7 +233,7 @@ public class StudentController {
         List<StudentEntity> studentEntityList = studentPaginationService.getPaginationAndSortedPageList(search,sort,order,offset,limit);
         List<StudentViewModel>  list = (List<StudentViewModel>) conversionService.convert(studentEntityList, studentEntityDescriptor, studentViewModelDescriptor);
         modelMap.addAttribute("rows", list);
-        if (search=="")
+        if (StringUtils.isEmpty(search))
             modelMap.addAttribute("total", studentService.findall().size());
         else
             modelMap.addAttribute("total",studentService.searchbyname("%"+search+"%").size());

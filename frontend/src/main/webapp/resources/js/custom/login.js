@@ -555,7 +555,7 @@ $(document).ready(function () {
         });
 
         $.ajax({
-            url: 'testel',
+            url: 'deleteStudentById',
             type: 'POST',
             dataType: 'json',
             contentType: "application/json",

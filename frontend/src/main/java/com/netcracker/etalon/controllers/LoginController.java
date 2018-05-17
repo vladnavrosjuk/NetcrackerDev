@@ -22,6 +22,7 @@ import java.util.List;
 
 @Controller
 public class LoginController {
+
     @Autowired
     private LoginUserService loginUserService;
     @Autowired

@@ -33,7 +33,7 @@ public class RegistrationController {
 
 
 
-    @RequestMapping(value = "/kel", method = RequestMethod.POST)
+   /* @RequestMapping(value = "/kel", method = RequestMethod.POST)
     @ResponseBody
     public void lel(@RequestBody StudentViewModel studentViewModel) {
 
@@ -50,7 +50,7 @@ public class RegistrationController {
 
 
         // return (List<RequestViewModel>) conversionService.convert(requestService.find(), requestEntityDescriptor, requestViewModelDescriptor);
-    }
+    }*/
     @RequestMapping(value = "/addNewStudentInUser", method = RequestMethod.POST)
     @ResponseBody
     public void sd(@RequestBody StudentViewModel studentViewModel) {

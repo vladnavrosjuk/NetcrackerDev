@@ -12,9 +12,9 @@
     <http  auto-config="true" use-expressions="true">
         <form-login login-page="/autorization"/>
 
-        <intercept-url pattern="/admin-page" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/testuser" access="hasRole('ROLE_STUDENT')"/>
-        <intercept-url pattern="/testrequest" access="hasRole('ROLE_REQUEST')"/>
+        <intercept-url pattern="/adminPage" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/userPage" access="hasRole('ROLE_STUDENT')"/>
+        <intercept-url pattern="/requestPage" access="hasRole('ROLE_REQUEST')"/>
         <intercept-url pattern="/autorization" access="isAnonymous()"/>
 
         <csrf disabled="true" />

@@ -14,7 +14,7 @@ public class ErrorController {
     public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {
 
         ModelAndView errorPage = new ModelAndView("errorPage");
-        String errorMsg = "";
+        String errorMsg = "Http Error";
         int httpErrorCode = getErrorCode(httpRequest);
 
         switch (httpErrorCode) {

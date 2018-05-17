@@ -13,6 +13,7 @@ import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
@@ -41,6 +42,9 @@ public class RequestController {
     private UserService userService;
     @Autowired
     private CoordinateService coordinateService;
+
+    private SimpleDateFormat format = new SimpleDateFormat(("yyyy-MM-dd"));
+    private TimeZone timeZone = TimeZone.getTimeZone("UTC");
 
     private  final TypeDescriptor requestEntityDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(RequestEntity.class));
     private  final TypeDescriptor requestViewModelDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(RequestViewModel.class));
@@ -118,9 +122,10 @@ public class RequestController {
     @RequestMapping(value = "/editRowRequestBase", method = RequestMethod.POST)
     @ResponseBody
     public RequestViewModel editRowRequestBase(@RequestBody RequestViewModel requestViewModel) {
-        //Сбился часовой пояс
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        format.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+
+        format.setTimeZone(timeZone);
+
         List<String> list = requestViewModel.getIdRequestList();
         RequestEntity requestEntity = requestService.findById(Integer.valueOf(list.get(0)));
         try {
@@ -128,8 +133,8 @@ public class RequestController {
             java.util.Date parse2 =  format.parse(requestViewModel.getDatefinish());
             java.sql.Date sql = new java.sql.Date(parse.getTime());
             java.sql.Date sql2 = new java.sql.Date(parse2.getTime());
-            requestEntity.setDatefinish(sql);
-            requestEntity.setDatestart(sql2);
+            requestEntity.setDatefinish(sql2);
+            requestEntity.setDatestart(sql);
 
 
         } catch (ParseException e) {
@@ -227,7 +232,7 @@ public class RequestController {
         List<RequestEntity> requestEntityList = requestPaginationService.getPaginationAndSortedPageList(search, sort,order,offset,limit);
         List<RequestViewModel>  list = (List<RequestViewModel>) conversionService.convert(requestEntityList, requestEntityDescriptor, requestViewModelDescriptor);
         modelMap.addAttribute("rows", list);
-        if (search=="")
+        if (StringUtils.isEmpty(search))
         modelMap.addAttribute("total", requestService.find().size());
         else
             modelMap.addAttribute("total",requestService.searchbyname("%"+search+"%").size());
@@ -283,7 +288,6 @@ public class RequestController {
             stud.setFacultet(facultetEntity.getName());
             stud.setQuantity(String.valueOf(requestEntity.getQuantity()));
             stud.setNamestud(studentEntity.getNamestud());
-
             stud.setSurname(studentEntity.getSurname());
             stud.setGroupstud(String.valueOf(studentEntity.getGroupstud()));
             stud.setAvscore(String.valueOf(studentEntity.getAvscore()));
@@ -338,7 +342,7 @@ public class RequestController {
             stringBuilder.append("AvScore:"+studentEntity.getAvscore()+"<br>");
 
         }
-        System.out.println("lol");
+
 
 
         return stringBuilder;
@@ -362,6 +366,7 @@ public class RequestController {
 
         return requestViewModel;
     }
+
 
 
 

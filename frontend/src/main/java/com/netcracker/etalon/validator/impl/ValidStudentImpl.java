@@ -29,7 +29,7 @@ public class ValidStudentImpl implements ValidStudent {
 
                 studentEntity.getNamestud().matches("[A-Z]{1}[a-z]+")&&
                 studentEntity.getSurname().matches("[A-Z]{1}[a-z]+")&&
-                String.valueOf(studentEntity.getAvscore()).matches("([0-9]{1}[.]{1}[0-9]{1,2})|10")&&
+                String.valueOf(studentEntity.getAvscore()).matches("([0-9]{1}[.]{1}[0-9]{1,2})|(10.0)")&&
                 String.valueOf(studentEntity.getGroupstud()).matches("[0-9]+")
 
 

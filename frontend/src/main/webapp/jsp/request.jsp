@@ -12,7 +12,8 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSfqj0z4gUb9oF8ZoWwtLmowiqqw2rWUk&callback=initMap">
 </script>
-<script src="resources/js/custom/geocoder.js"></script>
+<script src="resources/js/libs/geocoder.js"></script>
+<%--<script src="resources/js/custom/geocoder.js"></script>--%>
 
 <script src="resources/js/custom/maps.js"></script>
 <style>
